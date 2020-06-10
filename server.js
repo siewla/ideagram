@@ -13,12 +13,7 @@ app.use(express.json()); //for parsing application/json
 app.use(express.urlencoded({ extended: false }));
 
 /*------------Route------------*/
-app.get('/', async (req, res)=>{
-    res.send('Hello World');
-});
-
-
-// require('./routes')(app);
+require('./routes')(app);
 
 /*------------LISTENER------------*/ 
 // db.connect().then(()=>{
