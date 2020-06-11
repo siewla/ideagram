@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>REGISTRATION</title>
+    <!-- STYLES -->
+    <link rel="stylesheet" href="/styles/registration.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,400,500" rel="stylesheet">
+</head>
+<body>
+    <!-- ============= CONTAINER ============== -->
+    <div class="container">
+        <!-- sidebar -->
+        <div class="sidebar"></div>
+        <!-- registration container -->
+        <div class="registration">
+            <!-- START FORM -->
+            <form action="/register" method="POST">
+                <!-- form -->
+                <%- include('../partials/registrationForm.ejs') %>
+                <!-- submit button -->
+                <input type="submit" value="REGISTER">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
