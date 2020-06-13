@@ -9,6 +9,7 @@ module.exports = (app) => {
         res.render('ideagram/registration.ejs');
     });
 
+    /*
     app.get('/cookie', (req, res) => {
         // get the currently set cookie
         let visits = req.cookies['visits'] === undefined ? 0 : req.cookies['visits'].value;
@@ -30,6 +31,14 @@ module.exports = (app) => {
         res.cookie('visits', { value: visits } , { expires: new Date(Date.now() + 900000), httpOnly: true });
         // res.cookie('visits', visits);
         res.send('Good morning');
+    });
+    */
+
+    app.get('/session', (req, res) => {
+        let visits = req.session.visits;
+        req.session.visits = visits === undefined ? 1 : parseInt( visits ) +1;
+        console.log('visits from session:' + visits);
+        res.send('Session');
     });
 
 };
