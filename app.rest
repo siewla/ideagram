@@ -1,0 +1,15 @@
+POST http://localhost:8000/albums/new
+Content-Type: application/json
+
+{
+    "name": "New Album",
+    "description": "test test",
+    "image": "https://images.unsplash.com/photo-1591107417556-19901568d797?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+}
+###
+POST http://localhost:8000/albums/new
+Content-Type: application/json
+
+{
+
+}

@@ -1,0 +1,17 @@
+.albums{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.album-card{
+    margin: 2vh;
+    padding: 1vh;
+    border: 1px solid black;
+    border-radius: 2vh;
+}
+
+.album-image{
+    width: 30vh;
+    height: 30vh;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <h1>Albums</h1>
+    <div class="albums">
+        <% data.forEach( album => { %>
+        <div class="album-card">
+            <a href="#">
+                <h3><%=album.name%></h3>
+                <img src="<%=album.image%>" class="album-image">
+                <h4><%=album.description%></h4>
+            </a>
+        </div>
+        <% }) %>
+    </div>
+</body>
+</html>

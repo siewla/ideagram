@@ -1,0 +1,29 @@
+#registration-card {
+    margin: 2vh;
+    padding: 2vh;
+    text-align: center;
+    border: 1px solid black;
+    width: 40%
+}
+
+#login-btn {
+    background-color: black;
+    color:yellow;
+    margin: 0.5vh;
+}
+
+#signup-btn {
+    background-color: yellow;
+    color: black;
+    margin: 0.5vh;
+}
+
+#welcome-text {
+
+}
+
+#tagline-text {
+    font-style:italic;
+    opacity: 0.5;
+}
+

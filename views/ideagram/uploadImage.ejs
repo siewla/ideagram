@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1589447388175-ac47d31be950?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" id="img-preview" />
+        <label class="file-upload-container" for="file-upload">
+            <input id="file-upload" type="file" style="display:none">
+            Select an Image
+        </label>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/upload.js"></script>
+</body>
+</html>

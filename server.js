@@ -1,11 +1,14 @@
 /*------------DEPENDENCIES------------*/ 
 const express           = require('express');
+const multer            = require('multer');
+const moment            = require('moment');
+const path              = require('path');
 const methodOverride    = require('method-override');
 const cookieParser      = require('cookie-parser');
 const session           = require('express-session');
 const app               = express ();
-const port              = process.env.PORT || 3000;
-// const db                = require('./database');
+const port              = process.env.PORT || 8000;
+const db                = require('./database');
 
 /*------------MIDDLEWARE------------*/ 
 app.use(methodOverride('_method'));
@@ -24,9 +27,9 @@ app.use(session({
 require('./routes')(app);
 
 /*------------LISTENER------------*/ 
-// db.connect().then(()=>{
-//     app.emit('ready');
-// });
+db.connect().then(()=>{
+    app.emit('ready');
+});
 
 app.listen(port, () =>{
     console.log(`IDEAGRAM is listening on port : ${port}`);

@@ -2,8 +2,22 @@
 <html lang="en">
 <head>
     <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/styles/mainpage.css">
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
+    <div id="registration-card">
+        <img id="registration-logo" src="/assets/images/ideagramlogo.png">
+        <h3 id="welcome-text">Welcome to Ideagram</h3>
+        <h4 id="tagline-text">Find new ideas to try</h4>
+        <br>
+        <div class="buttons">
+            <a class="waves-effect waves-light btn-small" href="/login" id="login-btn">
+                <i class="material-icons right">person</i>Login</a>
+            <a class="waves-effect waves-light btn-small" href="/signup" id="signup-btn">
+                <i class="material-icons right">person_add</i>Signup</a>
+        </div>
+        
+    </div>
 </body>
 </html>
