@@ -1,7 +1,18 @@
 const { albumsControllers } = require('../controllers/albums');
+const { usersControllers } = require('../controllers/users');
+const { sessionsControllers } = require('../controllers/sessions');
+const { appControllers } = require('../controllers/app');
 
 module.exports = (app) => {
-    app.get('/', albumsControllers.getAllAlbums);
+    
+    app.get('/', appControllers.homepage); //homepage 
+
+    app.get('/login', sessionsControllers.newLogin); // user login
+    app.post('/login', sessionsControllers.login ); // login
+
+
+
+    // app.get('/', albumsControllers.getAllAlbums);
 
     app.get('/register', async (req, res)=>{
         res.render('ideagram/registration.ejs');
@@ -16,6 +27,8 @@ module.exports = (app) => {
     // app.get('/upload', async (req, res) =>{
     //     res.render('ideagram/uploadMulter.ejs');
     // });
+
+    app.post('/users/create', usersControllers.createUser);
 
     app.get('/session', (req, res) => {
         let visits = req.session.visits;
