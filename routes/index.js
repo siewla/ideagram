@@ -7,7 +7,11 @@ module.exports = (app) => {
         res.render('ideagram/registration.ejs');
     });
 
-    app.post('/albums/new', albumsControllers.createAlbum);
+    app.get('/albums/new', albumsControllers.createNewAlbum);
+
+    app.get('/albums/show', albumsControllers.showAlbum);
+
+    app.post('/albums/create', albumsControllers.createAlbum);
 
     // app.get('/upload', async (req, res) =>{
     //     res.render('ideagram/uploadMulter.ejs');

@@ -6,6 +6,10 @@ const albumsControllers = {
         res.render('ideagram/main.ejs', { data });
     },
 
+    createNewAlbum: async (req, res)=>{
+        res.render('ideagram/newAlbum.ejs');
+    },
+
     createAlbum : async (req, res) => {
         try {
             if (Object.keys(req.body).length){
@@ -15,13 +19,17 @@ const albumsControllers = {
                     'image': req.body.image
                 };
                 await albumsRepositories.createAlbum(album);
-                return res.send(album);
+                return res.redirect('/');
             } else {
                 return res.send('Empty Object');
             }
         } catch (err) {
             return res.send(err.message);
         }
+    },
+
+    showAlbum : async (req, res)=>{
+        res.render('ideagram/showAlbum.ejs');
     }
 };
 

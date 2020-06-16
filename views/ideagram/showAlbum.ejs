@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/styles/carousel.css"> 
+    <link rel="stylesheet" type="text/css" href="/styles/showAlbum.css">
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <h2 id='userName-top-right-corner'>User</h2>
+    <h1 id='album-name-show'>AlbumOne</h1>
+    <%- include('../partials/carousel.ejs') %>
+    <br>
+    <div class="show-images-carousel">    
+        <div class="buttons">
+            <a class="waves-effect waves-light btn-small" href="/download" id="download-btn">
+                <i class="material-icons right">file_download</i>download</a>
+            <a class="waves-effect waves-light btn-small" href="/upload" id="upload-btn">
+                <i class="material-icons right">file_upload</i>upload</a>
+        </div>
+    </div>
+    <div class="show-images-comments">
+        <h3>Comments</h3>
+    </div>
+</body>
+</html>
