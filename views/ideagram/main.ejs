@@ -10,13 +10,19 @@
     <div class="albums">
         <% data.forEach( album => { %>
         <div class="album-card">
-            <a href="#">
-                <h3><%=album.name%></h3>
-                <img src="<%=album.image%>" class="album-image">
-                <h4><%=album.description%></h4>
+                <a href="#">
+                <% if(currentUser.username === album.owner){ %>
+                    <button class="owner-tag">Owner</button>
+                <%}%>
+                <h3 class="album-name-container"><%=album.name%></h3>
+                <img class="album-image-container" src="<%=album.images[0]%>">
+                <h4 class="album-description-container"><%=album.description%></h4>
             </a>
         </div>
         <% }) %>
+        <div class="album-card">
+            <button>add new album</button>
+        </div>
     </div>
 </body>
 </html>

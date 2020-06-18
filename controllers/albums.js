@@ -16,7 +16,7 @@ const albumsControllers = {
                 const album = {
                     'name': req.body.name,
                     'description': req.body.description,
-                    'image': req.body.image
+                    'images': req.body.image
                 };
                 await albumsRepositories.createAlbum(album);
                 return res.redirect('/');

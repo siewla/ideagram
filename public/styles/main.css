@@ -9,11 +9,25 @@
     padding: 1vh;
     border: 1px solid black;
     border-radius: 2vh;
+    width: 30vh;
+    height: 50vh;
 }
 
-.album-image{
-    width: 30vh;
+.album-image-container{
+    width: 25vh;
     height: 30vh;
+}
+
+.owner-tag{
+    color:red;
+}
+
+.album-name-container {
+
+}
+
+.album-description-container{
+
 }
 
 .brand-logo{
