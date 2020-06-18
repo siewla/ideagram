@@ -13,7 +13,7 @@ describe('usersRepositories.create', ()=>{
 
     it('should return true when insert a new object into db collection', async () => {
         const result = await usersRepositories.create({
-            'username': 'UserOne',
+            'username': 'UserTwo',
             'password': '123',
             'createdAt': new Date(),
             'updatedAt': new Date()

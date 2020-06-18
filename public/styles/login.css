@@ -16,42 +16,19 @@ body{
     padding: 2vh;
     text-align: center;
     border-radius: 3vh;
-    width: 50%
+    width: 30%
 }
 
-#login-btn {
-    background-color: black;
-    color:yellow;
-    margin: 0.5vh;
-}
-
-#signup-btn {
+#submit-btn {
+    float:right;
     background-color: yellow;
     color: black;
-    margin: 0.5vh;
+}
+.form-properties-title{
+    float: left;
+    font-size: 2vh;
 }
 
-#dashboard-btn {
-    background-color: yellow;
-    color: black;
-    margin: 0.5vh;
+.validate {
+    color:white;
 }
-
-#logout-btn{
-    background-color: black;
-    color:yellow;
-    margin: 0.5vh;
-}
-
-#welcome-text{
-    /* background-color: grey;
-    border-radius: 1vh; */
-}
-
-#tagline-text {
-    font-style:italic;
-    color:yellow;
-    /* background-color: grey;
-    border-radius: 1vh; */
-}
-

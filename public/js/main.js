@@ -26,4 +26,8 @@ $(()=>{
         $('.carousel-images').children().eq(currentImgIndex).css('display', 'block');
     });
 
+    $('.card-alert > button').on('click', function (){
+        $(this).closest('div.card-alert').fadeOut('slow');
+    });
+
 });

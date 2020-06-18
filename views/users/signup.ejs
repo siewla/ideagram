@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <%- include('../partials/head.ejs') %>
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="/styles/signup.css">
+  </head>
+  <body>
+    <div class = 'center-the-form'>
+      <div id="registration-card">
+        <img id="registration-logo" src="/assets/images/ideagramlogo.png">
+        <%-include('../partials/errorMsg.ejs') %>
+        <form action="/signup" method="POST">
+          <%- include('../partials/registration.ejs') %>
+          <button class="waves-effect waves-light btn-small" type="submit" name="action" id="submit-btn">Signup
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>
+    </div>  
+    </body>
 </html>

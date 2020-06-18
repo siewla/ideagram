@@ -15,3 +15,35 @@
     width: 30vh;
     height: 30vh;
 }
+
+.brand-logo{
+    color: yellow !important;    
+}
+
+#logout-text{
+    background-color:black !important;
+    color: yellow !important;
+    text-transform: capitalize;
+}
+
+#logout-side{
+    background-color:black !important;
+    color: yellow !important;
+    text-transform: capitalize;
+    margin-left: 10vh;
+}
+
+#username-top-right-corner {
+    color: black !important;
+    margin-top: 1vh;
+    text-align: right;
+    margin-right: 2vh;
+    font-size: 2vh;
+}
+
+.page-heading{
+    background-color: rgba(238, 241, 40, 0.5);
+    text-align: center;
+    font-size: 5vh;
+    text-transform: uppercase;
+}

@@ -4,7 +4,7 @@ const multer            = require('multer');
 const moment            = require('moment');
 const path              = require('path');
 const methodOverride    = require('method-override');
-const cookieParser      = require('cookie-parser');
+// const cookieParser      = require('cookie-parser');
 const session           = require('express-session');
 const app               = express ();
 const port              = process.env.PORT || 8000;
@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json()); //for parsing application/json 
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(session({
     secret: 'feedmeseymour', //a random string do not copy this value or your stuff will get hacked
     resave: false,

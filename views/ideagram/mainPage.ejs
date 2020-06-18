@@ -6,10 +6,18 @@
 </head>
 <body>
     <% if (currentUser) { %>
-        <h1>Welcome <%= currentUser.username %>!</h1>
-        <form action="/sessions?_method=DELETE" method="post">
-            <input type="submit" name="" value="Logout" class="waves-effect waves-light btn">
-        </form>
+        <div class = 'center-the-form'>
+            <div id="registration-card">
+            <img id="registration-logo" src="/assets/images/ideagramlogo.png">
+            <h3 id="welcome-text">Welcome to Ideagram</h3>
+            <h4 id="tagline-text"><%= currentUser.username %>!</h4>
+            <a class="waves-effect waves-light btn-small" href="/dashboard" id="dashboard-btn">
+                <i class="material-icons right">dashboard</i>Go to Main Dashboard</a>
+            <form action="/logout?_method=DELETE" method="post">
+            <button class="waves-effect waves-light btn-small" id="logout-btn">
+                <i class="material-icons right">keyboard_return</i>Logout</button>
+            </form>
+        </div>
     <% } else { %>
     <div class = 'center-the-form'>
         <div id="registration-card">

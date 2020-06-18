@@ -10,9 +10,19 @@ module.exports = (app) => {
     app.get('/login', sessionsControllers.newLogin); // user login
     app.post('/login', sessionsControllers.login ); // login
 
+    app.get('/signup', usersControllers.signupForm); // signup form
+    app.post('/signup', usersControllers.createUser); // create user
 
+    app.use((req, res, next) => {
+        if(req.session.currentUser) {
+            next();
+        } else {
+            return res.redirect('/');
+        }
+    });
 
-    // app.get('/', albumsControllers.getAllAlbums);
+    app.delete('/logout', sessionsControllers.logout); // logout
+    app.get('/dashboard', albumsControllers.getAllAlbums);
 
     app.get('/register', async (req, res)=>{
         res.render('ideagram/registration.ejs');

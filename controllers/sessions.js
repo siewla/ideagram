@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const sessionsControllers = {
     newLogin : async (req, res)=>{
-        return res.render('sessions/login');
+        return res.render('sessions/login.ejs', { error:false });
     },
 
     login : async (req, res)=>{
@@ -13,10 +13,10 @@ const sessionsControllers = {
                 req.session.currentUser = user;
                 return res.redirect('/');
             } else {
-                throw new Error();
+                throw new Error('invalid password');
             }
         } catch (err) {
-            return res.send('Invalid username and/or password');
+            return res.render('sessions/login.ejs', { error: err.message });
         }
     },
 

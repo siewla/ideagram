@@ -3,7 +3,7 @@ const { albumsRepositories } = require('../repositories/albums');
 const albumsControllers = {
     getAllAlbums: async (req ,res)=>{
         const data = await albumsRepositories.getAllAlbums();
-        res.render('ideagram/main.ejs', { data });
+        res.render('ideagram/main.ejs', { data, currentUser : req.session.currentUser });
     },
 
     createNewAlbum: async (req, res)=>{

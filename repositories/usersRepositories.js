@@ -5,12 +5,23 @@ const SALT_ROUND = process.env.SALT_ROUND || 10;
 module.exports = {  
     create: async (userData) => {
         try{
-            userData.password = bcrypt.hashSync(userData.password, bcrypt.genSaltSync(SALT_ROUND));
-            const { insertedCount } = await db.users.insertOne(userData);
-            if (!insertedCount) throw new Error ('insertion failed');
-            return true;
+            if (await db.users.countDocuments({ username:userData.username })===0){
+                userData.password = bcrypt.hashSync(userData.password, bcrypt.genSaltSync(SALT_ROUND));
+                const { insertedCount } = await db.users.insertOne(userData);
+                if (!insertedCount) throw new Error ('insertion failed');
+                console.log('hi');
+                return true;
+            } else {
+                throw new Error (`username ${userData.username} already exists`);
+            }
         } catch (err) {
-            throw new Error(`Due to ${err.message}, you are not allowed to insert this item ${JSON.stringify(userData)}`);
+            throw new Error (`${err.message}`);
         }
+    },
+
+    find: async (username) => {
+        const user = await db.users.findOne({ username: username });
+        if(!user) throw new Error (`The user ${username} does not exist`);
+        return user;
     }
 };

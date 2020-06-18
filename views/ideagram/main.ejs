@@ -5,7 +5,8 @@
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
-    <h1>Albums</h1>
+    <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
+    <h1 class='page-heading'>Albums</h1>
     <div class="albums">
         <% data.forEach( album => { %>
         <div class="album-card">
