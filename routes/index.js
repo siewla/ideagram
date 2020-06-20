@@ -23,16 +23,13 @@ module.exports = (app) => {
 
     app.delete('/logout', sessionsControllers.logout); // logout
     app.get('/dashboard', albumsControllers.getAllAlbums);
-
-    app.get('/register', async (req, res)=>{
-        res.render('ideagram/registration.ejs');
-    });
-
+    
     app.get('/albums/new', albumsControllers.createNewAlbum);
-
-    app.get('/albums/show', albumsControllers.showAlbum);
-
+    app.get('/albums/:albumName', albumsControllers.showAlbumByName);
     app.post('/albums/create', albumsControllers.createAlbum);
+
+    app.get('/image/new', albumsControllers.createNewImage);
+    app.post('/image/create',albumsControllers.createImage);
 
     // app.get('/upload', async (req, res) =>{
     //     res.render('ideagram/uploadMulter.ejs');

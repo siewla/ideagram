@@ -7,7 +7,7 @@ const methodOverride    = require('method-override');
 // const cookieParser      = require('cookie-parser');
 const session           = require('express-session');
 const app               = express ();
-const port              = process.env.PORT || 8000;
+const port              = process.env.PORT || 3000;
 const db                = require('./database');
 
 /*------------MIDDLEWARE------------*/ 

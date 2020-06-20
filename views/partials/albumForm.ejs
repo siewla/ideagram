@@ -1,0 +1,21 @@
+<form action = '/albums/create' method = 'POST'>
+    <div>
+        <label for='name'>Album Name</label>
+        <input type='text' name='name' placeholder="Enter Album's Name" required>
+    </div>
+    <div>
+        <label for='description'>Album Description</label>
+        <input type='text' name='description' placeholder="Enter Album's description" required>
+    </div>
+    <div>
+        <label for='image'>First Image</label>
+        <input type='url' name='image' placeholder="link of image" required>
+    </div>
+    <div>
+        <label for='comment'>Image Description</label>
+        <input type='text' name='comment' placeholder="Enter Image's description" required>
+    </div>
+    <div class="create-album">
+        <button type="submit">Create New Album</button>
+    </div>
+</form>

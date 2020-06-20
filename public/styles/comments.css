@@ -1,0 +1,10 @@
+#comment-heading{
+    font-size:3vh;
+    color: yellow;
+    background-color:black;
+    padding:1vh;
+    border-radius: 1vh;
+}
+.comments-container{
+    border: 1px solid black;
+}

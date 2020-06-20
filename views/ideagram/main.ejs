@@ -10,7 +10,7 @@
     <div class="albums">
         <% data.forEach( album => { %>
         <div class="album-card">
-                <a href="#">
+                <a href="/albums/<%= album.name%>">
                 <% if(currentUser.username === album.owner){ %>
                     <button class="owner-tag">Owner</button>
                     <button class="edit-button">Edit</button>
@@ -25,7 +25,9 @@
         </div>
         <% }) %>
         <div class="album-card">
-            <button>add new album</button>
+            <a href="/albums/new">
+                <button>add new album</button>
+            </a>
         </div>
     </div>
 </body>

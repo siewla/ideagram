@@ -9,7 +9,6 @@ module.exports = {
                 userData.password = bcrypt.hashSync(userData.password, bcrypt.genSaltSync(SALT_ROUND));
                 const { insertedCount } = await db.users.insertOne(userData);
                 if (!insertedCount) throw new Error ('insertion failed');
-                console.log('hi');
                 return true;
             } else {
                 throw new Error (`username ${userData.username} already exists`);

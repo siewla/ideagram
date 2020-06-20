@@ -1,7 +1,41 @@
-#album-name-show{
-    text-align: left;
+.album-name-container{
+    margin-left: 2vh;
+    font-size: 10vh;
+}
+.album-description-container{
+    margin-left: 2vh;
+    font-size: 5vh;
 }
 
-.show-images-carousel{
-    text-align: center;
+.individual-image{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-show{
+    border-radius: 2vh;
+}
+
+.buttons{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#download-btn{
+    background-color: black;
+    color:yellow;
+}
+
+#upload-btn{
+    background-color: yellow;
+    color: black;
+}
+
+#uploadedBy{
+    font-size:2vh;
+    text-align: right;
+    margin-top: 0;
 }

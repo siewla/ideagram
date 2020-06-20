@@ -2,6 +2,20 @@ POST http://localhost:8000/albums/create
 Content-Type: application/json
 
 {
+    "owner": "UserTwo",
+    "name": "DeskSetup1",
+    "description": "Minimal Desk Setup",
+    "createdAt": "2017-02-08T12:10:40.787",
+    "images": [{
+        "url": "https://images.unsplash.com/photo-1557681619-aa3ab318509d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        "uploadedBy": "UserOne",
+        "uploadedAt": "2017-02-08T12:10:40.787",
+        "comments": [{
+            "comment": "First comment on first image",
+            "commentedBy": "UserOne",
+            "commentedAt": "2017-02-08T12:10:40.787"
+        }]
+    }]
 }
 
 ###

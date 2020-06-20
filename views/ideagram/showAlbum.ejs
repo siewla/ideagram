@@ -4,23 +4,40 @@
     <%- include('../partials/head.ejs') %>
     <link rel="stylesheet" type="text/css" href="/styles/carousel.css"> 
     <link rel="stylesheet" type="text/css" href="/styles/showAlbum.css">
+    <link rel="stylesheet" type="text/css" href="/styles/comments.css">
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
-    <h2 id='userName-top-right-corner'>User</h2>
-    <h1 id='album-name-show'>AlbumOne</h1>
-    <%- include('../partials/carousel.ejs') %>
-    <br>
-    <div class="show-images-carousel">    
-        <div class="buttons">
-            <a class="waves-effect waves-light btn-small" href="/download" id="download-btn">
-                <i class="material-icons right">file_download</i>download</a>
-            <a class="waves-effect waves-light btn-small" href="/upload" id="upload-btn">
-                <i class="material-icons right">file_upload</i>upload</a>
+    <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
+    <h3 class="album-name-container"><strong>Album Name : </strong><%=album.name%></h3>
+    <h4 class="album-description-container"><strong>Description : </strong><%=album.description%></h4>
+    <h2 class="page-heading">Images</h2>
+    <% album.images.forEach(image => { %>
+    <div class="individual-image">
+        <div class="image-container">
+            <img class="image-show" src="<%=image.url%>">
+            <h2 id="uploadedBy">Uploaded by <strong><%=image.uploadedBy%></strong></h2>
+            <div class="buttons">
+                <a class="waves-effect waves-light btn-small" href="/download" id="download-btn">
+                    <i class="material-icons right">file_download</i>download</a>
+                <a class="waves-effect waves-light btn-small" href="/upload" id="upload-btn">
+                    <i class="material-icons right">file_upload</i>upload</a>
+            </div>
         </div>
-    </div>
-    <div class="show-images-comments">
-        <h3>Comments</h3>
+        <h2 id=comment-heading>
+            Share a feedback or ask a question
+        </h2>
+        <div class="comments-container">    
+            <% image.comments.forEach(comment => { %>
+                <div class="comment">
+                    <h3><%=comment.commentedBy%></h3>
+                    <h2><%=comment.comment%></h2>
+                    <h3><%=comment.commentedAt%></h3>
+                </div>
+            <%}) %>
+        <%- include('../partials/comments.ejs')%>
+        </div>
+    <%})%> 
     </div>
 </body>
 </html>
