@@ -9,20 +9,27 @@
     <h1 class='page-heading'>Albums</h1>
     <div class="albums">
     <% data.forEach( album => { %>
-    <a href="/albums/<%= album.name%>">
         <div class="album-card">
                 <% if(currentUser.username === album.owner){ %>
-                    <button class="owner-tag">Owner</button>
+                    <a href="/albums/<%= album.name%>">
+                        <button class="owner-tag">Owner</button>
+                    </a>
                     <button class="edit-button">Edit</button>
                 <%} else{ %>
-                    <button class="follow-button">Follow</button>
-                    <button class="view-button">view</button>
+                    <form action = '/album/follow' method = 'POST'>
+                        <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                        <div class="follow-album">
+                            <button type="submit">Follow</button>
+                        </div>
+                    </form>
+                    <a href="/albums/<%= album.name%>">
+                        <button class="view-button">view</button>
+                    </a>
                 <%} %>
                 <h3 class="album-name-container"><%=album.name%></h3>
                 <img class="album-image-container" src="<%=album.images[0].url%>">
                 <h4 class="album-description-container"><%=album.description%></h4>
         </div>
-    </a>
         <% }) %>
         <div class="album-card">
             <a href="/albums/new">

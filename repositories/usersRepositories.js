@@ -22,5 +22,25 @@ module.exports = {
         const user = await db.users.findOne({ username: username });
         if(!user) throw new Error (`The user ${username} does not exist`);
         return user;
-    }
+    },
+
+    addFollowingAlbum: async (username, albumName) =>{
+        try{
+            const { modifiedCount } = await db.users
+                .updateOne(
+                    { username: username },
+                    { 
+                        $push:{ 
+                            albumsFollowing: { 
+                                $each: [albumName]
+                            } 
+                        } 
+                    }
+                );
+            if (!modifiedCount ) throw new Error ('insertion failed');
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
+    },
+
 };

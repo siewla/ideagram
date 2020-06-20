@@ -32,6 +32,9 @@ module.exports = (app) => {
     app.post('/image/create',albumsControllers.createImage);
     
     app.post('/comment/create', albumsControllers.addComment);
+    app.post('/album/follow', usersControllers.followAlbum);
+
+    app.get('/following', usersControllers.listAlbumsFollowing);
 
     // app.get('/upload', async (req, res) =>{
     //     res.render('ideagram/uploadMulter.ejs');

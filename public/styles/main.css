@@ -61,3 +61,9 @@
     font-size: 5vh;
     text-transform: uppercase;
 }
+
+.link-text{
+    color: yellow;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
