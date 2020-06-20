@@ -8,9 +8,9 @@
     <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
     <h1 class='page-heading'>Albums</h1>
     <div class="albums">
-        <% data.forEach( album => { %>
+    <% data.forEach( album => { %>
+    <a href="/albums/<%= album.name%>">
         <div class="album-card">
-                <a href="/albums/<%= album.name%>">
                 <% if(currentUser.username === album.owner){ %>
                     <button class="owner-tag">Owner</button>
                     <button class="edit-button">Edit</button>
@@ -21,8 +21,8 @@
                 <h3 class="album-name-container"><%=album.name%></h3>
                 <img class="album-image-container" src="<%=album.images[0].url%>">
                 <h4 class="album-description-container"><%=album.description%></h4>
-            </a>
         </div>
+    </a>
         <% }) %>
         <div class="album-card">
             <a href="/albums/new">

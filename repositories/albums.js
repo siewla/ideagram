@@ -41,6 +41,27 @@ const albumsRepositories = {
         }catch(err) {
             throw new Error (`${err.message}`);
         }
+    },
+
+    addCommentToExistingImage : async (albumName, imageID, commentData)=>{
+        const commentIndex = `images.${imageID}.comments`;
+        try{
+            const { modifiedCount } = await db.albums
+                .updateOne({ 
+                    name: albumName, 
+                },
+                { 
+                    $push:{
+                        [commentIndex]: { 
+                            $each: commentData 
+                        }
+                    }
+                }
+                );
+            if (!modifiedCount ) throw new Error ('insertion failed');
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
     }
 };
 

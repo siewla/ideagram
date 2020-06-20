@@ -11,7 +11,8 @@
     <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
     <h3 class="album-name-container"><strong>Album Name : </strong><%=album.name%></h3>
     <h4 class="album-description-container"><strong>Description : </strong><%=album.description%></h4>
-    <h2 class="page-heading">Images</h2>
+    <h2 class="page-heading">Images</h2> 
+    <%  let imageIndex =0;   %>
     <% album.images.forEach(image => { %>
     <div class="individual-image">
         <div class="image-container">
@@ -20,14 +21,14 @@
             <div class="buttons">
                 <a class="waves-effect waves-light btn-small" href="/download" id="download-btn">
                     <i class="material-icons right">file_download</i>download</a>
-                <a class="waves-effect waves-light btn-small" href="/upload" id="upload-btn">
+                <a class="waves-effect waves-light btn-small" href="/<%=album.name%>/image/new" id="upload-btn">
                     <i class="material-icons right">file_upload</i>upload</a>
             </div>
         </div>
         <h2 id=comment-heading>
             Share a feedback or ask a question
         </h2>
-        <div class="comments-container">    
+        <div class="comments-container">
             <% image.comments.forEach(comment => { %>
                 <div class="comment">
                     <h3><%=comment.commentedBy%></h3>
@@ -35,7 +36,18 @@
                     <h3><%=comment.commentedAt%></h3>
                 </div>
             <%}) %>
-        <%- include('../partials/comments.ejs')%>
+            <form action = '/comment/create' method = 'POST'>
+                <div>
+                    <input type='text' name='comment' placeholder="Share a feedback or a question" required>
+                </div>
+                <div class="create-comment">
+                    <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>
+                    <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                    <button type="submit" class="waves-effect waves-light btn-small" href="/download" id="comment-btn">
+                        <i class="material-icons right">message</i>Add new comment</button>
+                </div>
+            </form>
+            <% imageIndex++ %>
         </div>
     <%})%> 
     </div>

@@ -28,14 +28,16 @@ module.exports = (app) => {
     app.get('/albums/:albumName', albumsControllers.showAlbumByName);
     app.post('/albums/create', albumsControllers.createAlbum);
 
-    app.get('/image/new', albumsControllers.createNewImage);
+    app.get('/:albumName/image/new', albumsControllers.createNewImage);
     app.post('/image/create',albumsControllers.createImage);
+    
+    app.post('/comment/create', albumsControllers.addComment);
 
     // app.get('/upload', async (req, res) =>{
     //     res.render('ideagram/uploadMulter.ejs');
     // });
 
-    app.post('/users/create', usersControllers.createUser);
+
 
     app.get('/session', (req, res) => {
         let visits = req.session.visits;

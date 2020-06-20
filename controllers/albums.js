@@ -46,7 +46,7 @@ const albumsControllers = {
     },
 
     createNewImage: async (req, res)=>{
-        res.render('ideagram/newImage.ejs');
+        res.render('ideagram/newImage.ejs', { albumName: req.params.albumName });
     },
 
     createImage : async (req, res)=>{
@@ -62,8 +62,26 @@ const albumsControllers = {
                         'commentedAt' : new Date()
                     }]
                 }];
-                await albumsRepositories.addImageToExistingAlbum('DeskSetup', imageData);
+                await albumsRepositories.addImageToExistingAlbum(req.body.albumName, imageData);
                 return res.redirect('/dashboard');
+            } else {
+                return res.send('Empty Object');
+            }
+        }catch (err) {
+            return res.send(err.message);
+        }
+    },
+
+    addComment: async (req, res)=>{
+        try {
+            if(Object.keys(req.body).length){
+                const commentData = [{
+                    'comment': req.body.comment,
+                    'commentedBy': req.session.currentUser.username,
+                    'commentedAt' : new Date()
+                }]; 
+                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageID,commentData);
+                return res.redirect(`/albums/${req.body.albumName}`);
             } else {
                 return res.send('Empty Object');
             }

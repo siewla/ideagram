@@ -1,11 +1,15 @@
 <form action = '/image/create' method = 'POST'>
     <div>
+        <label for = "albumName">Album Name</label>
+        <input type = "text" name='albumName' value="<%=albumName%>" readonly/>
+    </div>
+    <div>
         <label for='image'>Image</label>
-        <input type='url' name='image' placeholder="link of image" required>
+        <input type='url' name='image' placeholder="link of image" required/>
     </div>
     <div>
         <label for='comment'>Image Description</label>
-        <input type='text' name='comment' placeholder="Enter Image's description" required>
+        <input type='text' name='comment' placeholder="Enter Image's description" required/>
     </div>
     <div class="create-image">
         <button type="submit">Create New Image</button>
