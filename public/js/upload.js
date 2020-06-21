@@ -1,7 +1,3 @@
-
-const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ideagram/upload';
-const CLOUDINARY_UPLOAD_PRESET = 'ihv6qa8g';
-
 let imgPreview = document.getElementById('img-preview');
 let fileUpload = document.getElementById('file-upload');
 

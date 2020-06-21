@@ -13,31 +13,32 @@ const albumsControllers = {
 
     createAlbum : async (req, res) => {
         try {
-            if (Object.keys(req.body).length){
-                const album = {
-                    'owner': req.session.currentUser.username,
-                    'name': req.body.name,
-                    'description': req.body.description,
-                    'createdAt': new Date(),
-                    'images': [{
-                        'url':req.body.image,
-                        'uploadedBy': req.session.currentUser.username,
-                        'uploadedAt':new Date(),
-                        'comments': [{
-                            'comment': req.body.comment,
-                            'commentedBy': req.session.currentUser.username,
-                            'commentedAt' : new Date()
+            await cloudinary.uploader.upload(req.file.path,
+                async (err, result) => {
+                    const album = {
+                        'owner': req.session.currentUser.username,
+                        'name': req.body.name,
+                        'description': req.body.description,
+                        'createdAt': new Date(),
+                        'images': [{
+                            'url':result.url,
+                            'id':result.public_id,
+                            'uploadedBy': req.session.currentUser.username,
+                            'uploadedAt':new Date(),
+                            'comments': [{
+                                'comment': req.body.comment,
+                                'commentedBy': req.session.currentUser.username,
+                                'commentedAt' : new Date()
+                            }]
                         }]
-                    }]
-                };
-                await albumsRepositories.createAlbum(album);
-                return res.redirect('/');
-            } else {
-                return res.send('Empty Object');
-            }
-        } catch (err) {
-            return res.send(err.message);
-        }
+                    };
+                    await albumsRepositories.createAlbum(album);
+                    return res.redirect('/');
+                }
+            );
+        }catch (err) {
+            res.send(err.message);
+        }    
     },
 
     showAlbumByName : async (req, res)=>{

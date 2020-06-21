@@ -24,20 +24,20 @@ module.exports = (app) => {
     app.get('/signup', usersControllers.signupForm); // signup form
     app.post('/signup', usersControllers.createUser); // create user
 
-    // app.use((req, res, next) => {
-    //     if(req.session.currentUser) {
-    //         next();
-    //     } else {
-    //         return res.redirect('/');
-    //     }
-    // });
+    app.use((req, res, next) => {
+        if(req.session.currentUser) {
+            next();
+        } else {
+            return res.redirect('/');
+        }
+    });
 
     app.delete('/logout', sessionsControllers.logout); // logout
     app.get('/dashboard', albumsControllers.getAllAlbums);
     
     app.get('/albums/new', albumsControllers.createNewAlbum);
     app.get('/albums/:albumName', albumsControllers.showAlbumByName);
-    app.post('/albums/create', albumsControllers.createAlbum);
+    app.post('/albums/create', upload.single('image'),albumsControllers.createAlbum);
 
     app.get('/:albumName/image/new', albumsControllers.createNewImage);
     app.post('/image/create',albumsControllers.createImage);

@@ -1,4 +1,4 @@
-<form action = '/albums/create' method = 'POST'>
+<form action = '/albums/create' method = 'POST' enctype="multipart/form-data">
     <div>
         <label for='name'>Album Name</label>
         <input type='text' name='name' placeholder="Enter Album's Name" required/>
@@ -9,7 +9,7 @@
     </div>
     <div>
         <label for='image'>First Image</label>
-        <input type='url' name='image' placeholder="link of image" required/>
+        <input name="image" type="file" />
     </div>
     <div>
         <label for='comment'>Image Description</label>
@@ -18,4 +18,13 @@
     <div class="create-album">
         <button type="submit">Create New Album</button>
     </div>
+</form>
+
+
+<form action="/upload/create" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Image</label>
+        <input name="image" type="file" />
+    </div>
+    <button type="submit">Upload</button>
 </form>
