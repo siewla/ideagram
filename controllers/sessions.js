@@ -1,4 +1,4 @@
-const usersRepositories = require('../repositories/usersRepositories');
+const usersRepositories = require('../repositories/users');
 const bcrypt = require('bcrypt');
 
 const sessionsControllers = {

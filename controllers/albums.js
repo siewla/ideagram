@@ -8,36 +8,44 @@ const albumsControllers = {
     },
 
     createNewAlbum: async (req, res)=>{
-        res.render('ideagram/newAlbum.ejs');
+        res.render('ideagram/newAlbum.ejs',{ error:false });
     },
 
     createAlbum : async (req, res) => {
         try {
             await cloudinary.uploader.upload(req.file.path,
                 async (err, result) => {
-                    const album = {
-                        'owner': req.session.currentUser.username,
-                        'name': req.body.name,
-                        'description': req.body.description,
-                        'createdAt': new Date(),
-                        'images': [{
-                            'url':result.url,
-                            'id':result.public_id,
-                            'uploadedBy': req.session.currentUser.username,
-                            'uploadedAt':new Date(),
-                            'comments': [{
-                                'comment': req.body.comment,
-                                'commentedBy': req.session.currentUser.username,
-                                'commentedAt' : new Date()
+                    if(Object.keys(req.body).length){
+                        const album = {
+                            'owner': req.session.currentUser.username,
+                            'name': req.body.name,
+                            'description': req.body.description,
+                            'createdAt': new Date(),
+                            'images': [{
+                                'url':result.url,
+                                'id':result.public_id,
+                                'uploadedBy': req.session.currentUser.username,
+                                'uploadedAt':new Date(),
+                                'comments': [{
+                                    'comment': req.body.comment,
+                                    'commentedBy': req.session.currentUser.username,
+                                    'commentedAt' : new Date()
+                                }]
                             }]
-                        }]
-                    };
-                    await albumsRepositories.createAlbum(album);
-                    return res.redirect('/');
+                        }; 
+                        try{
+                            await albumsRepositories.createAlbum(album);
+                            return res.redirect('/dashboard');
+                        }catch (err) {
+                            return res.render('ideagram/newAlbum.ejs', { error: err.message });
+                        }
+                    } else {
+                        throw new Error ('Empty Object');
+                    }
                 }
             );
         }catch (err) {
-            res.send(err.message);
+            return res.render('ideagram/newAlbum.ejs', { error: err.message });
         }    
     },
 
@@ -51,10 +59,11 @@ const albumsControllers = {
     },
 
     createImage : async (req, res)=>{
-        try {
-            if(Object.keys(req.body).length){
+        try {await cloudinary.uploader.upload(req.file.path,
+            async (err, result) => {
                 const imageData =[{
-                    'url':req.body.image,
+                    'url':result.url,
+                    'id':result.public_id,
                     'uploadedBy': req.session.currentUser.username,
                     'uploadedAt':new Date(),
                     'comments': [{
@@ -63,11 +72,14 @@ const albumsControllers = {
                         'commentedAt' : new Date()
                     }]
                 }];
-                await albumsRepositories.addImageToExistingAlbum(req.body.albumName, imageData);
-                return res.redirect('/dashboard');
-            } else {
-                return res.send('Empty Object');
+                try{
+                    await albumsRepositories.addImageToExistingAlbum(req.body.albumName, imageData);
+                    return res.redirect('/dashboard');
+                }catch (err) {
+                    res.send(err.message);
+                }
             }
+        );
         }catch (err) {
             return res.send(err.message);
         }
@@ -91,25 +103,18 @@ const albumsControllers = {
         }
     },
 
-    uploadNewImage : async (req, res)=>{
-        res.render('ideagram/uploadNewImage.ejs');
-    },
-
-    createUploadedImage: async (req, res)=>{
-        cloudinary.uploader.upload(req.file.path)
-            .then((result) => {
-                res.status(200).send({
-                    message: 'success',
-                    result,
-                });
-            }).catch((error) => {
-                res.status(500).send({
-                    message: 'failure',
-                    error,
-                });
-            });
-    },
-
+    deleteAlbumByName: async (req, res)=>{
+        try {
+            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+            album.images.forEach(image =>
+                cloudinary.uploader.destroy(image.id)
+            );
+            await albumsRepositories.deleteAlbumByName(req.params.albumName);
+            return res.redirect('/dashboard');
+        } catch (err) {
+            return res.send(err.message);
+        }
+    }
 };
 
 module.exports = {

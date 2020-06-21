@@ -1,4 +1,4 @@
-const usersRepository = require('../repositories/usersRepositories');
+const usersRepository = require('../repositories/users');
 
 const usersControllers = {
     signupForm : (req , res)=>{
@@ -18,8 +18,8 @@ const usersControllers = {
                 req.session.currentUser = data;
                 return res.redirect('/');
             } else {
-                const errorMSg = 'Empty Object';
-                return res.render('users/signup.ejs', { error: errorMSg });
+                const errorMsg = 'Empty Object';
+                return res.render('users/signup.ejs', { error: errorMsg });
             }
         } catch (err) {
             return res.render('users/signup.ejs', { error: err.message });

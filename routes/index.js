@@ -40,21 +40,15 @@ module.exports = (app) => {
     app.post('/albums/create', upload.single('image'),albumsControllers.createAlbum);
 
     app.get('/:albumName/image/new', albumsControllers.createNewImage);
-    app.post('/image/create',albumsControllers.createImage);
+    app.post('/image/create',upload.single('image'), albumsControllers.createImage);
     
     app.post('/comment/create', albumsControllers.addComment);
     app.post('/album/follow', usersControllers.followAlbum);
 
     app.get('/following', usersControllers.listAlbumsFollowing);
 
-    app.get('/upload/new', albumsControllers.uploadNewImage);
-    app.post('/upload/create', upload.single('image'), albumsControllers.createUploadedImage);
-
-
-    // app.get('/upload', async (req, res) =>{
-    //     res.render('ideagram/uploadMulter.ejs');
-    // });
-
+    app.delete('/:albumName', albumsControllers.deleteAlbumByName);
+ 
     app.get('/session', (req, res) => {
         let visits = req.session.visits;
         req.session.visits = visits === undefined ? 1 : parseInt( visits ) +1;

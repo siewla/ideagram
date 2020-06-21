@@ -62,6 +62,18 @@ const albumsRepositories = {
         }catch(err) {
             throw new Error (`${err.message}`);
         }
+    },
+
+    deleteAlbumByName: async (albumName) =>{
+        const { result } = await db.albums.deleteMany({ name: 
+            { '$regex': `^${albumName}$`, 
+                $options:'i' } 
+        });
+        if (!result.n) {
+            throw new Error('Item not found');
+        } else {
+            return result.n;
+        }
     }
 };
 

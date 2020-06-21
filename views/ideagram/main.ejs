@@ -14,7 +14,11 @@
                     <a href="/albums/<%= album.name%>">
                         <button class="owner-tag">Owner</button>
                     </a>
-                    <button class="edit-button">Edit</button>
+                    <form action="/<%=album.name%>?_method=DELETE" method="POST">
+                        <div class="delete-album">
+                            <button type="submit">Delete</button>
+                        </div>
+                    </form>
                 <%} else{ %>
                     <form action = '/album/follow' method = 'POST'>
                         <input type ="hidden" name="albumName" value="<%=album.name%>"/>
