@@ -3,6 +3,17 @@ const { usersControllers } = require('../controllers/users');
 const { sessionsControllers } = require('../controllers/sessions');
 const { appControllers } = require('../controllers/app');
 
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
+
+
 module.exports = (app) => {
     
     app.get('/', appControllers.homepage); //homepage 
@@ -13,13 +24,13 @@ module.exports = (app) => {
     app.get('/signup', usersControllers.signupForm); // signup form
     app.post('/signup', usersControllers.createUser); // create user
 
-    app.use((req, res, next) => {
-        if(req.session.currentUser) {
-            next();
-        } else {
-            return res.redirect('/');
-        }
-    });
+    // app.use((req, res, next) => {
+    //     if(req.session.currentUser) {
+    //         next();
+    //     } else {
+    //         return res.redirect('/');
+    //     }
+    // });
 
     app.delete('/logout', sessionsControllers.logout); // logout
     app.get('/dashboard', albumsControllers.getAllAlbums);
@@ -36,11 +47,13 @@ module.exports = (app) => {
 
     app.get('/following', usersControllers.listAlbumsFollowing);
 
+    app.get('/upload/new', albumsControllers.uploadNewImage);
+    app.post('/upload/create', upload.single('image'), albumsControllers.createUploadedImage);
+
+
     // app.get('/upload', async (req, res) =>{
     //     res.render('ideagram/uploadMulter.ejs');
     // });
-
-
 
     app.get('/session', (req, res) => {
         let visits = req.session.visits;

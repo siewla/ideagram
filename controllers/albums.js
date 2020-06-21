@@ -1,5 +1,5 @@
 const { albumsRepositories } = require('../repositories/albums');
-const { now } = require('moment');
+const cloudinary = require('cloudinary').v2;
 
 const albumsControllers = {
     getAllAlbums: async (req ,res)=>{
@@ -88,7 +88,27 @@ const albumsControllers = {
         }catch (err) {
             return res.send(err.message);
         }
-    }
+    },
+
+    uploadNewImage : async (req, res)=>{
+        res.render('ideagram/uploadNewImage.ejs');
+    },
+
+    createUploadedImage: async (req, res)=>{
+        cloudinary.uploader.upload(req.file.path)
+            .then((result) => {
+                res.status(200).send({
+                    message: 'success',
+                    result,
+                });
+            }).catch((error) => {
+                res.status(500).send({
+                    message: 'failure',
+                    error,
+                });
+            });
+    },
+
 };
 
 module.exports = {
