@@ -6,16 +6,43 @@
 
 .album-card{
     margin: 2vh;
-    padding: 1vh;
-    border: 1px solid black;
+    border: 0.5vh solid rgba(0, 0, 0, 0.5);
     border-radius: 2vh;
     width: 30vh;
-    height: 50vh;
+    height: 60vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buttons-action{
+    display:flex;
+    flex-direction: row;
+}
+
+#view-btn{
+    margin-right: 0.5vh;
+    background-color: lightgreen;
+    color:black;
+}
+
+#edit-btn{
+    margin-right: 0.5vh;
+    background-color: lightblue;
+    color:black;
+}
+
+#delete-btn{
+    background-color: red;
+    color:black;
 }
 
 .album-image-container{
-    width: 25vh;
-    height: 30vh;
+    height: auto; 
+    width: auto;
+    max-width: 25vh;
+    max-height: 25vh;
 }
 
 .owner-tag{
@@ -66,4 +93,9 @@
     color: yellow;
     text-transform: uppercase;
     text-decoration: underline;
+}
+
+#add-btn{
+    background-color: black;
+    color:yellow;
 }

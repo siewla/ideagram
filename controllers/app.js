@@ -1,6 +1,6 @@
 const appControllers = {
     homepage: (req, res)=>{
-        res.render('ideagram/mainPage.ejs', { currentUser : req.session.currentUser });
+        res.render('ideagram/index.ejs', { currentUser : req.session.currentUser });
     }
 };
 

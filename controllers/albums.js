@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary').v2;
 const albumsControllers = {
     getAllAlbums: async (req ,res)=>{
         const data = await albumsRepositories.getAllAlbums();
-        res.render('ideagram/main.ejs', { data, currentUser : req.session.currentUser });
+        res.render('ideagram/dashboard.ejs', { data, currentUser : req.session.currentUser });
     },
 
     createNewAlbum: async (req, res)=>{

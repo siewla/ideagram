@@ -24,11 +24,18 @@ body{
     background-color: yellow;
     color: black;
 }
-.form-properties-title{
-    float: left;
-    font-size: 2vh;
-}
 
 .validate {
     color:white;
+}
+
+#registration-logo{
+    margin: 1vh;
+    width: 10vh;
+    height: 10vh;
+}
+
+.registration-form{
+    text-align: left;
+    color: white;
 }

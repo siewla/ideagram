@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/styles/newAlbum.css">
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
-    <h2>Create New Album</h2>
+    </br>
+    </br>
+    <h2 class='page-heading'>Create New Album</h2>
     <%-include('../partials/errorMsg.ejs') %>
-    <div class="new-form">
+    <div class="album-form">
         <%- include('../partials/albumForm.ejs') %>
     </div>
 </body>

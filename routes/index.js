@@ -16,6 +16,10 @@ cloudinary.config({
 
 module.exports = (app) => {
     
+    app.get('/nav',(req, res)=>{
+        res.render('trynav');
+    });
+    
     app.get('/', appControllers.homepage); //homepage 
 
     app.get('/login', sessionsControllers.newLogin); // user login

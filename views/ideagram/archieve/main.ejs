@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
+    <h1 class='page-heading'>Albums</h1>
+    <div class="albums">
+    <% data.forEach( album => { %>
+        <div class="album-card">
+                <% if(currentUser.username === album.owner){ %>
+                    <a href="/albums/<%= album.name%>">
+                        <button class="owner-tag">Owner</button>
+                    </a>
+                    <form action="/<%=album.name%>?_method=DELETE" method="POST">
+                        <div class="delete-album">
+                            <button type="submit">Delete</button>
+                        </div>
+                    </form>
+                <%} else{ %>
+                    <form action = '/album/follow' method = 'POST'>
+                        <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                        <div class="follow-album">
+                            <button type="submit">Follow</button>
+                        </div>
+                    </form>
+                    <a href="/albums/<%= album.name%>">
+                        <button class="view-button">view</button>
+                    </a>
+                <%} %>
+                <h3 class="album-name-container"><%=album.name%></h3>
+                <img class="album-image-container" src="<%=album.images[0].url%>">
+                <h4 class="album-description-container"><%=album.description%></h4>
+        </div>
+        <% }) %>
+        <div class="album-card">
+            <a href="/albums/new">
+                <button>add new album</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

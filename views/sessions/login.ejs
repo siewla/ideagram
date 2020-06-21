@@ -2,19 +2,14 @@
 <html>
 <head>
     <%- include('../partials/head.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/styles/login.css">
+    <link rel="stylesheet" type="text/css" href="/styles/registration.css">
 </head>
 <body>
   <div class = 'center-the-form'>
     <div id="registration-card">
       <img id="registration-logo" src="/assets/images/ideagramlogo.png">
       <%-include('../partials/errorMsg.ejs') %>
-      <form action="/login" method="POST">
-        <%- include('../partials/registration.ejs') %>
-        <button class="waves-effect waves-light btn-small" type="submit" name="action" id="submit-btn">Login
-          <i class="material-icons right">send</i>
-        </button>
-      </form>
+      <%-include('../partials/loginForm.ejs')%>
       <p>New to ideagram? <a class="link-text" href="/Signup">Signup</a></p>
     </div>
   </div>        

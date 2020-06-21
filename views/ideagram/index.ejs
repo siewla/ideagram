@@ -11,11 +11,11 @@
             <img id="registration-logo" src="/assets/images/ideagramlogo.png">
             <h3 id="welcome-text">Welcome to Ideagram</h3>
             <h4 id="tagline-text"><%= currentUser.username %>!</h4>
-            <a class="waves-effect waves-light btn-small" href="/dashboard" id="dashboard-btn">
-                <i class="material-icons right">dashboard</i>Go to Main Dashboard</a>
+            <a class="btn" href="/dashboard" id="dashboard-btn">Go to Main Dashboard
+                <i class="fa fa-desktop"></i></a>
             <form action="/logout?_method=DELETE" method="post">
-            <button class="waves-effect waves-light btn-small" id="logout-btn">
-                <i class="material-icons right">keyboard_return</i>Logout</button>
+            <button class="btn" id="logout-btn">Logout
+                <i class="fa fa-sign-out"></i></button>
             </form>
         </div>
     <% } else { %>
@@ -26,10 +26,10 @@
         <h4 id="tagline-text">Find new ideas to try</h4>
         <br>
         <div class="buttons">
-            <a class="waves-effect waves-light btn-small" href="/login" id="login-btn">
-                <i class="material-icons right">person</i>Login</a>
-            <a class="waves-effect waves-light btn-small" href="/signup" id="signup-btn">
-                <i class="material-icons right">person_add</i>Signup</a>
+            <a class="btn" href="/login" id="login-btn">LOGIN
+                <i class="fa fa-sign-in"></i></a>
+            <a class="btn" href="/signup" id="signup-btn">SIGNUP
+                <i class="fa fa-user-plus"></i></a>
         </div>
         </div>
     </div>
