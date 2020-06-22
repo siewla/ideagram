@@ -37,12 +37,6 @@ body{
     margin: 0.5vh;
 }
 
-#logout-btn{
-    background-color: black;
-    color:yellow;
-    margin: 0.5vh;
-}
-
 #welcome-text{
     /* background-color: grey;
     border-radius: 1vh; */
