@@ -9,6 +9,12 @@ const albumsControllers = {
     getAllAlbums: async (req ,res)=>{
         const data = await albumsRepositories.getAllAlbums();
         const userData = await usersRepositories.find(req.session.currentUser.username);
+        
+        for(const album of data){
+            const count = await usersRepositories.countAlbumFollowers(album.name);
+            album.followersCount=count; 
+        }
+        
         res.render('ideagram/dashboard.ejs', { data, currentUser : userData, moment: moment  });
     },
 

@@ -79,5 +79,21 @@ module.exports = {
         }catch(err) {
             throw new Error (`${err.message}`);
         }
+    },
+
+    countAlbumFollowers: async (albumName)=>{
+        try{
+            const totalAlbums = await db.users
+                .countDocuments(
+                    { 
+                        albumsFollowing: { 
+                            $in: [albumName]
+                        } 
+                    }
+                );
+            return totalAlbums;
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
     }
 };

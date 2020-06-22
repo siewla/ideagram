@@ -51,6 +51,7 @@
                 <%} %>
                 <h3 class="album-name-container"><%=album.name%></h3>
                 <img class="album-image-container" src="<%=album.images[0].url%>">
+                <h4>Total Followers: <%=album.followersCount%></h4>
                 <h4>Total Images: <%=album.images.length%></h4>
                 <h4 class="album-description-container"><%=album.description%></h4>
                 <% const relativeTime=moment(album.createdAt).fromNow() %></h3>
