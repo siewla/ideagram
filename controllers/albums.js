@@ -2,6 +2,7 @@ const { albumsRepositories } = require('../repositories/albums');
 const usersRepositories = require('../repositories/users');
 const cloudinary = require('cloudinary').v2;
 const moment = require('moment');
+const shortid = require('shortid');
 
 
 const albumsControllers = {
@@ -32,6 +33,7 @@ const albumsControllers = {
                                 'uploadedBy': req.session.currentUser.username,
                                 'uploadedAt':new Date(),
                                 'comments': [{
+                                    'commentIndex': shortid.generate(),
                                     'comment': req.body.comment,
                                     'commentedBy': req.session.currentUser.username,
                                     'commentedAt' : new Date()
@@ -95,12 +97,16 @@ const albumsControllers = {
     addComment: async (req, res)=>{
         try {
             if(Object.keys(req.body).length){
+                const album = await albumsRepositories.getAlbumByName(req.body.albumName);
+                const imageIndex = req.body.imageID;
+                
                 const commentData = [{
+                    'commentIndex': shortid.generate(),
                     'comment': req.body.comment,
                     'commentedBy': req.session.currentUser.username,
                     'commentedAt' : new Date()
                 }]; 
-                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageID,commentData);
+                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageID, commentData);
                 return res.redirect(`/albums/${req.body.albumName}`);
             } else {
                 return res.send('Empty Object');
@@ -133,8 +139,18 @@ const albumsControllers = {
         } catch (err) {
             return res.send(err.message);
         }
-    }
+    },
 
+    deleteCommentById: async (req, res)=>{
+        try{
+            const imageId = req.params.imageId;
+            const commentId = req.params.commentIndex;
+            await albumsRepositories.deleteCommentById(req.params.albumName, imageId, commentId);
+            return res.redirect(`/albums/${req.params.albumName}`);
+        }catch (err) {
+            res.send(err.message);
+        }
+    }
 };
 
 module.exports = {

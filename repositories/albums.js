@@ -94,6 +94,29 @@ const albumsRepositories = {
         }catch(err) {
             throw new Error (`${err.message}`);
         }
+    },
+
+    deleteCommentById : async (albumName, imageId, commentIndex) =>{
+        try{
+            const imageComment= `images.${imageId}.comments`;
+            
+            const { modifiedCount } = await db.albums
+                .updateOne({ 
+                    'name': albumName,
+                },
+                { 
+                    $pull:{
+                        [imageComment]: { 
+                            commentIndex: commentIndex
+                        } 
+                    },
+                    
+                }
+                );
+            if (!modifiedCount ) throw new Error ('insertion failed');
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
     }
 };
 

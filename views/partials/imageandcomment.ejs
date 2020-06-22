@@ -37,7 +37,6 @@
             </div>
             <h3>Comments</h3>
             <div class="scrollable-comments">
-                <% let commentIndex = image.comments.length -1; %> 
                 <% image.comments.reverse().forEach(comment => { %>
                 <div class="comment">
                     <h3><%=comment.comment%></h3>
@@ -45,10 +44,10 @@
                         <% if(comment.commentedBy === currentUser.username){%>
                         <h4>commented by <strong id="own-comment">you</strong></h4>
                         <div class="comment-buttons-action">
-                            <a href="/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>">
+                            <a href="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>">
                                 <button class="btn" id="comment-edit-btn">Edit</button>
                             </a>
-                            <form action="/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=DELETE" method="POST">
+                            <form action="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
                                 <div>
                                     <button class="btn" id="comment-delete-btn" type="submit">Delete</button>
                                 </div>
@@ -60,7 +59,6 @@
                         <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
                         <h5><%=relativeTime%></h5>
                     </div> 
-                    <% commentIndex-- %>
                 </div>
                 <%}) %>
             </div>
