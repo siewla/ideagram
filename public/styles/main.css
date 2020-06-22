@@ -38,6 +38,16 @@
     color:black;
 }
 
+#follow-btn{    
+    background-color: pink;
+    color:black;
+}
+
+#unfollow-btn{
+    background-color: goldenrod;
+    color:black;
+}
+
 .album-image-container{
     height: auto; 
     width: auto;

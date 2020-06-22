@@ -28,20 +28,33 @@
                         </form>
                     </div>
                 <%} else{ %>
-                    <form action = '/album/follow' method = 'POST'>
-                        <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                        <div>
-                            <button class="btn" id ="follow-btn" type="submit">Follow</button>
-                        </div>
-                    </form>
-                    <a href="/albums/<%= album.name%>">
-                        <button class="btn" id="view-btn">view</button>
-                    </a>
+                    <div class="buttons-action">
+                        <a href="/albums/<%= album.name%>">
+                            <button class="btn" id="view-btn">View</button>
+                        </a>
+                        <% if(currentUser.albumsFollowing.includes(album.name)) { %>
+                            <form action = '/album/unfollow' method = 'POST'>
+                                <div>
+                                    <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                                    <button class="btn" id="unfollow-btn" type="submit">Unfollow</button>
+                                </div>
+                            </form>
+                        <% }else{ %>
+                            <form action = '/album/follow' method = 'POST'>
+                                <div>
+                                    <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                                    <button class="btn" id="follow-btn" type="submit">Follow</button>
+                                </div>
+                            </form>
+                        <%} %>
+                    </div>
                 <%} %>
                 <h3 class="album-name-container"><%=album.name%></h3>
                 <img class="album-image-container" src="<%=album.images[0].url%>">
                 <h4>Total Images: <%=album.images.length%></h4>
                 <h4 class="album-description-container"><%=album.description%></h4>
+                <% const relativeTime=moment(album.createdAt).fromNow() %></h3>
+                <h5>Created <%=relativeTime%> by <%=album.owner%></h5>
         </div>
         <% }) %>
         <div class="album-card">

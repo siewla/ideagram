@@ -1,14 +1,19 @@
 const { albumsRepositories } = require('../repositories/albums');
+const usersRepositories = require('../repositories/users');
 const cloudinary = require('cloudinary').v2;
+const moment = require('moment');
+
 
 const albumsControllers = {
     getAllAlbums: async (req ,res)=>{
         const data = await albumsRepositories.getAllAlbums();
-        res.render('ideagram/dashboard.ejs', { data, currentUser : req.session.currentUser });
+        const userData = await usersRepositories.find(req.session.currentUser.username);
+        res.render('ideagram/dashboard.ejs', { data, currentUser : userData, moment: moment  });
     },
 
     createNewAlbum: async (req, res)=>{
-        res.render('ideagram/newAlbum.ejs',{ error:false });
+        res.render('ideagram/newAlbum.ejs',{ error:false, 
+            currentUser : req.session.currentUser });
     },
 
     createAlbum : async (req, res) => {
@@ -51,11 +56,13 @@ const albumsControllers = {
 
     showAlbumByName : async (req, res)=>{
         const album = await albumsRepositories.getAlbumByName(req.params.albumName);
-        res.render('ideagram/showAlbum.ejs', { album, currentUser : req.session.currentUser });
+        res.render('ideagram/showAlbum.ejs', { album, currentUser : req.session.currentUser, moment: moment });
     },
 
     createNewImage: async (req, res)=>{
-        res.render('ideagram/newImage.ejs', { albumName: req.params.albumName });
+        res.render('ideagram/newImage.ejs', { albumName: req.params.albumName, 
+            error:false, 
+            currentUser : req.session.currentUser });
     },
 
     createImage : async (req, res)=>{
@@ -114,7 +121,20 @@ const albumsControllers = {
         } catch (err) {
             return res.send(err.message);
         }
+    },
+
+    deleteImageById: async (req, res)=>{
+        try {
+            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+            const imageIndex = req.params.imageIndex;
+            cloudinary.uploader.destroy(album.images[imageIndex].id);
+            await albumsRepositories.deleteImageById(req.params.albumName, album.images[imageIndex].id);
+            return res.redirect('/dashboard');
+        } catch (err) {
+            return res.send(err.message);
+        }
     }
+
 };
 
 module.exports = {

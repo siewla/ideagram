@@ -1,24 +1,50 @@
-.album-name-container{
-    margin-left: 2vh;
-    font-size: 10vh;
+.album-details-container{
+    width: 60%;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color:black; 
+    color: yellow;
+    border-radius: 2vh;
+    padding: 1vh;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
-.album-description-container{
-    margin-left: 2vh;
-    font-size: 5vh;
+
+.image-and-comments-container{
+    display: block;
+    width: 90%;
+    max-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+    padding: 2vh;
+    border-radius: 2vh;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
+.image-container{
+    width: 40%;
+    padding:2vh; 
 }
 
 .individual-image{
     display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
 }
 
+
 .image-show{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 2vh;
     height: auto; 
     width: auto;
-    max-height: 40vh;
+    max-width: 40vh;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
 .buttons{
@@ -35,10 +61,20 @@
 #upload-btn{
     background-color: yellow;
     color: black;
+    align-self: flex-end;
+}
+
+.image-details{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #uploadedBy{
     font-size:2vh;
-    text-align: right;
-    margin-top: 0;
+}
+
+#delete-btn-right{
+    background-color: red;
+    color:black;
 }

@@ -5,10 +5,13 @@
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
-    <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
+    </br>
+    </br>
+    </br>
+    <h1 id='username-top-right-corner'><%= userData.username %></h1>
     <h1 class='page-heading'>Following Albums</h1>
     <div class="albums">
-    <% if(userData.hasOwnProperty('albumsFollowing')){ %>
+    <% if(userData.albumsFollowing.length>0){ %>
         <% userData.albumsFollowing.forEach( album => { %>
         <div class="album-card">
                 <h2><%=album%></h2>

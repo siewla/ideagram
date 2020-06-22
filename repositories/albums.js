@@ -74,6 +74,26 @@ const albumsRepositories = {
         } else {
             return result.n;
         }
+    },
+
+    deleteImageById: async (albumName, imageID) =>{
+        try{
+            const { modifiedCount } = await db.albums
+                .updateOne({ 
+                    name: albumName, 
+                },
+                { 
+                    $pull:{
+                        images: { 
+                            id : imageID 
+                        } 
+                    }
+                }
+                );
+            if (!modifiedCount ) throw new Error ('insertion failed');
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
     }
 };
 

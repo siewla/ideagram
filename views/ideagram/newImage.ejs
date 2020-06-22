@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/styles/new.css">
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
-    <h2>Upload New Image</h2>
-    <div class="new-form">
+    </br>
+    </br>
+    </br>
+    <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
+    <h2 class='page-heading'>Upload New Image</h2>
+    <%-include('../partials/errorMsg.ejs') %>
+    <div class="album-form">
         <%- include('../partials/imageForm.ejs') %>
     </div>
 </body>

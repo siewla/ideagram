@@ -1,0 +1,12 @@
+<form action = '/comment/create' method = 'POST'>
+    <div class="form-group">
+        <input class="form-control" type='text' name='comment' placeholder="Share a feedback or a question" required>
+    </div>
+    <div class="form-group">
+        <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>
+        <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+        <button class="btn" type="submit" class="waves-effect waves-light btn-small" href="/download" id="comment-btn">
+             add<i class="fa fa-comments-o" aria-hidden="true"></i></button>
+    </div>
+</form>
+

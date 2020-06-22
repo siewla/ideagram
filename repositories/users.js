@@ -43,4 +43,23 @@ module.exports = {
         }
     },
 
+    unFollowingAlbum: async (username, albumName) =>{
+        try{
+            const { modifiedCount } = await db.users
+                .updateOne(
+                    { username: username },
+                    { 
+                        $pull:{ 
+                            albumsFollowing: { 
+                                $in: [albumName]
+                            } 
+                        } 
+                    }
+                );
+            if (!modifiedCount ) throw new Error ('insertion failed');
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
+    },
+
 };

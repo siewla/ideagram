@@ -48,11 +48,13 @@ module.exports = (app) => {
     
     app.post('/comment/create', albumsControllers.addComment);
     app.post('/album/follow', usersControllers.followAlbum);
+    app.post('/album/unfollow', usersControllers.unfollowAlbum);
 
     app.get('/following', usersControllers.listAlbumsFollowing);
 
     app.delete('/:albumName', albumsControllers.deleteAlbumByName);
- 
+    app.delete('/:albumName/image/:imageIndex', albumsControllers.deleteImageById);
+    
     app.get('/session', (req, res) => {
         let visits = req.session.visits;
         req.session.visits = visits === undefined ? 1 : parseInt( visits ) +1;

@@ -1,0 +1,71 @@
+<%  let imageIndex =0;   %>
+<% album.images.forEach(image => { %> 
+<div class='image-and-comments-container'>  
+    <div class="individual-image">
+        <div class="image-container">
+            <h4>Image <%=imageIndex+1 %></h4>
+            <img class="image-show" src="<%=image.url%>">
+            <div class="image-details">
+                <h2 id="uploadedBy">Uploaded by <strong><%=image.uploadedBy%></strong></h2>
+                <% if(currentUser.username === image.uploadedBy){ %>
+                <% if (imageIndex !==0) { %>
+                    <form action="/<%=album.name%>/image/<%=imageIndex%>?_method=DELETE" method="POST">
+                        <div>
+                            <button class="btn" id="delete-btn-right" type="submit">Delete Image</button>
+                        </div>
+                    </form>
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+        <div class="comments-container"> 
+            
+            <div class="add-comment-container">
+                <form action = '/comment/create' method = 'POST'>
+                    <div class="form-group">
+                        <label for="comment"><%=currentUser.username %></label>
+                        <input class="form-control" type='text' name='comment' placeholder="Share a feedback or a question" required>
+                    </div>
+                    <div>
+                        <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>
+                        <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                        <button type="submit" class="btn" id="comment-btn">
+                            Comment <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <h3>Comments</h3>
+            <div class="scrollable-comments">
+                <% let commentIndex = image.comments.length -1; %> 
+                <% image.comments.reverse().forEach(comment => { %>
+                <div class="comment">
+                    <h3><%=comment.comment%></h3>
+                    <div class="comment-footer">
+                        <% if(comment.commentedBy === currentUser.username){%>
+                        <h4>commented by <strong id="own-comment">you</strong></h4>
+                        <div class="comment-buttons-action">
+                            <a href="/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>">
+                                <button class="btn" id="comment-edit-btn">Edit</button>
+                            </a>
+                            <form action="/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=DELETE" method="POST">
+                                <div>
+                                    <button class="btn" id="comment-delete-btn" type="submit">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                        <%} else {%>
+                        <h4>commented by <strong id="username-comment"><%=comment.commentedBy%></strong></h4>
+                        <%} %>
+                        <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
+                        <h5><%=relativeTime%></h5>
+                    </div> 
+                    <% commentIndex-- %>
+                </div>
+                <%}) %>
+            </div>
+            <% imageIndex++ %>
+        </div>
+    </div> 
+</div>
+<%})%> 

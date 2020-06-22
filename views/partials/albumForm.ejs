@@ -1,21 +1,21 @@
 <form action = '/albums/create' method = 'POST' enctype="multipart/form-data">
     <div class="form-group">
         <label for='name'>Album Name</label>
-        <input class="form-control" type='text' name='name' placeholder="Enter Album's Name" required/>
+        <input class="form-control" type='text' name='name' placeholder="Enter Album Name" required/>
     </div>
     <div class="form-group">
         <label for='description'>Album Description</label>
-        <input class="form-control" type='text' name='description' placeholder="Enter Album's description" required/>
+        <input class="form-control" type='text' name='description' placeholder="Enter Album description" required/>
     </div>
     <div class="form-group">
-        <label for='image'>First Image</label>
+        <label for='image'>Cover Image</label>
         <input class="form-control-file" name="image" type="file" />
     </div>
     <div class="form-group">
-        <label for='comment'>First Image Description</label>
-        <input class="form-control" type='text' name='comment' placeholder="Enter Image's description" required/>
+        <label for='comment'>Cover Image Description</label>
+        <input class="form-control" type='text' name='comment' placeholder="Enter Image description" required/>
     </div>
-    <div class="create-album">
+    <div>
         <button class="btn" type="submit" id="create-btn">Create New Album</button>
     </div>
 </form>

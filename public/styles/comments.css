@@ -1,10 +1,71 @@
+.comments-container{
+    width: 55%;
+    align-self: center;
+}
+
 #comment-heading{
-    font-size:3vh;
-    color: yellow;
-    background-color:black;
+    font-size:2vh;
+    color: grey;
     padding:1vh;
     border-radius: 1vh;
 }
-.comments-container{
-    border: 1px solid black;
+
+.scrollable-comments{
+    max-height: 50vh;
+    overflow-x: hidden; 
+    overflow-y: auto;
+
+}
+
+.comment{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1vh;
+    display: block;
+    border-radius:1vh;
+    border: 1px solid grey;
+    padding: 0.5vh;
+}
+
+.add-comment-container{
+    display: flex;
+    flex-direction: column;
+    border-radius:1vh;
+}
+
+#comment-btn{
+    background-color:black;
+    color:yellow;
+    float: right;
+}
+
+.comment-footer{
+    text-align: right;
+}
+
+#username-comment{
+    color: lightcoral;
+}
+
+#own-comment{
+    color: lightblue;
+}
+
+.comment-buttons-action{
+    display: flex;
+    direction:rtl;
+}
+
+#comment-delete-btn{
+    font-size: 1vh;
+    margin-right: 0.5vh;
+    color:black;
+    background-color:red;
+}
+
+#comment-edit-btn{
+    font-size: 1vh;
+    background-color:blue;
+    color:white;
 }
