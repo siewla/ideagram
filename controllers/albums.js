@@ -122,6 +122,7 @@ const albumsControllers = {
             album.images.forEach(image =>
                 cloudinary.uploader.destroy(image.id)
             );
+            await usersRepositories.deleteAlbumFromFollowing(req.params.albumName);
             await albumsRepositories.deleteAlbumByName(req.params.albumName);
             return res.redirect('/dashboard');
         } catch (err) {

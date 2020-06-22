@@ -62,4 +62,22 @@ module.exports = {
         }
     },
 
+    deleteAlbumFromFollowing: async (albumName) =>{
+        try{
+            const { modifiedCount } = await db.users
+                .updateMany(
+                    {},
+                    { 
+                        $pull:{ 
+                            albumsFollowing: { 
+                                $in: [albumName]
+                            } 
+                        } 
+                    }
+                );
+            if (!modifiedCount ) throw new Error ('insertion failed');
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
+    }
 };
