@@ -46,7 +46,7 @@
                         <h4>commented by <strong id="own-comment">you</strong></h4>
                         <% if(commentIndex!==0){ %>
                             <div class="comment-buttons-action">
-                            <a href="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>">
+                            <a href="/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>">
                                 <button class="btn btn-sm" id="comment-edit-btn">Edit</button>
                             </a>
                             <form action="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/styles/edit.css">
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    </br>
+    </br>
+    </br>
+    <h2 class='page-heading'>Edit Comment</h2>
+    <%-include('../partials/errorMsg.ejs') %>
+    <div class="edit-container">
+        <div class = "edit-image-container">
+            <img id="cover-edit-image" src="<%=album.images[0].url%>">
+        </div>
+        <div class="edit-form-container">
+            <%- include('../partials/editCommentForm.ejs') %>
+        </div>
+    </div>
+</body>
+</html>

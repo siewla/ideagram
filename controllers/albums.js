@@ -128,6 +128,10 @@ const albumsControllers = {
                 }];
                 try{
                     await albumsRepositories.addImageToExistingAlbum(req.body.albumName, imageData);
+                    const album = await albumsRepositories.getAlbumByName(req.body.albumName);
+                    album.updatedAt= new Date();
+                    album.updatedBy = req.session.currentUser.username;
+                    await albumsRepositories.updateAlbumByName(req.body.albumName, album);
                     return res.redirect('/dashboard');
                 }catch (err) {
                     res.send(err.message);
@@ -142,9 +146,6 @@ const albumsControllers = {
     addComment: async (req, res)=>{
         try {
             if(Object.keys(req.body).length){
-                const album = await albumsRepositories.getAlbumByName(req.body.albumName);
-                const imageIndex = req.body.imageID;
-                
                 const commentData = [{
                     'commentIndex': shortid.generate(),
                     'comment': req.body.comment,
@@ -152,6 +153,10 @@ const albumsControllers = {
                     'commentedAt' : new Date()
                 }]; 
                 await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageID, commentData);
+                const album = await albumsRepositories.getAlbumByName(req.body.albumName);
+                album.updatedAt= new Date();
+                album.updatedBy = req.session.currentUser.username;
+                await albumsRepositories.updateAlbumByName(req.body.albumName, album);
                 return res.redirect(`/albums/${req.body.albumName}`);
             } else {
                 return res.send('Empty Object');
@@ -218,6 +223,33 @@ const albumsControllers = {
             album.images[0].comments[0].updatedAt= new Date();
             album.updatedAt= new Date();
             album.updatedBy = album.owner;
+            await albumsRepositories.updateAlbumByName(req.params.albumName, album);
+            res.redirect('/dashboard');
+        }catch (err){
+            res.send(err.msg);
+        }
+    },
+
+    editComment: async (req, res) =>{
+        try{
+            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+            const imageIndex =req.params.imageIndex;
+            const commentIndex = req.params.commentIndex;
+            // const comment = album.images[imageIndex].comments[commentIndex].comment;
+            // console.log(comment);
+            res.render('ideagram/editComment.ejs',{ album, imageIndex, commentIndex, error:false, currentUser : req.session.currentUser });
+        }catch(err){
+            return res.send(err.message);
+        }
+    },
+
+    updateCommentByAlbumName: async (req, res)=>{
+        try{
+            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+            album.images[req.params.imageIndex].comments[req.params.commentIndex].comment = req.body.comment;
+            album.images[req.params.imageIndex].comments[req.params.commentIndex].updatedAt= new Date();
+            album.updatedAt= new Date();
+            album.updatedBy = req.params.updatedUser;
             await albumsRepositories.updateAlbumByName(req.params.albumName, album);
             res.redirect('/dashboard');
         }catch (err){

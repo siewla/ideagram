@@ -1,0 +1,17 @@
+<form action="/<%=currentUser.username %>/<%= album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
+    <div class="form-group">
+        <label for='name'>Album Name</label>
+        <input class="form-control" type='text' name='name' value="<%=album.name%>" readonly/>
+    </div>
+    <div class="form-group">
+        <label for='description'>Album Description</label>
+        <input class="form-control" type='text' name='description' value="<%=album.description%>" readonly/>
+    </div>
+    <div class="form-group">
+        <label for='comment'>Comment</label>
+        <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndex].comment%>" required/>
+    </div>
+    <div>
+        <button class="btn" type="submit" id="create-btn">Update Comment</button>
+    </div>
+</form>
