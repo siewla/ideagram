@@ -64,7 +64,7 @@ module.exports = {
 
     deleteAlbumFromFollowing: async (albumName) =>{
         try{
-            const { modifiedCount } = await db.users
+            await db.users
                 .updateMany(
                     {},
                     { 
@@ -75,7 +75,6 @@ module.exports = {
                         } 
                     }
                 );
-            if (!modifiedCount ) throw new Error ('insertion failed');
         }catch(err) {
             throw new Error (`${err.message}`);
         }

@@ -41,7 +41,8 @@ module.exports = (app) => {
     
     app.get('/albums/new', albumsControllers.createNewAlbum);
     app.get('/albums/:albumName', albumsControllers.showAlbumByName);
-    app.post('/albums/create', upload.single('image'),albumsControllers.createAlbum);
+    app.post('/albums/create/file', upload.single('image'),albumsControllers.createAlbumByFile);
+    app.post('/albums/create/url', albumsControllers.createAlbumByURL);
 
     app.get('/:albumName/image/new', albumsControllers.createNewImage);
     app.post('/image/create',upload.single('image'), albumsControllers.createImage);

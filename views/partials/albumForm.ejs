@@ -1,4 +1,8 @@
-<form action = '/albums/create' method = 'POST' enctype="multipart/form-data">
+
+
+<h1>Create by File</h1>
+<form method = 'POST' enctype="multipart/form-data">
+<!-- <form method="POST"> -->
     <div class="form-group">
         <label for='name'>Album Name</label>
         <input class="form-control" type='text' name='name' placeholder="Enter Album Name" required/>
@@ -8,16 +12,53 @@
         <input class="form-control" type='text' name='description' placeholder="Enter Album description" required/>
     </div>
     <div class="form-group">
-        <label for='image'>Cover Image</label>
-        <div container ="file-url">
-            <input class="form-control-file" name="image" type="file" required />
-        </div>
+        <label for='image'>Cover Image (Choose From File)</label>
+        <input type="file" class="form-control-file"  name="image" accept="image/*" required/>
+        
+    </div>
+    <!-- <div class="form-group">
+        <label for='image'>Cover Image (URL)</label>
+        <input type="url" class="form-control"  name="image" required/>
+    </div> -->
+    <div class="form-group">
+        <label for='comment'>Cover Image Description</label>
+        <input class="form-control" type='text' name='comment' placeholder="Enter Image description" required/>
+    </div>
+    <div>
+        <button class="btn" type="submit" formaction="/albums/create/file" id="create-btn">Create New Album (File) </button>
+        <!-- <button class="btn" type="submit" formaction="/albums/create/url" id="create-btn">Create New Album (url)</button> -->
+    </div>
+</form>
+
+</br>
+</br>
+</br>
+
+<h1>Create by URL</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for='name'>Album Name</label>
+        <input class="form-control" type='text' name='name' placeholder="Enter Album Name" required/>
+    </div>
+    <div class="form-group">
+        <label for='description'>Album Description</label>
+        <input class="form-control" type='text' name='description' placeholder="Enter Album description" required/>
+    </div>
+    <!-- <div class="form-group">
+        <label for='image'>Cover Image (Choose From File)</label>
+        <input type="file" class="form-control-file"  name="image" accept="image/*" required/>
+        
+    </div> -->
+    <div class="form-group">
+        <label for='image'>Cover Image (URL)</label>
+        <input type="url" class="form-control"  name="image" required/>
     </div>
     <div class="form-group">
         <label for='comment'>Cover Image Description</label>
         <input class="form-control" type='text' name='comment' placeholder="Enter Image description" required/>
     </div>
     <div>
-        <button class="btn" type="submit" id="create-btn">Create New Album</button>
+        <!-- <button class="btn" type="submit" formaction="/albums/create/file" id="create-btn">Create New Album (File) </button> -->
+        <button class="btn" type="submit" formaction="/albums/create/url" id="create-btn">Create New Album (url)</button>
     </div>
 </form>

@@ -19,6 +19,7 @@
 .buttons-action{
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #view-btn{
@@ -116,7 +117,7 @@
 }
 
 #cancel-btn{
-    background-color: pink;
+    background-color: white;
     color: black;
 }
 

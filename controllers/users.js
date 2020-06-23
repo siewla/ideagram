@@ -58,7 +58,7 @@ const usersControllers = {
 
     listAlbumsFollowing: async (req, res) => {
         const userData =  await usersRepository.find(req.session.currentUser.username);
-        res.render('ideagram/following.ejs', { userData });
+        res.render('ideagram/following.ejs', { userData, currentUser:req.session.currentUser });
     }
 
 };

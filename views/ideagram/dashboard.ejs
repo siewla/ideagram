@@ -8,7 +8,6 @@
 </br>
 </br>
 </br>
-    <h1 id='username-top-right-corner'><%= currentUser.username %></h1>
     <h1 class='page-heading'>Albums</h1>
     <div class="albums">
     <% data.forEach( album => { %>
@@ -16,34 +15,34 @@
                 <% if(currentUser.username === album.owner){ %>
                     <div class="buttons-action">
                         <a href="/albums/<%= album.name%>">
-                            <button class="btn" id="view-btn">View</button>
+                            <button class="btn btn-sm" id="view-btn">View</button>
                         </a>
                         <a href="/albums/<%= album.name%>">
-                            <button class="btn" id="edit-btn">Edit</button>
+                            <button class="btn btn-sm" id="edit-btn">Edit</button>
                         </a>
                         <form action="/<%=album.name%>?_method=DELETE" method="POST">
                             <div>
-                                <button class="btn" id="delete-btn" type="submit">Delete</button>
+                                <button class="btn btn-sm" id="delete-btn" type="submit">Delete</button>
                             </div>
                         </form>
                     </div>
                 <%} else{ %>
                     <div class="buttons-action">
                         <a href="/albums/<%= album.name%>">
-                            <button class="btn" id="view-btn">View</button>
+                            <button class="btn btn-sm" id="view-btn">View</button>
                         </a>
                         <% if(currentUser.albumsFollowing.includes(album.name)) { %>
                             <form action = '/album/unfollow' method = 'POST'>
                                 <div>
                                     <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                                    <button class="btn" id="unfollow-btn" type="submit">Unfollow</button>
+                                    <button class="btn btn-sm" id="unfollow-btn" type="submit">Unfollow</button>
                                 </div>
                             </form>
                         <% }else{ %>
                             <form action = '/album/follow' method = 'POST'>
                                 <div>
                                     <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                                    <button class="btn" id="follow-btn" type="submit">Follow</button>
+                                    <button class="btn btn-sm" id="follow-btn" type="submit">Follow</button>
                                 </div>
                             </form>
                         <%} %>

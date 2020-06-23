@@ -11,7 +11,7 @@
                 <% if (imageIndex !==0) { %>
                     <form action="/<%=album.name%>/image/<%=imageIndex%>?_method=DELETE" method="POST">
                         <div>
-                            <button class="btn" id="delete-btn-right" type="submit">Delete Image</button>
+                            <button class="btn btn-sm" id="delete-btn-right" type="submit">Delete Image</button>
                         </div>
                     </form>
                 <% } %>
@@ -45,11 +45,11 @@
                         <h4>commented by <strong id="own-comment">you</strong></h4>
                         <div class="comment-buttons-action">
                             <a href="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>">
-                                <button class="btn" id="comment-edit-btn">Edit</button>
+                                <button class="btn btn-sm" id="comment-edit-btn">Edit</button>
                             </a>
                             <form action="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
                                 <div>
-                                    <button class="btn" id="comment-delete-btn" type="submit">Delete</button>
+                                    <button class="btn btn-sm" id="comment-delete-btn" type="submit">Delete</button>
                                 </div>
                             </form>
                         </div>
