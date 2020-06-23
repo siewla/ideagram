@@ -64,7 +64,6 @@ const albumsControllers = {
 
     createAlbumByURL : async (req, res) => {
         try {
-            console.log(req.body.image);
             await cloudinary.uploader.upload(req.body.image,
                 async (err, result) => {
                     if(Object.keys(req.body).length){
