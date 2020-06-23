@@ -17,7 +17,7 @@
                         <a href="/albums/<%= album.name%>">
                             <button class="btn btn-sm" id="view-btn">View</button>
                         </a>
-                        <a href="/albums/<%= album.name%>">
+                        <a href="/albums/<%= album.name%>/edit">
                             <button class="btn btn-sm" id="edit-btn">Edit</button>
                         </a>
                         <form action="/<%=album.name%>?_method=DELETE" method="POST">
@@ -53,8 +53,13 @@
                 <h4>Total Followers: <%=album.followersCount%></h4>
                 <h4>Total Images: <%=album.images.length%></h4>
                 <h4 class="album-description-container"><%=album.description%></h4>
-                <% const relativeTime=moment(album.createdAt).fromNow() %></h3>
-                <h5>Created <%=relativeTime%> by <%=album.owner%></h5>
+                <% if (album.hasOwnProperty('updatedAt')){%>
+                    <% const relativeUpdatedTime=moment(album.updatedAt).fromNow() %>
+                    <h6>Updated <%=relativeUpdatedTime%> by <%=album.updatedBy%></h6>
+                <%} %>
+                    <% const relativeTime=moment(album.createdAt).fromNow() %>
+                    <h6>Created <%=relativeTime%> by <%=album.owner%></h6>
+                
         </div>
         <% }) %>
         <div class="album-card">

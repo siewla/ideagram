@@ -117,6 +117,25 @@ const albumsRepositories = {
         }catch(err) {
             throw new Error (`${err.message}`);
         }
+    },
+
+    updateAlbumByName : async (name, album) =>{
+        try{
+            const { matchedCount } = await db.albums.updateOne(
+                {
+                    name: name
+                },
+                {
+                    $set: album
+                });
+            if (!matchedCount){
+                throw new Error(`${album.name} does not exist`);
+            } else {
+                return true;
+            }
+        }catch (err) {
+            throw new Error (`${err.message}`);
+        }
     }
 };
 

@@ -197,6 +197,32 @@ const albumsControllers = {
         }catch (err) {
             res.send(err.message);
         }
+    },
+
+    editAlbumByName: async (req, res)=>{
+        try{
+            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+            res.render('ideagram/editAlbum.ejs',{ album, error:false, currentUser : req.session.currentUser });
+        }catch(err){
+            return res.send(err.message);
+        }
+        
+    },
+
+    updateAlbumByName: async (req, res)=>{
+        try{
+            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+            album.name= req.body.name;
+            album.description= req.body.description;
+            album.images[0].comments[0].comment = req.body.comment;
+            album.images[0].comments[0].updatedAt= new Date();
+            album.updatedAt= new Date();
+            album.updatedBy = album.owner;
+            await albumsRepositories.updateAlbumByName(req.params.albumName, album);
+            res.redirect('/dashboard');
+        }catch (err){
+            res.send(err.msg);
+        }
     }
 };
 
