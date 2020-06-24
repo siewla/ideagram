@@ -6,15 +6,17 @@
             <h4>Image <%=imageIndex+1 %></h4>
             <img class="image-show" src="<%=image.url%>">
             <div class="image-details">
-                <h2 id="uploadedBy">Uploaded by <strong><%=image.uploadedBy%></strong></h2>
                 <% if(currentUser.username === image.uploadedBy){ %>
+                    <h2 id="uploadedBy">Uploaded by <strong>you</strong></h2>
                 <% if (imageIndex !==0) { %>
                     <form action="/<%=album.name%>/image/<%=imageIndex%>?_method=DELETE" method="POST">
                         <div>
-                            <button class="btn btn-sm" id="delete-btn-right" type="submit">Delete Image</button>
+                            <button class="btn btn-outline-danger btn-sm" type="submit">Delete Image</button>
                         </div>
                     </form>
                 <% } %>
+                <% } else { %>
+                    <h2 id="uploadedBy">Uploaded by <strong><%=image.uploadedBy%></strong></h2>
                 <% } %>
             </div>
         </div>
@@ -91,11 +93,16 @@
                                 </div>
                             </div>
                         <% } %>
-                        <%} else {%>
+                        <%} else {%> 
                         <h4>commented by <a id="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
                         <%} %>
+                        <% if (comment.hasOwnProperty('updatedAt')){%>
+                            <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
+                        <h5>edited <%=relativeTime%></h5>
+                        <% } else { %>
                         <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
                         <h5><%=relativeTime%></h5>
+                        <% } %>
                     </div> 
                     <% commentIndex -- %>
                 </div>

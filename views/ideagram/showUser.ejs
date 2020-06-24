@@ -15,14 +15,14 @@
             <form action = '/user/unfollow' method = 'POST'>
                 <div>
                     <input type ="hidden" name="userName" value="<%=userData.username%>"/>
-                    <button class="btn"  type="submit">Unfollow</button>
+                    <button class="btn btn-outline-danger" id="follow-user-btn" type="submit">Unfollow</button>
                 </div>
             </form>
         <% }else{ %>
             <form action = '/user/follow' method = 'POST'>
                 <div>
                     <input type ="hidden" name="userName" value="<%=userData.username%>"/>
-                    <button class="btn" type="submit">Follow</button>
+                    <button class="btn btn-outline-primary" id="follow-user-btn" type="submit">Follow</button>
                 </div>
             </form>
         <%} %>

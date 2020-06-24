@@ -1,7 +1,7 @@
 .album-details-container{
     display: block;
     width: 90%;
-    /* max-height: 100vh; */
+    background-color: white;
     margin-left: auto;
     margin-right: auto;
     padding: 2vh;
@@ -12,7 +12,7 @@
 .image-and-comments-container{
     display: block;
     width: 90%;
-    /* max-height: 100vh; */
+    background-color: white;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2vh;
@@ -59,7 +59,7 @@
     background-color: yellow;
     color: black;
     border-radius: 1vh;
-    float: right;
+    float: left;
 }
 
 .image-details{
@@ -72,14 +72,13 @@
     font-size:2vh;
 }
 
-#delete-btn-right{
-    background-color:coral;
-    font-size: 1vh;
-    color:black;
-}
-
 .image-and-comments-wrapper{
     margin-bottom: 50vh;
+}
+
+#follow-btn{
+    border-radius: 1vh;
+    float: right;
 }
 
 @media screen and (max-width: 800px) {

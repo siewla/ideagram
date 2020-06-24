@@ -15,14 +15,14 @@
             <form action = '/album/unfollow' method = 'POST'>
                 <div>
                     <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                    <button class="btn"  type="submit">Unfollow</button>
+                    <button class="btn btn-outline-danger" id="follow-btn" type="submit">Unfollow</button>
                 </div>
             </form>
         <% }else{ %>
             <form action = '/album/follow' method = 'POST'>
                 <div>
                     <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                    <button class="btn" type="submit">Follow</button>
+                    <button class="btn btn-outline-primary" id="follow-btn" type="submit">Follow</button>
                 </div>
             </form>
         <%} %>
