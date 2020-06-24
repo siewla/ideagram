@@ -48,7 +48,7 @@ const albumsControllers = {
                         }; 
                         try{
                             await albumsRepositories.createAlbum(album);
-                            return res.redirect('/dashboard');
+                            return res.redirect('/main');
                         }catch (err) {
                             return res.render('ideagram/newAlbum.ejs', { error: err.message });
                         }
@@ -87,7 +87,7 @@ const albumsControllers = {
                         }; 
                         try{
                             await albumsRepositories.createAlbum(album);
-                            return res.redirect('/dashboard');
+                            return res.redirect('/main');
                         }catch (err) {
                             return res.render('ideagram/newAlbum.ejs', { error: err.message });
                         }
@@ -135,7 +135,7 @@ const albumsControllers = {
                     album.updatedAt= new Date();
                     album.updatedBy = req.session.currentUser.username;
                     await albumsRepositories.updateAlbumByName(req.body.albumName, album);
-                    return res.redirect('/dashboard');
+                    return res.redirect('/main');
                 }catch (err) {
                     res.send(err.message);
                 }
@@ -178,7 +178,7 @@ const albumsControllers = {
         
             await usersRepositories.deleteAlbumFromFollowing(req.params.albumName);
             await albumsRepositories.deleteAlbumByName(req.params.albumName);
-            return res.redirect('/dashboard');
+            return res.redirect('/main');
         } catch (err) {
             return res.send(err.message);
         }
@@ -190,7 +190,7 @@ const albumsControllers = {
             const imageIndex = req.params.imageIndex;
             cloudinary.uploader.destroy(album.images[imageIndex].id);
             await albumsRepositories.deleteImageById(req.params.albumName, album.images[imageIndex].id);
-            return res.redirect('/dashboard');
+            return res.redirect('/main');
         } catch (err) {
             return res.send(err.message);
         }
@@ -227,7 +227,7 @@ const albumsControllers = {
             album.updatedAt= new Date();
             album.updatedBy = album.owner;
             await albumsRepositories.updateAlbumByName(req.params.albumName, album);
-            res.redirect('/dashboard');
+            res.redirect('/main');
         }catch (err){
             res.send(err.msg);
         }

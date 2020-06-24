@@ -28,11 +28,11 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for='name'>Album Name</label>
-                                <input class="form-control" type='text' name='name' value="<%=album.name%>" required/>
+                                <input class="form-control" type='text' name='name' value="<%=album.name%>" maxlength="12"required/>
                             </div>
                             <div class="form-group">
                                 <label for='description'>Album Description</label>
-                                <input class="form-control" type='text' name='description' value="<%=album.description%>" required/>
+                                <input class="form-control" type='text' name='description' value="<%=album.description%>" maxlength="50" required/>
                             </div>
                             <div class="form-group">
                                 <label for='comment'>Cover Image Description</label>
