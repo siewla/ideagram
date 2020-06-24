@@ -38,6 +38,8 @@ module.exports = (app) => {
 
     app.delete('/logout', sessionsControllers.logout); // logout
     app.get('/dashboard', albumsControllers.getAllAlbums);
+
+    app.get('/users/:userName',usersControllers.getUserInfo);
     
     app.get('/albums/new', albumsControllers.createNewAlbum);
     app.get('/albums/:albumName', albumsControllers.showAlbumByName);
@@ -53,6 +55,9 @@ module.exports = (app) => {
     app.post('/comment/create', albumsControllers.addComment);
     app.post('/album/follow', usersControllers.followAlbum);
     app.post('/album/unfollow', usersControllers.unfollowAlbum);
+
+    app.post('/user/follow', usersControllers.followUser);
+    app.post('/user/unfollow', usersControllers.unfollowUser);
 
     app.get('/following', usersControllers.listAlbumsFollowing);
 

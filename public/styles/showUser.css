@@ -1,0 +1,12 @@
+.profile-container{
+    display: block;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    border-radius: 2vh;
+    height: 80vh;
+    background-color:white;
+    overflow: auto;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    padding: 1vh;
+}

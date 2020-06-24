@@ -1,4 +1,5 @@
 const usersRepository = require('../repositories/users');
+const { albumsRepositories } = require('../repositories/albums');
 
 const usersControllers = {
     signupForm : (req , res)=>{
@@ -33,7 +34,7 @@ const usersControllers = {
             if (Object.keys(req.body).length){
                 const userName = req.session.currentUser.username;
                 await usersRepository.addFollowingAlbum(userName, req.body.albumName);
-                return res.redirect('/dashboard'); 
+                return res.redirect(`/albums/${req.body.albumName}`); 
             } else {
                 return res.send('Empty Object');
             }
@@ -47,7 +48,7 @@ const usersControllers = {
             if (Object.keys(req.body).length){
                 const userName = req.session.currentUser.username;
                 await usersRepository.unFollowingAlbum(userName, req.body.albumName);
-                return res.redirect('/dashboard'); 
+                return res.redirect(`/albums/${req.body.albumName}`); 
             } else {
                 return res.send('Empty Object');
             }
@@ -59,8 +60,42 @@ const usersControllers = {
     listAlbumsFollowing: async (req, res) => {
         const userData =  await usersRepository.find(req.session.currentUser.username);
         res.render('ideagram/following.ejs', { userData, currentUser:req.session.currentUser });
-    }
+    },
 
+    getUserInfo: async (req, res) => {
+        const userData =  await usersRepository.find(req.params.userName);
+        const data = await albumsRepositories.getAllAlbums();
+        const currentUserData = await usersRepository.find(req.session.currentUser.username);
+        res.render('ideagram/showUser.ejs', { data, userData, currentUser:currentUserData });
+    },
+
+    followUser: async (req, res)=>{
+        try{
+            if (Object.keys(req.body).length){
+                const userName = req.session.currentUser.username;
+                await usersRepository.addFollowingUser(userName, req.body.userName);
+                res.redirect(`/users/${req.body.userName}`);
+            } else {
+                return res.send('Empty Object');
+            }
+        } catch (err) {
+            return res.send(err.message);
+        }
+    },
+
+    unfollowUser: async (req, res)=>{
+        try{
+            if (Object.keys(req.body).length){
+                const userName = req.session.currentUser.username;
+                await usersRepository.unfollowUser(userName, req.body.userName);
+                res.redirect(`/users/${req.body.userName}`);
+            } else {
+                return res.send('Empty Object');
+            }
+        } catch (err) {
+            return res.send(err.message);
+        }
+    },
 };
 
 module.exports = {

@@ -92,7 +92,7 @@
                             </div>
                         <% } %>
                         <%} else {%>
-                        <h4>commented by <strong id="username-comment"><%=comment.commentedBy%></strong></h4>
+                        <h4>commented by <a id="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
                         <%} %>
                         <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
                         <h5><%=relativeTime%></h5>

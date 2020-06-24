@@ -11,6 +11,21 @@
     </br>
     </br>
     <div class="album-details-container">
+        <% if(currentUser.albumsFollowing.includes(album.name)) { %>
+            <form action = '/album/unfollow' method = 'POST'>
+                <div>
+                    <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                    <button class="btn"  type="submit">Unfollow</button>
+                </div>
+            </form>
+        <% }else{ %>
+            <form action = '/album/follow' method = 'POST'>
+                <div>
+                    <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                    <button class="btn" type="submit">Follow</button>
+                </div>
+            </form>
+        <%} %>
         <h3><strong>Album Name : </strong><%=album.name%></h3>
         <h4><strong>Description : </strong><%=album.description%></h4>
         <h4><strong>Total Images : </strong><%=album.images.length%></h4>

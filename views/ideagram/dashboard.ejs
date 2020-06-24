@@ -104,10 +104,18 @@
                 <div>
                     <% if (album.hasOwnProperty('updatedAt')){%>
                     <% const relativeUpdatedTime=moment(album.updatedAt).fromNow() %>
-                    <h6>Updated <%=relativeUpdatedTime%> by <%=album.updatedBy%></h6>
+                        <% if(album.updatedBy=== currentUser.username){%>
+                            <h6>Updated <%=relativeUpdatedTime%> by <strong>you</strong></h6>
+                        <% } else { %>
+                            <h6>Updated <%=relativeUpdatedTime%> by <a href="/users/<%= album.updatedBy%>"><%=album.updatedBy%></a></h6>
+                        <%} %>
                     <%} %>
                     <% const relativeTime=moment(album.createdAt).fromNow() %>
-                    <h6>Created <%=relativeTime%> by <%=album.owner%></h6>
+                    <% if(album.owner=== currentUser.username){%>
+                        <h6>Created <%=relativeTime%> by <strong>you</strong></h6>
+                    <% } else { %>
+                        <h6>Created <%=relativeTime%> by <a href="/users/<%= album.owner%>"><%=album.owner%></a></h6>
+                    <%} %>
                 </div>    
         </div>
         <% }) %>

@@ -94,5 +94,42 @@ module.exports = {
         }catch(err) {
             throw new Error (`${err.message}`);
         }
+    },
+
+    addFollowingUser: async (username, followUserName) =>{
+        try{
+            const { modifiedCount } = await db.users
+                .updateOne(
+                    { username: username },
+                    { 
+                        $push:{ 
+                            usersFollowing: { 
+                                $each: [followUserName]
+                            } 
+                        } 
+                    }
+                );
+            if (!modifiedCount ) throw new Error ('insertion failed');
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
+    },
+
+    unfollowUser: async (username, followUserName) =>{
+        try{
+            await db.users
+                .updateOne(
+                    { username: username },
+                    { 
+                        $pull:{ 
+                            usersFollowing: { 
+                                $in: [followUserName]
+                            } 
+                        } 
+                    }
+                );
+        }catch(err) {
+            throw new Error (`${err.message}`);
+        }
     }
 };

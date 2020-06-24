@@ -104,8 +104,9 @@ const albumsControllers = {
     showAlbumByName : async (req, res)=>{
         const album = await albumsRepositories.getAlbumByName(req.params.albumName);
         const count = await usersRepositories.countAlbumFollowers(album.name);
+        const userData = await usersRepositories.find(req.session.currentUser.username);
         album.followersCount=count; 
-        res.render('ideagram/showAlbum.ejs', { album, currentUser : req.session.currentUser, moment: moment });
+        res.render('ideagram/showAlbum.ejs', { album, currentUser : userData, moment: moment });
     },
 
     createNewImage: async (req, res)=>{

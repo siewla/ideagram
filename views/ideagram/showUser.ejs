@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/styles/showUser.css">
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+</br>
+</br>
+</br>
+    <h1 class='page-heading'><%=userData.username%>'s Profile</h1>
+    <div class="profile-container">
+        <% if(currentUser.usersFollowing.includes(userData.username)) { %>
+            <form action = '/user/unfollow' method = 'POST'>
+                <div>
+                    <input type ="hidden" name="userName" value="<%=userData.username%>"/>
+                    <button class="btn"  type="submit">Unfollow</button>
+                </div>
+            </form>
+        <% }else{ %>
+            <form action = '/user/follow' method = 'POST'>
+                <div>
+                    <input type ="hidden" name="userName" value="<%=userData.username%>"/>
+                    <button class="btn" type="submit">Follow</button>
+                </div>
+            </form>
+        <%} %>
+    </div>
+</body>
+</html>
