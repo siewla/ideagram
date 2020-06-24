@@ -37,7 +37,7 @@ module.exports = (app) => {
     });
 
     app.delete('/logout', sessionsControllers.logout); // logout
-    app.get('/dashboard', albumsControllers.getAllAlbums);
+    app.get('/main', albumsControllers.getAllAlbums);
 
     app.get('/users/:userName',usersControllers.getUserInfo);
     
