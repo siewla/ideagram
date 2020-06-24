@@ -38,6 +38,7 @@
     background-color:black;
     color:yellow;
     float: right;
+    border-radius: 1vh;
 }
 
 .comment-footer{
@@ -49,23 +50,24 @@
 }
 
 #own-comment{
-    color: lightblue;
+    color: lightseagreen;
 }
 
-.comment-buttons-action{
-    display: flex;
-    direction:rtl;
+.edit-group-button{
+    border-radius: 1vh;
+    background-color: white;
+    color: black;
+    margin-right: 1vh;
 }
 
-#comment-delete-btn{
-    font-size: 1vh;
-    margin-right: 0.5vh;
-    color:black;
-    background-color:red;
+.comment-footer-owner{
+    display:flex;
+    flex-direction: row-reverse;
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
-#comment-edit-btn{
-    font-size: 1vh;
-    background-color:blue;
-    color:white;
+#user-comment-heading {
+    font-size: 3vh;
+    color: lightseagreen;
 }

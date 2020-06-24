@@ -103,6 +103,8 @@ const albumsControllers = {
 
     showAlbumByName : async (req, res)=>{
         const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+        const count = await usersRepositories.countAlbumFollowers(album.name);
+        album.followersCount=count; 
         res.render('ideagram/showAlbum.ejs', { album, currentUser : req.session.currentUser, moment: moment });
     },
 
@@ -235,8 +237,6 @@ const albumsControllers = {
             const album = await albumsRepositories.getAlbumByName(req.params.albumName);
             const imageIndex =req.params.imageIndex;
             const commentIndex = req.params.commentIndex;
-            // const comment = album.images[imageIndex].comments[commentIndex].comment;
-            // console.log(comment);
             res.render('ideagram/editComment.ejs',{ album, imageIndex, commentIndex, error:false, currentUser : req.session.currentUser });
         }catch(err){
             return res.send(err.message);
@@ -251,7 +251,7 @@ const albumsControllers = {
             album.updatedAt= new Date();
             album.updatedBy = req.params.updatedUser;
             await albumsRepositories.updateAlbumByName(req.params.albumName, album);
-            res.redirect('/dashboard');
+            res.redirect(`/albums/${req.params.albumName}`);
         }catch (err){
             res.send(err.msg);
         }

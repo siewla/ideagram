@@ -22,7 +22,7 @@
             <div class="add-comment-container">
                 <form action = '/comment/create' method = 'POST'>
                     <div class="form-group">
-                        <label for="comment"><%=currentUser.username %></label>
+                        <label id="user-comment-heading" for="comment"><%=currentUser.username %></label>
                         <input class="form-control" type='text' name='comment' placeholder="Share a feedback or a question" required>
                     </div>
                     <div>
@@ -39,12 +39,28 @@
                 <%let commentIndex = image.comments.length -1; %>
                 <%let commentIndexCommon = 0; %>
                 <% image.comments.reverse().forEach(comment => { %>
-                    
                 <div class="comment">
                     <h3><%=comment.comment%></h3>
                     <div class="comment-footer">
                         <% if(comment.commentedBy === currentUser.username){%>
-                        <h4>commented by <strong id="own-comment">you</strong></h4>
+                            <div class ="comment-footer-owner">
+                                <h4>commented by <strong id="own-comment">you</strong></h4>
+                                <div class="btn-group dropleft">
+                                    <button class="edit-group-button dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">...</button>
+                                    <div class="dropdown-menu">
+                                        <button type="button" class="dropdown-item"
+                                            data-toggle="modal" data-target="#editComment-<%=commentIndex%>">Edit</button>
+                                        <form action="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
+                                            <div>
+                                                <button class="dropdown-item" type="submit">Delete</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
                         <% if(commentIndex!==0){ %>
                             <div class="modal fade" id="editComment-<%=commentIndex%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
@@ -74,15 +90,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="comment-buttons-action">
-                            <button type="button" class="btn btn-sm" id="edit-btn" 
-                        data-toggle="modal" data-target="#editComment-<%=commentIndex%>">Edit</button>
-                            <form action="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
-                                <div>
-                                    <button class="btn btn-sm" id="comment-delete-btn" type="submit">Delete</button>
-                                </div>
-                            </form>
-                        </div>
                         <% } %>
                         <%} else {%>
                         <h4>commented by <strong id="username-comment"><%=comment.commentedBy%></strong></h4>
