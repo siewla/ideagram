@@ -80,6 +80,8 @@
 #logout-btn{
     background-color: black;
     color:yellow;
+    font-size: 2vh;
+    border-radius: 1vh;
 }
 
 #cancel-btn{

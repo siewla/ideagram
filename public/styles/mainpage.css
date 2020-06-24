@@ -39,6 +39,8 @@ body{
     background-color: yellow;
     color: black;
     margin: 0.5vh;
+    font-size: 2vh;
+    border-radius: 1vh;
 }
 
 #welcome-text{
