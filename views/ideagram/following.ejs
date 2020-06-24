@@ -9,16 +9,25 @@
     </br>
     </br>
     <h1 class='page-heading'>Following Albums</h1>
-    <div class="albums">
-    <% if(userData.albumsFollowing.length>0){ %>
-        <% userData.albumsFollowing.forEach( album => { %>
-        <div class="album-card">
-                <h2><%=album%></h2>
-        </div>
-    <% }) %>
-    <% } else { %>
-        <h2>None</h2>
-    <% } %>
+    <div class="list-following-container">
+        <% if(userData.albumsFollowing.length>0){ %>
+            <% userData.albumsFollowing.forEach( album => { %>
+                <a class="albums-following"href="/albums/<%= album%>"><%=album%></a>      
+        <% }) %>
+        <% } else { %>
+            <h2 class="albums-following">None</h2>
+        <% } %>
+    </div>
+<br>
+    <h1 class='page-heading'>Following Users</h1>
+    <div class="list-following-container">
+        <% if(userData.usersFollowing.length>0){ %>
+            <% userData.usersFollowing.forEach( user => { %>
+                <a class="users-following" href="/users/<%= user%>"><%=user%></a>      
+        <% }) %>
+        <% } else { %>
+            <h2 class="users-following">None</h2>
+        <% } %>
     </div>
 </body>
 </html>

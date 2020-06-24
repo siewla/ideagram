@@ -5,10 +5,10 @@
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
-</br>
-</br>
-</br>
-    <h1 class='page-heading'>Albums</h1>
+<br>
+<br>
+<br>
+    <h1 class='page-heading'>All Albums</h1>
     <div class="albums">
     <% data.forEach( (album, index) => { %>
         <div class="modal fade" id="editAlbum-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -49,60 +49,68 @@
         </div>
         <div class="album-card">
                 <% if(currentUser.username === album.owner){ %>
-                    
-                    <div class="buttons-action">
-                        <a href="/albums/<%= album.name%>">
-                            <button class="btn btn-sm" id="view-btn">View</button>
-                        </a>
-                        <button type="button" class="btn btn-sm" id="edit-btn" 
-                        data-toggle="modal" data-target="#editAlbum-<%=index%>">Edit</button>
-                        <form action="/<%=album.name%>?_method=DELETE" method="POST">
-                            <div>
-                                <button class="btn btn-sm" id="delete-btn" type="submit">Delete</button>
+                    <div class ="album-container-heading">
+                        <div class="btn-group">    
+                            <a href="/albums/<%= album.name%>" class="btn album-name-btn"><%=album.name%></a>
+                            <button type="button" class="btn dropdown-toggle px-3 album-name-edit-btn" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/albums/<%= album.name%>">View</a>
+                                <button type="button" class="dropdown-item"
+                            data-toggle="modal" data-target="#editAlbum-<%=index%>">Edit</button>
+                                <form action="/<%=album.name%>?_method=DELETE" method="POST">
+                                    <div>
+                                        <button class="dropdown-item" type="submit">Delete</button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 <%} else{ %>
-                    <div class="buttons-action">
-                        <a href="/albums/<%= album.name%>">
-                            <button class="btn btn-sm" id="view-btn">View</button>
-                        </a>
-                        <% if(currentUser.albumsFollowing.includes(album.name)) { %>
-                            <form action = '/album/unfollow' method = 'POST'>
-                                <div>
-                                    <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                                    <button class="btn btn-sm" id="unfollow-btn" type="submit">Unfollow</button>
-                                </div>
-                            </form>
-                        <% }else{ %>
-                            <form action = '/album/follow' method = 'POST'>
-                                <div>
-                                    <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                                    <button class="btn btn-sm" id="follow-btn" type="submit">Follow</button>
-                                </div>
-                            </form>
-                        <%} %>
+                    <div class ="album-container-heading">
+                        <div class="btn-group">    
+                            <a href="/albums/<%= album.name%>" class="btn album-name-btn"><%=album.name%></a>
+                            <button type="button" class="btn dropdown-toggle px-3 album-name-edit-btn" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/albums/<%= album.name%>">View</a>
+                                <% if(currentUser.albumsFollowing.includes(album.name)) { %>
+                                    <form action = '/album/unfollow' method = 'POST'>
+                                        <div>
+                                            <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                                            <button class="dropdown-item"  type="submit">Unfollow</button>
+                                        </div>
+                                    </form>
+                                <% }else{ %>
+                                    <form action = '/album/follow' method = 'POST'>
+                                        <div>
+                                            <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                                            <button class="dropdown-item" type="submit">Follow</button>
+                                        </div>
+                                    </form>
+                                <%} %>
+                            </div>
+                        </div>
                     </div>
                 <%} %>
-                <h3 class="album-name-container"><%=album.name%></h3>
                 <img class="album-image-container" src="<%=album.images[0].url%>">
-                <h4>Total Followers: <%=album.followersCount%></h4>
-                <h4>Total Images: <%=album.images.length%></h4>
-                <h4 class="album-description-container"><%=album.description%></h4>
-                <% if (album.hasOwnProperty('updatedAt')){%>
+                <div>
+                    <h4>Total Followers: <%=album.followersCount%></h4>
+                    <h4>Total Images: <%=album.images.length%></h4>
+                    <h4 class="album-description-container"><%=album.description%></h4>
+                </div>
+                <div>
+                    <% if (album.hasOwnProperty('updatedAt')){%>
                     <% const relativeUpdatedTime=moment(album.updatedAt).fromNow() %>
                     <h6>Updated <%=relativeUpdatedTime%> by <%=album.updatedBy%></h6>
-                <%} %>
+                    <%} %>
                     <% const relativeTime=moment(album.createdAt).fromNow() %>
                     <h6>Created <%=relativeTime%> by <%=album.owner%></h6>
-                
+                </div>    
         </div>
         <% }) %>
-        <div class="album-card">
-            <a href="/albums/new">
-                <button class="btn" id="add-btn">Add New Album</button>
-            </a>
-        </div>
     </div>
 </body>
 </html>

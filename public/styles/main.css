@@ -1,3 +1,4 @@
+
 .albums{
     display:flex;
     flex-direction: row;
@@ -6,37 +7,15 @@
 
 .album-card{
     margin: 2vh;
-    border: 0.5vh solid rgba(0, 0, 0, 0.5);
+    background-color: white;
     border-radius: 2vh;
     width: 30vh;
     height: 60vh;
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-}
-
-.buttons-action{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-#view-btn{
-    margin-right: 0.5vh;
-    background-color: lightgreen;
-    color:black;
-}
-
-#edit-btn{
-    margin-right: 0.5vh;
-    background-color: lightblue;
-    color:black;
-}
-
-#delete-btn{
-    background-color: red;
-    color:black;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
 #follow-btn{    
@@ -54,6 +33,7 @@
     width: auto;
     max-width: 25vh;
     max-height: 25vh;
+    border-radius: 2vh;
 }
 
 .owner-tag{
@@ -85,18 +65,9 @@
     margin-left: 10vh;
 }
 
-#username-top-right-corner {
-    color: black !important;
-    margin-top: 1vh;
-    text-align: right;
-    margin-right: 2vh;
-    font-size: 2vh;
-}
-
 .page-heading{
-    background-color: rgba(238, 241, 40, 0.5);
     text-align: center;
-    font-size: 5vh;
+    font-size: 4vh;
     text-transform: uppercase;
 }
 
@@ -104,11 +75,6 @@
     color: yellow;
     text-transform: uppercase;
     text-decoration: underline;
-}
-
-#add-btn{
-    background-color: black;
-    color:yellow;
 }
 
 #logout-btn{
@@ -132,3 +98,43 @@
     align-items: center;
 }
 
+.album-container-heading{
+    margin-top: 1vh;
+}
+
+.album-name-btn{
+    background-color: black;
+    color:yellow;
+    font-size: 2vh;
+    border-radius: 1vh;
+}
+
+.album-name-edit-btn{
+    background-color: white;
+    color:black;
+    font-size: 2vh;
+    border-radius: 1vh;
+}
+
+.list-following-container{
+    display: block;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    border-radius: 2vh;
+    height: 30vh;
+    background-color:white;
+    overflow: auto;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    padding: 1vh;
+}
+
+.albums-following {
+    font-size: 3vh;
+    color: lightseagreen;
+}
+
+.users-following{
+    font-size: 3vh;
+    color: lightcoral;
+}
