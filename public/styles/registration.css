@@ -16,13 +16,15 @@ body{
     padding: 2vh;
     text-align: center;
     border-radius: 3vh;
-    width: 30%
+    width: 60vh;
 }
 
 #submit-btn {
     float:right;
     background-color: yellow;
     color: black;
+    font-size: 2vh;
+    border-radius: 1vh;
 }
 
 .validate {

@@ -16,19 +16,23 @@ body{
     padding: 2vh;
     text-align: center;
     border-radius: 3vh;
-    width: 50%
+    width: 60vh;
 }
 
 #login-btn {
     background-color: black;
     color:yellow;
     margin: 0.5vh;
+    font-size: 2vh;
+    border-radius: 1vh;
 }
 
 #signup-btn {
     background-color: yellow;
     color: black;
     margin: 0.5vh;
+    font-size: 2vh;
+    border-radius: 1vh;
 }
 
 #dashboard-btn {
@@ -38,8 +42,8 @@ body{
 }
 
 #welcome-text{
-    /* background-color: grey;
-    border-radius: 1vh; */
+    font-size: 4vh;
+    margin-top: 2vh;
 }
 
 #tagline-text {
