@@ -19,7 +19,6 @@
             </div>
         </div>
         <div class="comments-container"> 
-            
             <div class="add-comment-container">
                 <form action = '/comment/create' method = 'POST'>
                     <div class="form-group">
@@ -38,17 +37,46 @@
             <h3>Comments</h3>
             <div class="scrollable-comments">
                 <%let commentIndex = image.comments.length -1; %>
+                <%let commentIndexCommon = 0; %>
                 <% image.comments.reverse().forEach(comment => { %>
+                    
                 <div class="comment">
                     <h3><%=comment.comment%></h3>
                     <div class="comment-footer">
                         <% if(comment.commentedBy === currentUser.username){%>
                         <h4>commented by <strong id="own-comment">you</strong></h4>
                         <% if(commentIndex!==0){ %>
+                            <div class="modal fade" id="editComment-<%=commentIndex%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title" id="exampleModalLabel">Edit Comment</h2>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <% const commentIndexModal = image.comments.length - commentIndex - 1 %>
+                                        </div>
+                                        <form action="/<%=currentUser.username %>/<%= album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
+                                            <div class="flex-center">
+                                                <img class="album-image-modal" src="<%=album.images[imageIndex].url%>">
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndexModal].comment%>" required/>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Update Comment</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="comment-buttons-action">
-                            <a href="/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>">
-                                <button class="btn btn-sm" id="comment-edit-btn">Edit</button>
-                            </a>
+                            <button type="button" class="btn btn-sm" id="edit-btn" 
+                        data-toggle="modal" data-target="#editComment-<%=commentIndex%>">Edit</button>
                             <form action="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
                                 <div>
                                     <button class="btn btn-sm" id="comment-delete-btn" type="submit">Delete</button>

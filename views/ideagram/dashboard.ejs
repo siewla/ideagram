@@ -10,16 +10,52 @@
 </br>
     <h1 class='page-heading'>Albums</h1>
     <div class="albums">
-    <% data.forEach( album => { %>
+    <% data.forEach( (album, index) => { %>
+        <div class="modal fade" id="editAlbum-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Edit Album</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/albums/<%= album.name%>?_method=PUT" method="POST">
+                        <div class="flex-center">
+                            <img class="album-image-modal" src="<%=album.images[0].url%>">
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for='name'>Album Name</label>
+                                <input class="form-control" type='text' name='name' value="<%=album.name%>" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for='description'>Album Description</label>
+                                <input class="form-control" type='text' name='description' value="<%=album.description%>" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for='comment'>Cover Image Description</label>
+                                <input class="form-control" type='text' name='comment' value="<%=album.images[0].comments[0].comment%>" required/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Update Album</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="album-card">
                 <% if(currentUser.username === album.owner){ %>
+                    
                     <div class="buttons-action">
                         <a href="/albums/<%= album.name%>">
                             <button class="btn btn-sm" id="view-btn">View</button>
                         </a>
-                        <a href="/albums/<%= album.name%>/edit">
-                            <button class="btn btn-sm" id="edit-btn">Edit</button>
-                        </a>
+                        <button type="button" class="btn btn-sm" id="edit-btn" 
+                        data-toggle="modal" data-target="#editAlbum-<%=index%>">Edit</button>
                         <form action="/<%=album.name%>?_method=DELETE" method="POST">
                             <div>
                                 <button class="btn btn-sm" id="delete-btn" type="submit">Delete</button>
