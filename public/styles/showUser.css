@@ -164,4 +164,17 @@
     overflow: auto;
 }
 
+.follow-btn{
+    float:right;
+    border-radius: 2vh;
+}
 
+.header-container-show{
+    display:block;
+    width:80%;
+    margin: 1vh auto;
+}
+
+#header-show-text{
+
+}

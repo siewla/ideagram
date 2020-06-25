@@ -9,7 +9,27 @@
 </br>
 </br>
 </br>
-    <h1 class='page-heading'><%=userData.username%>'s Profile</h1>
+    <div class="header-container-show">
+        <div>
+            <% if(currentUser.usersFollowing.includes(userData.username)) { %>
+                <form action = '/user/unfollow' method = 'POST'>
+                    <div>
+                        <input type ="hidden" name="userName" value="<%=userData.username%>"/>
+                        <button class="btn btn-outline-danger follow-btn" type="submit">Unfollow</button>
+                    </div>
+                </form>
+            <% }else{ %>
+                <form action = '/user/follow' method = 'POST'>
+                    <div>
+                        <input type ="hidden" name="userName" value="<%=userData.username%>"/>
+                        <button class="btn btn-outline-primary follow-btn" type="submit">Follow</button>
+                    </div>
+                </form>
+            <%} %>
+        </div>
+        <h1 id="header-show-text">Username : <%=userData.username%></h1>
+    </div>
+    <h1 class='page-heading'>Her/His Profile</h1>
     <%- include('../partials/profile.ejs') %>
 </body>
 </html>
