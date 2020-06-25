@@ -88,4 +88,9 @@
         justify-content: space-evenly;
         align-items: flex-start;
     }
+
+    .image-container{
+        width: 100%;
+        padding:2vh; 
+    }
 }
