@@ -25,7 +25,7 @@
                 <form action = '/comment/create' method = 'POST'>
                     <div class="form-group">
                         <label id="user-comment-heading" for="comment"><%=currentUser.username %></label>
-                        <input class="form-control" type='text' name='comment' placeholder="Share a feedback or a question" required>
+                        <input class="form-control" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
                     </div>
                     <div>
                         <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>

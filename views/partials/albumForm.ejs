@@ -3,11 +3,11 @@
 <!-- <form method="POST"> -->
     <div class="form-group">
         <label for='name'>Album Name</label>
-        <input class="form-control" type='text' name='name' placeholder="Enter Album Name" maxlength="12" required/>
+        <input class="form-control" type='text' name='name' placeholder="Enter Album Name" maxlength="12" pattern="^[^ ].+[^ ]$" required/>
     </div>
     <div class="form-group">
         <label for='description'>Album Description</label>
-        <input class="form-control" type='text' name='description' placeholder="Enter Album description" maxlength="50" required/>
+        <input class="form-control" type='text' name='description' placeholder="Enter Album description" maxlength="50" pattern="^[^ ].+[^ ]$" required/>
     </div>
     <div class="form-group">
         <label for='image'>Cover Image (Choose From File)</label>
@@ -36,11 +36,11 @@
 <form method="POST">
     <div class="form-group">
         <label for='name'>Album Name</label>
-        <input class="form-control" type='text' name='name' placeholder="Enter Album Name" maxlength="12"required/>
+        <input class="form-control" type='text' name='name' placeholder="Enter Album Name" maxlength="12" pattern="^[^ ].+[^ ]$"required/>
     </div>
     <div class="form-group">
         <label for='description'>Album Description</label>
-        <input class="form-control" type='text' name='description' placeholder="Enter Album description" maxlength="50" required/>
+        <input class="form-control" type='text' name='description' placeholder="Enter Album description" maxlength="50" pattern="^[^ ].+[^ ]$" required/>
     </div>
     <!-- <div class="form-group">
         <label for='image'>Cover Image (Choose From File)</label>
