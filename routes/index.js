@@ -40,6 +40,8 @@ module.exports = (app) => {
     app.get('/main', albumsControllers.getAllAlbums);
 
     app.get('/users/:userName',usersControllers.getUserInfo);
+    app.get('/account',usersControllers.getUserProfile);
+
     
     app.get('/albums/new', albumsControllers.createNewAlbum);
     app.get('/albums/:albumName', albumsControllers.showAlbumByName);

@@ -9,23 +9,8 @@
 </br>
 </br>
 </br>
-    <h1 class='page-heading'><%=userData.username%>'s Profile</h1>
+    <h1 class='page-heading'>My Profile</h1>
     <div class="profile-container">
-        <% if(currentUser.usersFollowing.includes(userData.username)) { %>
-            <form action = '/user/unfollow' method = 'POST'>
-                <div>
-                    <input type ="hidden" name="userName" value="<%=userData.username%>"/>
-                    <button class="btn btn-outline-danger" id="follow-user-btn" type="submit">Unfollow</button>
-                </div>
-            </form>
-        <% }else{ %>
-            <form action = '/user/follow' method = 'POST'>
-                <div>
-                    <input type ="hidden" name="userName" value="<%=userData.username%>"/>
-                    <button class="btn btn-outline-primary" id="follow-user-btn" type="submit">Follow</button>
-                </div>
-            </form>
-        <%} %>
         <div>
             <h1 class='page-small-heading'>Uploaded Images and Respective Album Name</h1>
             <div class="uploaded-images-container">

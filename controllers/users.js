@@ -69,6 +69,13 @@ const usersControllers = {
         res.render('ideagram/showUser.ejs', { data, userData, currentUser:currentUserData });
     },
 
+    getUserProfile: async (req, res) => {
+        const userData =  await usersRepository.find(req.session.currentUser.username);
+        const data = await albumsRepositories.getAllAlbums();
+        const currentUserData = await usersRepository.find(req.session.currentUser.username);
+        res.render('ideagram/myaccount.ejs', { data, userData, currentUser:currentUserData });
+    },
+
     followUser: async (req, res)=>{
         try{
             if (Object.keys(req.body).length){
