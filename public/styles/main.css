@@ -36,6 +36,13 @@
     border-radius: 2vh;
 }
 
+.album-info-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .owner-tag{
     color:red;
 }
@@ -129,6 +136,13 @@
     overflow: auto;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     padding: 1vh;
+}
+
+.list-following-container-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .albums-following {

@@ -4,7 +4,7 @@
     margin: auto;
     text-align: center;
     border-radius: 2vh;
-    height: 80vh;
+    width: 80%;
     background-color:white;
     overflow: auto;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
@@ -13,4 +13,51 @@
 
 #follow-user-btn{
     border-radius: 1vh;
+    float: right;
+}
+
+.albums-owned-tag{
+    font-size: 2vh;
+    color: rgb(7, 115, 204);
+}
+
+.albums-owned{
+    font-size: 3vh;
+    color: rgb(7, 115, 204);
+}
+
+.uploaded-images-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+}
+
+.small-images-container{
+    width: 20vh;
+    height: 20vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius:2vh;
+    margin-left: 1vh;
+    padding:1vh;
+}
+
+.small-img{
+    max-width: 17vh;
+    max-height: 15vh;
+    border-radius:2vh;
+}
+
+.list-row-container{
+    display:flex;
+    justify-content:space-around;
+}
+
+.page-small-heading{
+    text-align: left;
 }

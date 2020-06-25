@@ -26,6 +26,70 @@
                 </div>
             </form>
         <%} %>
+        <div>
+            <h1 class='page-small-heading'>Uploaded Images and Respective Album Name</h1>
+            <div class="uploaded-images-container">
+                <% data.forEach(album=>{ %>
+                <% album.images.forEach(image =>{ %>
+                <% if(userData.username === image.uploadedBy) { %>
+                    <div class="small-images-container">
+                        <img class="small-img" src="<%=image.url%>">
+                        <a class="albums-owned-tag" href="/albums/<%=album.name%>"><%=album.name%></a>
+                    </div>
+                    
+                <%} %>
+                <%})%>
+                
+                <% }) %>
+            </div>
+            
+        </div>
+        <br>
+        <br>
+        
+
+        <div class="list-row-container">
+            <div>
+                <h1 class='page-small-heading'>Albums Owned</h1>
+                <div class="list-following-container-flex">
+                    <% data.forEach(album=>{ %>
+                    <% if(userData.username === album.owner) { %>
+                        <a class="albums-owned" href="/albums/<%=album.name%>"><%=album.name%></a>
+                    <%} %>
+                    <% }) %>
+                </div>        
+            </div>
+            <br>
+            <div>
+                <h1 class='page-small-heading'>Following Albums</h1>
+                <div class="list-following-container-flex">
+                    <% if(userData.albumsFollowing.length>0){ %>
+                    <% userData.albumsFollowing.forEach( album => { %>
+                        <a class="albums-following" href="/albums/<%= album%>"><%=album%></a>      
+                    <% }) %>
+                    <% } else { %>
+                        <h2 class="albums-following">None</h2>
+                    <% } %>
+            </div>
+            </div>
+            <br>
+            <div>
+                <h1 class='page-small-heading'>Following Users</h1>
+                <div class="list-following-container-flex">
+                    <% if(userData.usersFollowing.length>0){ %>
+                    <% userData.usersFollowing.forEach( user => { %>
+                        <a class="users-following" href="/users/<%= user%>"><%=user%></a>      
+                    <% }) %>
+                    <% } else { %>
+                        <h2 class="users-following">None</h2>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
     </div>
 </body>
 </html>
