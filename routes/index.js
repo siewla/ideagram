@@ -66,7 +66,7 @@ module.exports = (app) => {
 
     app.delete('/:albumName', albumsControllers.deleteAlbumByName);
     app.delete('/:albumName/image/:imageIndex', albumsControllers.deleteImageById);
-    app.delete('/:albumName/:imageId/:commentIndex', albumsControllers.deleteCommentById);
+    app.delete('/comment/:location/:albumName/:imageId/:commentIndex', albumsControllers.deleteCommentById);
     
     app.get('/session', (req, res) => {
         let visits = req.session.visits;

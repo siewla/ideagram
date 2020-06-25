@@ -1,5 +1,4 @@
-<%  let imageIndex =0;   %>
-<% album.images.forEach(image => { %> 
+<% album.images.forEach((image,imageIndex) => { %> 
 <div class='image-and-comments-container'>  
     <div class="individual-image">
         <div class="image-container">
@@ -38,9 +37,7 @@
             </div>
             <h3>Comments</h3>
             <div class="scrollable-comments">
-                <%let commentIndex = image.comments.length -1; %>
-                <%let commentIndexCommon = 0; %>
-                <% image.comments.reverse().forEach(comment => { %>
+                <% image.comments.reverse().forEach((comment,commentIndex) => { %>
                 <div class="comment">
                     <h3><%=comment.comment%></h3>
                     <div class="comment-footer">
@@ -53,16 +50,16 @@
                                     <div class="dropdown-menu">
                                         <button type="button" class="dropdown-item"
                                             data-toggle="modal" data-target="#editComment-<%=commentIndex%>">Edit</button>
-                                        <form action="/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
-                                            <div>
-                                                <button class="dropdown-item" type="submit">Delete</button>
-                                            </div>
-                                        </form>
+                                        <% if(commentIndex !==0){ %>
+                                            <form action="/comment/album/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
+                                                <div>
+                                                    <button class="dropdown-item" type="submit">Delete</button>
+                                                </div>
+                                            </form>
+                                        <% } %> 
                                     </div>
                                 </div>    
                             </div>
-                            
-                        <% if(commentIndex!==0){ %>
                             <div class="modal fade" id="editComment-<%=commentIndex%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -72,15 +69,14 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                            <% const commentIndexModal = image.comments.length - commentIndex - 1 %>
                                         </div>
-                                        <form action="/comment/album/<%=currentUser.username %>/<%= album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
+                                        <form action="/comment/album/<%=currentUser.username %>/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
                                             <div class="flex-center">
                                                 <img class="album-image-modal" src="<%=album.images[imageIndex].url%>">
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndexModal].comment%>" required/>
+                                                    <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndex].comment%>" required/>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -91,23 +87,19 @@
                                     </div>
                                 </div>
                             </div>
-                        <% } %>
                         <%} else {%> 
                         <h4>commented by <a id="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
                         <%} %>
+                        <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
+                        <h5><%=relativeTime%></h5>
                         <% if (comment.hasOwnProperty('updatedAt')){%>
                             <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
                         <h5>edited <%=relativeTime%></h5>
-                        <% } else { %>
-                        <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
-                        <h5><%=relativeTime%></h5>
                         <% } %>
                     </div> 
-                    <% commentIndex -- %>
                 </div>
                 <%}) %>
             </div>
-            <% imageIndex++ %>
         </div>
     </div> 
 </div>
