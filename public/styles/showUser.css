@@ -82,7 +82,7 @@
 .individual-comment{
     padding: 1vh;
     margin-top:0.5vh;
-    width: 55vh;
+    width: 40vh;
     border: 1px solid black;
     border-radius: 2vh;
     display:flex;
@@ -141,7 +141,7 @@
 .give-comment-container{
     padding: 1vh;
     margin-top:0.5vh;
-    width: 55vh;
+    width: 40vh;
     border-radius: 2vh;
     display:flex;
     flex-direction:column;
