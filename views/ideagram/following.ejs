@@ -13,7 +13,7 @@
         <div class="list-following-container-flex">
             <% if(userData.albumsFollowing.length>0){ %>
             <% userData.albumsFollowing.forEach( album => { %>
-                <a class="albums-following"href="/albums/<%= album%>"><%=album%></a>      
+                <a class="albums-following" href="/albums/<%= album%>"><%=album%></a>      
             <% }) %>
             <% } else { %>
                 <h2 class="albums-following">None</h2>

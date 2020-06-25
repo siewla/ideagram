@@ -12,19 +12,77 @@
     <h1 class='page-heading'>My Profile</h1>
     <div class="profile-container">
         <div>
-            <h1 class='page-small-heading'>Uploaded Images and Respective Album Name</h1>
+            <h1 class='page-small-heading'>Uploaded Images</h1>
             <div class="uploaded-images-container">
-                <% data.forEach(album=>{ %>
-                <% album.images.forEach(image =>{ %>
+                <% data.forEach((album,albumIndex)=>{ %>
+                <% album.images.forEach((image,imageIndex) =>{ %>
                 <% if(userData.username === image.uploadedBy) { %>
-                    <div class="small-images-container">
-                        <img class="small-img" src="<%=image.url%>">
-                        <a class="albums-owned-tag" href="/albums/<%=album.name%>"><%=album.name%></a>
+                    <div class="modal fade" id="album-<%=albumIndex%>image-<%=imageIndex%>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalLabel">View Comments</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body flex-comment-center">
+                                    <div>
+                                        <img class="medium-img" src="<%=image.url%>"> 
+                                    </div> 
+                                    <h1 id="show-comment-heading">Comments</h1> 
+                                    <div class="comments-wrapper">
+                                        <div class="show-comments-container">
+                                            <% image.comments.forEach((comment,commentIndex) => { %>
+                                            <div class="individual-comment">
+                                                <h3 class="comment-style"><%=comment.comment%></h3>
+                                                <div class="show-comment-footer"> 
+                                                    <% if(comment.commentedBy === currentUser.username){%>
+                                                    <h4 class='footer-text'>commented by <strong class="own-comment">you</strong></h4>               
+                                                    <%} else {%> 
+                                                    <h4 class='footer-text'>commented by <a class="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
+                                                    <%} %>
+                                                    <% if (comment.hasOwnProperty('updatedAt')){%>
+                                                    <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
+                                                    <h5 class='footer-text'>edited <%=relativeTime%></h5>
+                                                    <% } else { %>
+                                                    <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
+                                                    <h5 class='footer-text'><%=relativeTime%></h5>
+                                                <% } %>
+                                                </div>
+                                            </div>
+                                            <%}) %>
+                                        </div>
+                                    </div>
+                                    <div class="individual-comment">
+                                        <form action = '/account/comment/<%=currentUser.username%>/<%=userData.username%>/create' method = 'POST'>
+                                            <div class="form-group">
+                                                <label id="username-comment-heading" for="comment"><%=currentUser.username %></label>
+                                                <input class="form-control" id="comment-form" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
+                                            </div>
+                                            <div>
+                                                <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>
+                                                <input type ="hidden" name="albumName" value="<%=album.name%>"/>
+                                                <button type="submit" class="btn btn-outline-primary" id="show-comment-btn">
+                                                    Comment <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
+                    <div class="small-images-container">
+                        <input data-toggle="modal" data-target="#album-<%=albumIndex%>image-<%=imageIndex%>" 
+                            class="small-img"type="image" src="<%=image.url%>" alt="submit">
+                        <a class="albums-owned-tag" href="/albums/<%=album.name%>"><%=album.name%></a>
+                    </div>     
                 <%} %>
                 <%})%>
-                
                 <% }) %>
             </div>
         </div>

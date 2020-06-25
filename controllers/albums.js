@@ -169,6 +169,34 @@ const albumsControllers = {
         }
     },
 
+    addCommentAtAccount: async (req, res)=>{
+        try {
+            if(Object.keys(req.body).length){
+                const commentData = [{
+                    'commentIndex': shortid.generate(),
+                    'comment': req.body.comment,
+                    'commentedBy': req.session.currentUser.username,
+                    'commentedAt' : new Date()
+                }]; 
+                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageID, commentData);
+                const album = await albumsRepositories.getAlbumByName(req.body.albumName);
+                album.updatedAt= new Date();
+                album.updatedBy = req.session.currentUser.username;
+                await albumsRepositories.updateAlbumByName(req.body.albumName, album);
+                if (req.params.currentUser === req.params.dataUser){
+                    return res.redirect('/account');
+                } else {
+                    return res.redirect(`/users/${req.params.dataUser}`);
+                }
+                
+            } else {
+                return res.send('Empty Object');
+            }
+        }catch (err) {
+            return res.send(err.message);
+        }
+    },
+
     deleteAlbumByName: async (req, res)=>{
         try { 
             const album = await albumsRepositories.getAlbumByName(req.params.albumName);

@@ -54,6 +54,7 @@ module.exports = (app) => {
     app.post('/image/create',upload.single('image'), albumsControllers.createImage);
     app.put('/:updatedUser/:albumName/:imageIndex/:commentIndex', albumsControllers.updateCommentByAlbumName);
     app.get('/:albumName/:imageIndex/:commentIndex', albumsControllers.editComment);
+    app.post('/account/comment/:currentUser/:dataUser/create', albumsControllers.addCommentAtAccount);
     app.post('/comment/create', albumsControllers.addComment);
     app.post('/album/follow', usersControllers.followAlbum);
     app.post('/album/unfollow', usersControllers.unfollowAlbum);

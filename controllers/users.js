@@ -1,5 +1,6 @@
 const usersRepository = require('../repositories/users');
 const { albumsRepositories } = require('../repositories/albums');
+const moment = require('moment');
 
 const usersControllers = {
     signupForm : (req , res)=>{
@@ -66,14 +67,14 @@ const usersControllers = {
         const userData =  await usersRepository.find(req.params.userName);
         const data = await albumsRepositories.getAllAlbums();
         const currentUserData = await usersRepository.find(req.session.currentUser.username);
-        res.render('ideagram/showUser.ejs', { data, userData, currentUser:currentUserData });
+        res.render('ideagram/showUser.ejs', { data, userData, currentUser:currentUserData, moment: moment  });
     },
 
     getUserProfile: async (req, res) => {
         const userData =  await usersRepository.find(req.session.currentUser.username);
         const data = await albumsRepositories.getAllAlbums();
         const currentUserData = await usersRepository.find(req.session.currentUser.username);
-        res.render('ideagram/myaccount.ejs', { data, userData, currentUser:currentUserData });
+        res.render('ideagram/myaccount.ejs', { data, userData, currentUser:currentUserData, moment: moment  });
     },
 
     followUser: async (req, res)=>{
