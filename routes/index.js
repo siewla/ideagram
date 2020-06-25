@@ -52,7 +52,7 @@ module.exports = (app) => {
 
     app.get('/:albumName/image/new', albumsControllers.createNewImage);
     app.post('/image/create',upload.single('image'), albumsControllers.createImage);
-    app.put('/:updatedUser/:albumName/:imageIndex/:commentIndex', albumsControllers.updateCommentByAlbumName);
+    app.put('/comment/:location/:updatedUser/:albumName/:imageIndex/:commentIndex', albumsControllers.updateCommentByAlbumName);
     app.get('/:albumName/:imageIndex/:commentIndex', albumsControllers.editComment);
     app.post('/account/comment/:currentUser/:dataUser/create', albumsControllers.addCommentAtAccount);
     app.post('/comment/create', albumsControllers.addComment);

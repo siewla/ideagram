@@ -280,7 +280,16 @@ const albumsControllers = {
             album.updatedAt= new Date();
             album.updatedBy = req.params.updatedUser;
             await albumsRepositories.updateAlbumByName(req.params.albumName, album);
-            res.redirect(`/albums/${req.params.albumName}`);
+            if (req.params.location ==='ablum'){
+                res.redirect(`/albums/${req.params.albumName}`);
+            } else{
+                if (req.params.location ===req.session.currentUser.username){
+                    return res.redirect('/account');
+                } else {
+                    return res.redirect(`/users/${req.params.location}`);
+                }
+            }
+            
         }catch (err){
             res.send(err.msg);
         }

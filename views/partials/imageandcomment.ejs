@@ -74,7 +74,7 @@
                                             </button>
                                             <% const commentIndexModal = image.comments.length - commentIndex - 1 %>
                                         </div>
-                                        <form action="/<%=currentUser.username %>/<%= album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
+                                        <form action="/comment/album/<%=currentUser.username %>/<%= album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
                                             <div class="flex-center">
                                                 <img class="album-image-modal" src="<%=album.images[imageIndex].url%>">
                                             </div>
