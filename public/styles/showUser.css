@@ -78,8 +78,11 @@
     flex-wrap:wrap;
 }
 
-.list-row-container > div {
+.list-row-container >div{
     margin-left: 5vh;
+}
+
+.list-following-container-flex {
     max-height: 10vh;
     overflow-x:hidden;
     overflow-y:auto;

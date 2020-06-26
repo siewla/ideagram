@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/styles/images.css">
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+<br>
+<br>
+<br>
+    <h1 class='page-heading'>All Images</h1>
+    <div class="all-images-container">
+        <%data.forEach((album,albumIndex) =>{%>
+            <%album.images.forEach((image,imageIndex) =>{ %>
+                <div class="modal fade" id="show-album-<%=albumIndex%>image-<%=imageIndex%>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="exampleModalLabel">View Comments</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body flex-comment-center">
+                                <div>
+                                    <img class="square-image-modal" src="<%=image.url%>"> 
+                                </div> 
+                                <h1 id="show-comment-heading">Comments</h1> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-image-container">
+                    <input data-toggle="modal" data-target="#show-album-<%=albumIndex%>image-<%=imageIndex%>" 
+                        class="square-image"type="image" src="<%=image.url%>" alt="submit">
+                    <div class= "image-container-footer">
+                        <% if (currentUser.username===image.uploadedBy){ %>
+                            <h6 class="tag">uploaded by <strong><a class="own-tag" href="account">you</a></strong></h6>
+                        <% } else { %>
+                            <h6 class="tag">uploaded by <strong><a class="owner-tag" href="/users/<%=image.uploadedBy%>"><%=image.uploadedBy%></a></strong></h6>
+                        <% } %>
+                            <h6 class="tag">in <a class="album-tag" href="/albums/<%=album.name%>"><%=album.name%></a></h6>
+                    </div>
+                </div>
+            <% }) %>
+        <% }) %>
+    </div>
+</body>
+</html>

@@ -2,6 +2,7 @@ const { albumsControllers } = require('../controllers/albums');
 const { usersControllers } = require('../controllers/users');
 const { sessionsControllers } = require('../controllers/sessions');
 const { appControllers } = require('../controllers/app');
+const { imagesControllers } = require('../controllers/images');
 
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
@@ -38,6 +39,7 @@ module.exports = (app) => {
 
     app.delete('/logout', sessionsControllers.logout); // logout
     app.get('/main', albumsControllers.getAllAlbums);
+    app.get('/images', imagesControllers.getAllImages); 
 
     app.get('/users/:userName',usersControllers.getUserInfo);
     app.get('/account',usersControllers.getUserProfile);
