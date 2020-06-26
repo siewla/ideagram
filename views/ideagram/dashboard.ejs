@@ -95,7 +95,9 @@
                         </div>
                     </div>
                 <%} %>
-                <img class="album-image-container" src="<%=album.images[0].url%>">
+                <a href="/albums/<%= album.name%>">
+                    <img class="album-image-container" src="<%=album.images[0].url%>">
+                </a>
                 <div class="album-info-container">
                     <h4>Total Followers: <%=album.followersCount%></h4>
                     <h4>Total Images: <%=album.images.length%></h4>
