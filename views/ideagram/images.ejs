@@ -14,7 +14,7 @@
         <%data.forEach((album,albumIndex) =>{%>
             <%album.images.forEach((image,imageIndex) =>{ %>
                 <div class="modal fade" id="show-album-<%=albumIndex%>image-<%=imageIndex%>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -28,27 +28,38 @@
                                 <h3>Comments</h3>
                                 <!-- ALL COMMENTS -->
                                 <div class="image-all-comments-container">
-                                    <div class="image-individual-comment">
                                         <% image.comments.forEach((comment,commentIndex)=> { %>
-                                            <h3><%=comment.comment%></h3>
+                                        <div class="image-individual-comment">
+                                            <h3 class="comment-style"><%=comment.comment%></h3>
+                                            <div class="show-comment-footer"> 
+                                                <% if(comment.commentedBy === currentUser.username){%>
+                                                <h4 class='footer-text'>commented by <strong class="own-comment">you</strong></h4>               
+                                                <%} else {%> 
+                                                <h4 class='footer-text'>commented by <a class="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
+                                                <%} %>
+                                                <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
+                                                <h5 class='footer-text'><%=relativeTime%></h5>
+                                                <% if (comment.hasOwnProperty('updatedAt')){%>
+                                                <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
+                                                <h5 class='footer-text'>edited <%=relativeTime%></h5>
+                                                <% } %>
+                                            </div>
+                                        </div>
                                         <% }) %>
-                                    </div>
                                 </div>
+                                <br>
                                 <!-- ADD COMMENT -->
                                 <form action="/api/comment/<%=album.name%>/<%=imageIndex%>" method="GET"> 
                                     <div class="form-group">
                                         <label id="username-comment-heading" for="comment"><%=currentUser.username %></label>
                                         <input class="form-control new-comment" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
                                     </div>
-                                    <div>
+                                    <div class="modal-footer">
                                         <button type="submit" class="btn btn-outline-primary submit-comment"
-                                        id="<%=albumIndex; %>&<%= imageIndex; %>">
+                                        id="<%=album.name; %>&<%= imageIndex; %>">
                                         Comment <i class="fa fa-comment-o" aria-hidden="true"></i></button>
                                     </div>
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>

@@ -60,7 +60,55 @@
 .square-image-modal{
     display:block;
     max-width: 30vh;
-    max-height: 25vh;
+    max-height: 20vh;
     border-radius: 2vh;
     margin: 1vh auto;
+}
+
+.image-all-comments-container{
+    max-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.image-individual-comment{
+    padding: 1vh;
+    margin-top:0.5vh;
+    width: 40vh;
+    border: 1px solid black;
+    border-radius: 2vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.show-comment-footer{
+    align-self: flex-end;
+    text-align:right;
+}
+
+.footer-text{
+    font-size: 1.5vh;
+    margin: 0.5vh;
+}
+
+.own-comment{
+    color: lightcoral
+}
+
+.username-comment{
+    color: cadetblue;
+}
+
+.comment-style{
+    align-self: flex-start;
+    font-weight: bolder;
+    font-size: 2vh;
+}
+
+.submit-comment{
+    float:right;
+    border-radius: 2vh;
 }
