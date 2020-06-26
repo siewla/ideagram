@@ -17,7 +17,6 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title" id="exampleModalLabel">View Comments</h2>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -26,7 +25,27 @@
                                 <div>
                                     <img class="square-image-modal" src="<%=image.url%>"> 
                                 </div> 
-                                <h1 id="show-comment-heading">Comments</h1> 
+                                <h3>Comments</h3>
+                                <!-- ALL COMMENTS -->
+                                <div class="image-all-comments-container">
+                                    <div class="image-individual-comment">
+                                        <% image.comments.forEach((comment,commentIndex)=> { %>
+                                            <h3><%=comment.comment%></h3>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                                <!-- ADD COMMENT -->
+                                <form action="/api/comment/<%=album.name%>/<%=imageIndex%>" method="GET"> 
+                                    <div class="form-group">
+                                        <label id="username-comment-heading" for="comment"><%=currentUser.username %></label>
+                                        <input class="form-control new-comment" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-primary submit-comment"
+                                        id="<%=albumIndex; %>&<%= imageIndex; %>">
+                                        Comment <i class="fa fa-comment-o" aria-hidden="true"></i></button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -38,6 +38,9 @@ module.exports = (app) => {
     });
 
     app.delete('/logout', sessionsControllers.logout); // logout
+
+    app.get('/api/comment/:albumName/:imageIndex', imagesControllers.addComment);
+
     app.get('/main', albumsControllers.getAllAlbums);
     app.get('/images', imagesControllers.getAllImages); 
 
