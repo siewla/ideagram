@@ -135,7 +135,7 @@ const albumsControllers = {
                     album.updatedAt= new Date();
                     album.updatedBy = req.session.currentUser.username;
                     await albumsRepositories.updateAlbumByName(req.body.albumName, album);
-                    return res.redirect('/main');
+                    return res.redirect(`/albums/${req.body.albumName}`);
                 }catch (err) {
                     res.send(err.message);
                 }
