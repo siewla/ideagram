@@ -11,18 +11,16 @@
 }
 
 .scrollable-comments{
-    max-height: 50vh;
+    max-height: 40vh;
     overflow-x: hidden; 
-    overflow-y: auto;
-
+    overflow-y: auto; 
+    display:flex;
+    flex-direction: column-reverse;
+    float: top;
 }
 
 .comment{
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 1vh;
-    display: block;
     border-radius:1vh;
     border: 1px solid grey;
     padding: 0.5vh;

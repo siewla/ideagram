@@ -37,7 +37,7 @@
             </div>
             <h3>Comments</h3>
             <div class="scrollable-comments">
-                <% image.comments.reverse().forEach((comment,commentIndex) => { %>
+                <% image.comments.forEach((comment,commentIndex) => { %>
                 <div class="comment">
                     <h3><%=comment.comment%></h3>
                     <div class="comment-footer">
