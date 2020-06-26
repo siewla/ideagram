@@ -94,6 +94,7 @@
 }
 
 .comments-wrapper{
+    width: 40vh;
     max-height: 35vh;
     overflow-x: hidden;
     overflow-y: auto;
@@ -109,7 +110,7 @@
 .individual-comment{
     padding: 1vh;
     margin-top:0.5vh;
-    width: 40vh;
+    width: 35vh;
     border: 1px solid black;
     border-radius: 2vh;
     display:flex;
