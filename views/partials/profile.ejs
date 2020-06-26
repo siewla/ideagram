@@ -229,12 +229,12 @@
                             <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
                             <h5 class='footer-text'>edited <span>"<%=comment.comment%>"</span> 
                                 <button type="button" class="btn-sm btn-outline-primary here-btn" data-toggle="modal" data-target="#activities-album-<%=albumIndex%>image-<%=imageIndex%>">here</button>
-                                <span> at album <a href="/albums/<%=album.name%>" class="btn-sm btn-outline-secondary here-btn"><%=album.name%></a></span><%=relativeTime%></h5>
+                                <span> at album <a href="/albums/<%=album.name%>" class="btn-sm btn-outline-secondary here-btn"><%=album.name%></a></span> <%=relativeTime%></h5>
                             <% } else { %>
                             <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
                             <h5 class='footer-text'>commented <span>"<%=comment.comment%>"</span> 
                                 <button type="button" class="btn-sm btn-outline-success here-btn" data-toggle="modal" data-target="#activities-album-<%=albumIndex%>image-<%=imageIndex%>">here</button>
-                                <span> at album <a href="/albums/<%=album.name%>" class="btn-sm btn-outline-secondary here-btn"><%=album.name%></a></span><%=relativeTime%></h5>
+                                <span> at album <a href="/albums/<%=album.name%>" class="btn-sm btn-outline-secondary here-btn"><%=album.name%></a></span> <%=relativeTime%></h5>
                             <% } %>
                         </div>
                         
