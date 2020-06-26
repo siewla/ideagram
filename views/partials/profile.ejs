@@ -116,7 +116,6 @@
         </div>
     </div>
     <br>
-    <br>
     <h1 class='page-small-heading'>Activities</h1>
     <div class="activities-logs-wrapper">
         <% data.forEach((album,albumIndex)=>{ %>
@@ -244,17 +243,22 @@
         <% }) %>
     </div>
     <br>
-    <br>
+    
 
     <div class="list-row-container">
         <div>
             <h1 class='page-small-heading'>Albums Owned</h1>
             <div class="list-following-container-flex">
+                <%let countAlbumsOwned =0; %>
                 <% data.forEach(album=>{ %>
                 <% if(userData.username === album.owner) { %>
                     <a class="albums-owned" href="/albums/<%=album.name%>"><%=album.name%></a>
+                    <%countAlbumsOwned++; %>
                 <%} %>
                 <% }) %>
+                <% if(countAlbumsOwned===0){ %>
+                    <h2 class="albums-owned">None</h2>     
+                <% } %>
             </div>        
         </div>
         <br>
@@ -263,10 +267,10 @@
             <div class="list-following-container-flex">
                 <% if(userData.albumsFollowing.length>0){ %>
                 <% userData.albumsFollowing.forEach( album => { %>
-                    <a class="albums-following" href="/albums/<%= album%>"><%=album%></a>      
+                    <a class="albums-following-small" href="/albums/<%= album%>"><%=album%></a>      
                 <% }) %>
                 <% } else { %>
-                    <h2 class="albums-following">None</h2>
+                    <h2 class="albums-following-small">None</h2>
                 <% } %>
         </div>
         </div>
@@ -276,10 +280,10 @@
             <div class="list-following-container-flex">
                 <% if(userData.usersFollowing.length>0){ %>
                 <% userData.usersFollowing.forEach( user => { %>
-                    <a class="users-following" href="/users/<%= user%>"><%=user%></a>      
+                    <a class="users-following-small" href="/users/<%= user%>"><%=user%></a>      
                 <% }) %>
                 <% } else { %>
-                    <h2 class="users-following">None</h2>
+                    <h2 class="users-following-small">None</h2>
                 <% } %>
             </div>
         </div>

@@ -8,7 +8,8 @@
     background-color:white;
     overflow: auto;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-    padding: 1vh;
+    padding: 2vh;
+    margin-bottom: 40vh;
 }
 
 #follow-user-btn{
@@ -22,17 +23,34 @@
 }
 
 .albums-owned{
-    font-size: 3vh;
+    font-size: 2vh;
     color: rgb(7, 115, 204);
+}
+
+.albums-following-small {
+    font-size: 2vh;
+    color: lightseagreen;
+}
+
+.users-following-small{
+    font-size: 2vh;
+    color: lightcoral;
 }
 
 .uploaded-images-container{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content:center;
+    flex-shrink: 0;
     align-items: center;
+    overflow-x:auto;
+    overflow-y:hidden;
+    height: 22vh;
 }
+
+.uploaded-images-container::before, .uploaded-images-container::after {
+    content:'';
+    margin: auto; /* Make it push flex items to the center */
+  }
 
 .small-images-container{
     width: 20vh;
@@ -41,6 +59,7 @@
     justify-content:center;
     align-items:center;
     flex-direction: column;
+    flex-shrink: 0;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     border-radius:2vh;
     margin-left: 1vh;
@@ -61,10 +80,14 @@
 
 .list-row-container > div {
     margin-left: 5vh;
+    max-height: 10vh;
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 
 .page-small-heading{
     text-align: left;
+    font-size: 3vh;
 }
 
 .comments-wrapper{
@@ -162,7 +185,7 @@
 .activities-logs-wrapper{
     display:flex;
     flex-direction: column-reverse;
-    max-height: 40vh;
+    max-height: 25vh;
     overflow: auto;
 }
 
