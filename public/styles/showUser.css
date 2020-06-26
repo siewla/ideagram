@@ -69,7 +69,8 @@
 
 .comments-wrapper{
     max-height: 35vh;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #show-comment-heading{
