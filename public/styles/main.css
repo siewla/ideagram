@@ -156,3 +156,8 @@
     font-size: 3vh;
     color: lightcoral;
 }
+
+#album-btn{
+    margin: auto;
+    border-radius:2vh;
+}

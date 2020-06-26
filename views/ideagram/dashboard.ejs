@@ -10,6 +10,9 @@
 <br>
     <h1 class='page-heading'>All Albums</h1>
     <div class="albums">
+        <div class="album-card">
+            <a href="/albums/new" id="album-btn" class="btn btn-outline-primary">Add New Album</a>
+        </div>
     <% data.forEach( (album, index) => { %>
         <div class="modal fade" id="editAlbum-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
