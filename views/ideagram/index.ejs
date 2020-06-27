@@ -4,8 +4,9 @@
     <%- include('../partials/head.ejs') %>
     <link rel="stylesheet" type="text/css" href="/styles/mainpage.css">
 </head>
-<body>
+<body> 
     <% if (currentUser) { %>
+        <%- include('../partials/navbar.ejs')%>
         <div class="main-content">
             <div class = 'center-the-form'>
                 <div id="registration-card">
@@ -22,6 +23,7 @@
             </div>
         </div>
     <% } else { %>
+        <%- include('../partials/landingNavBar.ejs')%>
         <div class="main-content">
             <div class = 'center-the-form'>
                 <div id="registration-card">
