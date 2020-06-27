@@ -34,12 +34,16 @@
 .uploaded-images-container{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     align-items: center;
     overflow: auto;
-    max-height: 45vh;
+    max-height: 25vh;
 }
 
+.uploaded-images-container::before, .uploaded-images-container::after {
+    content:'';
+    margin: auto; /* Make it push flex items to the center */
+  }
 
 .small-images-container{
     width: 20vh;
