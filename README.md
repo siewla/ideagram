@@ -1,7 +1,7 @@
 # IDEAGRAM
 
 ## Application Description
-This application acts as an visual discovery engine for finding ideas like countries, recipes, home and style inspiration, and many more. 
+This application acts as a visual discovery engine for finding ideas like countries, recipes, home and style inspiration, and many more. 
 
 ## Application link
 [http://ideagram.herokuapp.com/](http://ideagram.herokuapp.com/)
@@ -47,18 +47,18 @@ The objective of the project is to build a working full **CRUD** (Create, Read, 
 
     
 ## Wireframe Design and User Stories
-#### Landing Page (Not Signed in)
-#### Login and Signup Page
-#### Landing Page (Signed in)
-#### All Albums
-#### All Images
-#### Album Page
-#### User Profile Page
-#### Image Modal
+* ### Landing Page (Not Signed in)
+* ### Login and Signup Page
+* ### Landing Page (Signed in)
+* ### All Albums
+* ### All Images
+* ### Album Page
+* ### User Profile Page
+* ### Comments Modal
 
 ## Additional Features were under Considerations
 * **Notifications** - application to send notifcation to user when there is another user commented on image, add new image to the album, followed album has new image, has new follower, etc. 
-* **Enhance Users Database** - to get more users profile into the database like email address, gender, age, biodata, etc. 
+* **Enhance Users Database** - to get more users profile into the database like profile picture, email address, gender, age, biodata, etc. 
 * **Like feature for image** - to have a like button for individual image
 
 ## Credits
