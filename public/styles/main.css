@@ -190,3 +190,10 @@
     font-size: 3vh;
     color: lightcoral;
 }
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index:9999999;
+}
