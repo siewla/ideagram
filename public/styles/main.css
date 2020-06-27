@@ -112,6 +112,12 @@
     font-size: 3vh;
     color:lightseagreen;
     font-weight: bolder;
+    align-self: flex-start;
+}
+
+#user-comment-modal-heading{
+    display :flex;
+    flex-direction: column;
 }
 
 .album-description-container{

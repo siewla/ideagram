@@ -12,40 +12,34 @@
     margin-bottom: 40vh;
 }
 
-.albums-owned-tag{
-    font-size: 2vh;
-    color: rgb(7, 115, 204);
-}
-
 .albums-owned{
     font-size: 2vh;
-    color: rgb(7, 115, 204);
+    color: lightseagreen;
+    font-weight: bolder;
 }
 
 .albums-following-small {
     font-size: 2vh;
-    color: lightseagreen;
+    color: lightcoral;
+    font-weight: bolder;
 }
 
 .users-following-small{
     font-size: 2vh;
-    color: lightcoral;
+    color: cornflowerblue;
+    font-weight: bolder;
 }
+
 
 .uploaded-images-container{
     display: flex;
     flex-direction: row;
-    flex-shrink: 0;
+    flex-wrap: wrap;
     align-items: center;
-    overflow-x:auto;
-    overflow-y:hidden;
-    height: 22vh;
+    overflow: auto;
+    max-height: 45vh;
 }
 
-.uploaded-images-container::before, .uploaded-images-container::after {
-    content:'';
-    margin: auto; /* Make it push flex items to the center */
-  }
 
 .small-images-container{
     width: 20vh;
@@ -55,21 +49,23 @@
     align-items:center;
     flex-direction: column;
     flex-shrink: 0;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     border-radius:2vh;
-    margin-left: 1vh;
+    margin: 0.5vh;
     padding:1vh;
+    border:1px solid grey;
+    background-color:white;
 }
 
 .small-img{
-    max-width: 17vh;
-    max-height: 15vh;
+    width: 15vh;
+    height: 15vh;
     border-radius:2vh;
+    object-fit: cover;
 }
 
 .list-row-container{
     display:flex;
-    justify-content:center;
+    justify-content:space-around;
     flex-wrap:wrap;
 }
 
@@ -78,7 +74,7 @@
 }
 
 .list-following-container-flex {
-    max-height: 10vh;
+    max-height: 25vh;
     overflow-x:hidden;
     overflow-y:auto;
 }
@@ -88,99 +84,30 @@
     font-size: 3vh;
 }
 
-.comments-wrapper{
-    width: 40vh;
-    max-height: 35vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-#show-comment-heading{
-    align-self: flex-start;
-    font-weight: bolder;
-    font-size: 2vh;
-    color: darkslateblue;
-}
-
-.individual-comment{
-    padding: 1vh;
-    margin-top:0.5vh;
-    width: 35vh;
-    border: 1px solid black;
-    border-radius: 2vh;
-    display:flex;
-    flex-direction:column;
-}
-
-.comment-style{
-    align-self: flex-start;
-    font-weight: bolder;
-    font-size: 2vh;
-}
-
-.show-comment-footer{
-    align-self: flex-end;
-    text-align:right;
-}
-
-.footer-text{
-    font-size: 2vh;
-    margin: 0.5vh;
-}
-
-.own-comment{
-    color: lightcoral
-}
-
-.username-comment{
-    color: cadetblue;
-}
-
-#username-comment-heading{
-    float: left;
-    font-size: 2vh;
-    color: lightcoral;
-}
-
-
-#comment-form{
-    height: 5vh;
-}
-
-.medium-img{
-    height: 25vh;
-    border-radius:2vh;
-}
-
-.flex-comment-center{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.give-comment-container{
-    padding: 1vh;
-    margin-top:0.5vh;
-    width: 40vh;
-    border-radius: 2vh;
-    display:flex;
-    flex-direction:column;
-}
-
 .activities-logs-wrapper{
     display:flex;
     flex-direction: column-reverse;
-    max-height: 25vh;
-    overflow: auto;
+    max-height: 40vh;
+    overflow: auto; 
+    border: 1px solid grey;
+    border-radius: 2vh;
+    padding: 2vh;
 }
-
 
 .header-container-show{
     display:block;
     width:80%;
     margin: 1vh auto;
+    background-color: black;
+    border-radius: 2vh;
+    border: 1px solid black;
+    padding:2vh;
 }
 
-#header-show-text{
+.individual-activity{
+    margin: 0.5vh;
+}
 
+#comment-content{
+    font-weight: bolder;
 }

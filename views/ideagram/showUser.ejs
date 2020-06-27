@@ -3,6 +3,7 @@
 <head>
     <%- include('../partials/head.ejs') %>
     <link rel="stylesheet" type="text/css" href="/styles/showUser.css">
+    <link rel="stylesheet" type="text/css" href="/styles/comments.css">
 </head>
 <body>
     <%- include('../partials/navbar.ejs') %>
@@ -15,14 +16,14 @@
                 <form action = '/user/unfollow' method = 'POST'>
                     <div>
                         <input type ="hidden" name="userName" value="<%=userData.username%>"/>
-                        <button class="btn btn-outline-danger follow-btn" type="submit">Unfollow</button>
+                        <button class="btn" id="profile-follow-btn" type="submit">Unfollow</button>
                     </div>
                 </form>
             <% }else{ %>
                 <form action = '/user/follow' method = 'POST'>
                     <div>
                         <input type ="hidden" name="userName" value="<%=userData.username%>"/>
-                        <button class="btn btn-outline-primary follow-btn" type="submit">Follow</button>
+                        <button class="btn" id="profile-follow-btn" type="submit">Follow</button>
                     </div>
                 </form>
             <%} %>

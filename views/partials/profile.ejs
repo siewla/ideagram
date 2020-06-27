@@ -1,7 +1,53 @@
 <div class="profile-container">
     <div>
-        <h1 class='page-small-heading'>Uploaded Images</h1>
-        <div class="uploaded-images-container">
+        <div class="list-row-container">
+            <div>
+                <h1 class='page-small-heading'>Albums Owned</h1>
+                <div class="list-following-container-flex">
+                    <%let countAlbumsOwned =0; %>
+                    <% data.forEach(album=>{ %>
+                    <% if(userData.username === album.owner) { %>
+                        <a class="albums-owned" href="/albums/<%=album.name%>"><%=album.name%></a>
+                        <%countAlbumsOwned++; %>
+                    <%} %>
+                    <% }) %>
+                    <% if(countAlbumsOwned===0){ %>
+                        <h2 class="albums-owned">None</h2>     
+                    <% } %>
+                </div>        
+            </div>
+            <br>
+            <div>
+                <h1 class='page-small-heading'>Following Albums</h1>
+                <div class="list-following-container-flex">
+                    <% if(userData.albumsFollowing.length>0){ %>
+                    <% userData.albumsFollowing.forEach( album => { %>
+                        <a class="albums-following-small" href="/albums/<%= album%>"><%=album%></a>      
+                    <% }) %>
+                    <% } else { %>
+                        <h2 class="albums-following-small">None</h2>
+                    <% } %>
+            </div>
+            </div>
+            <br>
+            <div>
+                <h1 class='page-small-heading'>Following Users</h1>
+                <div class="list-following-container-flex">
+                    <% if(userData.usersFollowing.length>0){ %>
+                    <% userData.usersFollowing.forEach( user => { %>
+                        <a class="users-following-small" href="/users/<%= user%>"><%=user%></a>      
+                    <% }) %>
+                    <% } else { %>
+                        <h2 class="users-following-small">None</h2>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <br>
+    <h1 class='page-small-heading'>Uploaded Images</h1>
+    <div class="uploaded-images-container">
             <% data.forEach((album,albumIndex)=>{ %>
             <% album.images.forEach((image,imageIndex) =>{ %>
             <% if(userData.username === image.uploadedBy) { %>
@@ -14,95 +60,93 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body flex-comment-center">
-                                <div>
-                                    <img class="medium-img" src="<%=image.url%>"> 
-                                </div> 
-                                <h1 id="show-comment-heading">Comments</h1> 
-                                <div class="comments-wrapper">
-                                    <div class="show-comments-container">
-                                        <% image.comments.forEach((comment,commentIndex) => { %>
-                                            <div class="modal fade right" id="album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>" role="dialog" aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-side modal-top-left" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h2 class="modal-title" id="exampleModalLabel">Edit Comment</h2>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="/comment/<%=userData.username%>/<%=currentUser.username %>/<%= album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
-                                                            <div class="flex-center">
-                                                                <img class="album-image-modal" src="<%=album.images[imageIndex].url%>">
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndex].comment%>" required/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Update Comment</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <div class="individual-comment">
-                                            <% if(comment.commentedBy === currentUser.username){%>
-                                                <div class="btn-group action-button-comment">
-                                                    <button class="dropdown-toggle" id="action-button-comment" type="button" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">...</button>
-                                                    <div class="dropdown-menu">
-                                                        <button type="button" class="dropdown-item"
-                                                            data-toggle="modal" data-target="#album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>">Edit</button>
-                                                        <% if(commentIndex!==0){ %>
-                                                            <form action="/comment/<%=userData.username%>/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
-                                                                <div>
-                                                                    <button class="dropdown-item" type="submit">Delete</button>
-                                                                </div>
-                                                            </form>
-                                                        <% } %>
-                                                    </div>
-                                                </div>  
-                                            <% } %>
-                                            <h3 class="comment-style"><%=comment.comment%></h3>
-                                            <div class="show-comment-footer"> 
-                                                <% if(comment.commentedBy === currentUser.username){%>
-                                                <h4 class='footer-text'>commented by <strong class="own-comment">you</strong></h4>               
-                                                <%} else {%> 
-                                                <h4 class='footer-text'>commented by <a class="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
-                                                <%} %>
-                                                <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
-                                                <h5 class='footer-text'><%=relativeTime%></h5>
-                                                <% if (comment.hasOwnProperty('updatedAt')){%>
-                                                <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
-                                                <h5 class='footer-text'>edited <%=relativeTime%></h5>
-                                                <% } %>
-                                            </div>
-                                        </div>
-                                        <%}) %>
-                                    </div>
-                                </div>
-                                <div class="give-comment-container">
+                            <div class="comments-modal-container"> 
+                                <div class="add-comment-container">
                                     <form action = '/account/comment/<%=currentUser.username%>/<%=userData.username%>/create' method = 'POST'>
-                                        <div class="form-group">
-                                            <label id="username-comment-heading" for="comment"><%=currentUser.username %></label>
-                                            <input class="form-control" id="comment-form" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
+                                        <div class="form-group" id="user-comment-modal-heading">
+                                            <label id="user-comment-heading" for="comment"><%=currentUser.username %></label>
+                                            <input class="form-control" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
                                         </div>
                                         <div>
                                             <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>
                                             <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                                            <button type="submit" class="btn btn-outline-primary" id="show-comment-btn">
+                                            <button type="submit" class="btn float-right-btn modal-confirm-btn">
                                                 Comment <i class="fa fa-comment-o" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <h3>Comments</h3>
+                                <div class="scrollable-comments">    
+                                    <% image.comments.forEach((comment,commentIndex) => { %>
+                                    <div class="comment-modal">
+                                        <% if(comment.commentedBy === currentUser.username){%>
+                                            <h3 class="own-comment-text"><%=comment.comment%></h3>  
+                                            <div class="btn-group edit-float-right-btn">
+                                                <button class="dropdown-toggle" id="action-button-comment" type="button" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">...</button>
+                                                <div class="dropdown-menu">
+                                                    <button type="button" class="dropdown-item"
+                                                        data-toggle="modal" data-target="#album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>">Edit</button>
+                                                    <% if(commentIndex !==0){ %>
+                                                        <form action="/comment/<%=userData.username%>/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
+                                                            <div>
+                                                                <button class="dropdown-item" type="submit">Delete</button>
+                                                            </div>
+                                                        </form>
+                                                    <% } %> 
+                                                </div>
+                                            </div>                
+                                        <% } else{ %>
+                                            <h3 class="other-comment-text"><%=comment.comment%></h3>
+                                        <% } %>
+                                        <div class="comment-footer">
+                                            <% if(comment.commentedBy === currentUser.username){%>
+                                                <div class ="comment-footer-owner">
+                                                    <h4 class='footer-text'>commented by <strong id="own-tag">you</strong></h4>
+                                                </div>
+                                                <div class="modal fade" id="album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title" id="exampleModalLabel">Edit Comment</h2>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/comment/<%=userData.username%>/<%=currentUser.username %>/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
+                                                                <div class="flex-center">
+                                                                    <img class="image-modal" src="<%=album.images[imageIndex].url%>">
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndex].comment%>" required/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn modal-confirm-btn">Update Comment</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%} else {%> 
+                                            <h4 class='footer-text'>commented by <a id="owner-tag" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
+                                            <%} %>
+                                            <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
+                                            <h5 class='footer-text'><%=relativeTime%></h5>
+                                            <% if (comment.hasOwnProperty('updatedAt')){%>
+                                                <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
+                                            <h5 class='footer-text'>edited <%=relativeTime%></h5>
+                                            <% } %>
+                                        </div> 
+                                    </div>
+                                    <%}) %>
+                                    <div>
+                                        <h1></h1>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,12 +154,11 @@
                 <div class="small-images-container">
                     <input data-toggle="modal" data-target="#album-<%=albumIndex%>image-<%=imageIndex%>" 
                         class="small-img"type="image" src="<%=image.url%>" alt="submit">
-                    <a class="albums-owned-tag" href="/albums/<%=album.name%>"><%=album.name%></a>
+                    <a class="album-tag" href="/albums/<%=album.name%>"><%=album.name%></a>
                 </div>     
             <%} %>
             <%})%>
             <% }) %>
-        </div>
     </div>
     <br>
     <h1 class='page-small-heading'>Activities</h1>
@@ -133,161 +176,113 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body flex-comment-center">
-                                        <div>
-                                            <img class="medium-img" src="<%=image.url%>"> 
-                                        </div> 
-                                        <h1 id="show-comment-heading">Comments</h1> 
-                                        <div class="comments-wrapper">
-                                            <div class="show-comments-container">
-                                                <% image.comments.forEach((comment,commentIndex) => { %>
-                                                    <div class="modal fade right" id="activities-album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>" role="dialog" aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog modal-side modal-top-left" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h2 class="modal-title" id="exampleModalLabel">Edit Comment</h2>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="/comment/<%=userData.username%>/<%=currentUser.username %>/<%= album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
-                                                                    <div class="flex-center">
-                                                                        <img class="album-image-modal" src="<%=album.images[imageIndex].url%>">
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="form-group">
-                                                                            <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndex].comment%>" required/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                        <button type="submit" class="btn btn-primary">Update Comment</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <div class="individual-comment">
-                                                    <% if(comment.commentedBy === currentUser.username){%>
-                                                        <div class="btn-group action-button-comment">
-                                                            <button class="dropdown-toggle" id="action-button-comment" type="button" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false">...</button>
-                                                            <div class="dropdown-menu">
-                                                                <button type="button" class="dropdown-item"
-                                                                    data-toggle="modal" data-target="#activities-album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>">Edit</button>
-                                                                <% if(commentIndex!==0){ %>
-                                                                    <form action="/comment/<%=userData.username%>/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
-                                                                        <div>
-                                                                            <button class="dropdown-item" type="submit">Delete</button>
-                                                                        </div>
-                                                                    </form>
-                                                                <% } %>
-                                                            </div>
-                                                        </div>  
-                                                    <% } %>
-                                                    <h3 class="comment-style"><%=comment.comment%></h3>
-                                                    <div class="show-comment-footer"> 
-                                                        <% if(comment.commentedBy === currentUser.username){%>
-                                                        <h4 class='footer-text'>commented by <strong class="own-comment">you</strong></h4>               
-                                                        <%} else {%> 
-                                                        <h4 class='footer-text'>commented by <a class="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
-                                                        <%} %>
-                                                        <% if (comment.hasOwnProperty('updatedAt')){%>
-                                                        <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
-                                                        <h5 class='footer-text'>edited <%=relativeTime%></h5>
-                                                        <% } else { %>
-                                                        <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
-                                                        <h5 class='footer-text'><%=relativeTime%></h5>
-                                                    <% } %>
-                                                    </div>
-                                                </div>
-                                                <%}) %>
-                                            </div>
-                                        </div>
-                                        <div class="give-comment-container">
+                                    <div class="comments-modal-container"> 
+                                        <div class="add-comment-container">
                                             <form action = '/account/comment/<%=currentUser.username%>/<%=userData.username%>/create' method = 'POST'>
-                                                <div class="form-group">
-                                                    <label id="username-comment-heading" for="comment"><%=currentUser.username %></label>
-                                                    <input class="form-control" id="comment-form" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
+                                                <div class="form-group" id="user-comment-modal-heading">
+                                                    <label id="user-comment-heading" for="comment"><%=currentUser.username %></label>
+                                                    <input class="form-control" type='text' name='comment' placeholder="Share a feedback or a question" maxlength="250" pattern="^[^ ].+[^ ]$" required>
                                                 </div>
                                                 <div>
                                                     <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>
                                                     <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                                                    <button type="submit" class="btn btn-outline-primary" id="show-comment-btn">
+                                                    <button type="submit" class="btn float-right-btn modal-confirm-btn">
                                                         Comment <i class="fa fa-comment-o" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <h3>Comments</h3>
+                                        <div class="scrollable-comments">    
+                                            <% image.comments.forEach((comment,commentIndex) => { %>
+                                            <div class="comment-modal">
+                                                <% if(comment.commentedBy === currentUser.username){%>
+                                                    <h3 class="own-comment-text"><%=comment.comment%></h3>  
+                                                    <div class="btn-group edit-float-right-btn">
+                                                        <button class="dropdown-toggle" id="action-button-comment" type="button" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">...</button>
+                                                        <div class="dropdown-menu">
+                                                            <button type="button" class="dropdown-item"
+                                                                data-toggle="modal" data-target="#activities-album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>">Edit</button>
+                                                            <% if(commentIndex !==0){ %>
+                                                                <form action="/comment/<%=userData.username%>/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
+                                                                    <div>
+                                                                        <button class="dropdown-item" type="submit">Delete</button>
+                                                                    </div>
+                                                                </form>
+                                                            <% } %> 
+                                                        </div>
+                                                    </div>                
+                                                <% } else{ %>
+                                                    <h3 class="other-comment-text"><%=comment.comment%></h3>
+                                                <% } %>
+                                                <div class="comment-footer">
+                                                    <% if(comment.commentedBy === currentUser.username){%>
+                                                        <div class ="comment-footer-owner">
+                                                            <h4 class='footer-text'>commented by <strong id="own-tag">you</strong></h4>
+                                                        </div>
+                                                        <div class="modal fade" id="activities-album-<%=albumIndex%>-image-<%=imageIndex%>editComment-<%=commentIndex%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h2 class="modal-title" id="exampleModalLabel">Edit Comment</h2>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="/comment/<%=userData.username%>/<%=currentUser.username %>/<%=album.name%>/<%=imageIndex%>/<%=commentIndex%>?_method=PUT" method="POST">
+                                                                        <div class="flex-center">
+                                                                            <img class="image-modal" src="<%=album.images[imageIndex].url%>">
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="form-group">
+                                                                                <input class="form-control" type='text' name='comment' value="<%=album.images[imageIndex].comments[commentIndex].comment%>" required/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn modal-confirm-btn">Update Comment</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <%} else {%> 
+                                                    <h4 class='footer-text'>commented by <a id="owner-tag" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
+                                                    <%} %>
+                                                    <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
+                                                    <h5 class='footer-text'><%=relativeTime%></h5>
+                                                    <% if (comment.hasOwnProperty('updatedAt')){%>
+                                                        <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
+                                                    <h5 class='footer-text'>edited <%=relativeTime%></h5>
+                                                    <% } %>
+                                                </div> 
+                                            </div>
+                                            <%}) %>
+                                            <div>
+                                                <h1></h1>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div class="individual-activity">
                             <% if (comment.hasOwnProperty('updatedAt')){%>
                             <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
-                            <h5 class='footer-text'>edited <span>"<%=comment.comment%>"</span> 
-                                <button type="button" class="btn-sm btn-outline-primary here-btn" data-toggle="modal" data-target="#activities-album-<%=albumIndex%>image-<%=imageIndex%>">here</button>
-                                <span> at album <a href="/albums/<%=album.name%>" class="btn-sm btn-outline-secondary here-btn"><%=album.name%></a></span> <%=relativeTime%></h5>
+                            <h5 class='footer-text'>edited <span id="comment-content">"<%=comment.comment%>"</span> 
+                                <button type="button" class="btn btn-sm here-btn" data-toggle="modal" data-target="#activities-album-<%=albumIndex%>image-<%=imageIndex%>">here</button>
+                                <span> at album <a href="/albums/<%=album.name%>" class="btn btn-sm album-sm-btn"><%=album.name%></a></span> <%=relativeTime%></h5>
                             <% } else { %>
                             <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
-                            <h5 class='footer-text'>commented <span>"<%=comment.comment%>"</span> 
-                                <button type="button" class="btn-sm btn-outline-success here-btn" data-toggle="modal" data-target="#activities-album-<%=albumIndex%>image-<%=imageIndex%>">here</button>
-                                <span> at album <a href="/albums/<%=album.name%>" class="btn-sm btn-outline-secondary here-btn"><%=album.name%></a></span> <%=relativeTime%></h5>
+                            <h5 class='footer-text'>commented <span id="comment-content">"<%=comment.comment%>"</span> 
+                                <button type="button" class="btn btn-sm here-btn" data-toggle="modal" data-target="#activities-album-<%=albumIndex%>image-<%=imageIndex%>">here</button>
+                                <span> at album <a href="/albums/<%=album.name%>" class=" btn btn-sm album-sm-btn"><%=album.name%></a></span> <%=relativeTime%></h5>
                             <% } %>
-                        </div>
-                        
+                        </div>                       
                     <% } %>
                 <% }) %>
             <%})%>
         <% }) %>
-    </div>
-    <br>
-    <div class="list-row-container">
-        <div>
-            <h1 class='page-small-heading'>Albums Owned</h1>
-            <div class="list-following-container-flex">
-                <%let countAlbumsOwned =0; %>
-                <% data.forEach(album=>{ %>
-                <% if(userData.username === album.owner) { %>
-                    <a class="albums-owned" href="/albums/<%=album.name%>"><%=album.name%></a>
-                    <%countAlbumsOwned++; %>
-                <%} %>
-                <% }) %>
-                <% if(countAlbumsOwned===0){ %>
-                    <h2 class="albums-owned">None</h2>     
-                <% } %>
-            </div>        
-        </div>
-        <br>
-        <div>
-            <h1 class='page-small-heading'>Following Albums</h1>
-            <div class="list-following-container-flex">
-                <% if(userData.albumsFollowing.length>0){ %>
-                <% userData.albumsFollowing.forEach( album => { %>
-                    <a class="albums-following-small" href="/albums/<%= album%>"><%=album%></a>      
-                <% }) %>
-                <% } else { %>
-                    <h2 class="albums-following-small">None</h2>
-                <% } %>
-        </div>
-        </div>
-        <br>
-        <div>
-            <h1 class='page-small-heading'>Following Users</h1>
-            <div class="list-following-container-flex">
-                <% if(userData.usersFollowing.length>0){ %>
-                <% userData.usersFollowing.forEach( user => { %>
-                    <a class="users-following-small" href="/users/<%= user%>"><%=user%></a>      
-                <% }) %>
-                <% } else { %>
-                    <h2 class="users-following-small">None</h2>
-                <% } %>
-            </div>
-        </div>
     </div>
 </div>
