@@ -22,6 +22,7 @@ module.exports = (app) => {
     });
     
     app.get('/', appControllers.homepage); //homepage 
+    app.get('/about', appControllers.aboutPage);
 
     app.get('/login', sessionsControllers.newLogin); // user login
     app.post('/login', sessionsControllers.login ); // login
