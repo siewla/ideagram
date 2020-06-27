@@ -60,6 +60,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <img class="image-modal" src="<%=image.url%>">
                             <div class="comments-modal-container"> 
                                 <div class="add-comment-container">
                                     <form action = '/account/comment/<%=currentUser.username%>/<%=userData.username%>/create' method = 'POST'>
@@ -176,6 +177,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    <img class="image-modal" src="<%=image.url%>">
                                     <div class="comments-modal-container"> 
                                         <div class="add-comment-container">
                                             <form action = '/account/comment/<%=currentUser.username%>/<%=userData.username%>/create' method = 'POST'>
