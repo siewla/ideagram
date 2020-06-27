@@ -21,7 +21,7 @@ This application acts as a visual discovery engine for finding ideas like countr
 * **Bootstrap Material Design** is used for CSS framework for HTML and CSS design templates
 
 ## Objective
-The objective of the project is to build a working full **CRUD** (Create, Read, Update and Delete) application using **Node.js**, **MongoDB**, **Express** and **EJS** that adhere to **MVC** (Models, Views, and Controllers) file structure.
+The objective of the project is to build a working full **CRUD** (Create, Read, Update and Delete) application using **Node.js**, **MongoDB**, **Express** and **EJS** that adheres to **MVC** (Models, Views, and Controllers) file structure.
 
 ## Approaches Taken
 * set up a basic MVC structure with basic CRUD routes.
@@ -55,6 +55,40 @@ The objective of the project is to build a working full **CRUD** (Create, Read, 
 * ### Album Page
 * ### User Profile Page
 * ### Comments Modal
+
+## RESTful Routes
+
+|No.|Route | URL    | HTTP Verb | Description |
+|--|-------|--------|-----------|------------ |
+|1 |Index  | /      | GET       | Home Page   | 
+|  |       | /about | GET       | About Page  |
+|2 |New    | /signup| GET       | Signup Form |
+|  |       | /login | GET       | Login Form  |
+|  |       | /albums/new | GET       | Create New Album Form  |
+|3 |Create | /signup| POST      | Records the entered Information into database as new user|
+|  |       | /login | POST      | Authenticates credentials against database and redirect to / |
+| |        | /ablum/create/file | POST | Add new album via image upload through file into database and redirect to /main
+| |        | /ablum/create/url | POST | Add new album via image upload through url into database and redirect to /main
+| |        | /image/create | POST | Add new image into database and redirect to its original page. 
+| | |/account/comment /:currentUser /:dataUser/create | POST | Add new comment into database and redirect to orignal dataUser's profile page|
+| | |/comment/create| POST | Add new comment into database and redirect to its album's page|
+| | |/album/follow | POST | Follow Album
+| | |/album/unfollow | POST | Unfollow Album
+| | |/user/follow | POST | Follow User
+| | |/user/unfollow | POST | Unfollow User
+|4| Show   | /main  | GET       | Show all albums |
+| |        | /images  | GET     | Show all images |
+| |        | /account  | GET    | Show current user's profile |
+| |        | /users/:userName  | GET     | Show requested user's profile |
+| |        | /albums/:albumName | GET     | Show requested album's details |
+| |        | /following | GET | Show all the following albums and users
+|5 |Edit   | -  | GET       | There is no edit route set up for edit album, image and comment set up as all  are routed to modals
+|6 |Update | /albums/:albumName | PUT       | Update requested album's details |
+|  || /comment/:location /:updatedUser/:albumName /:imageIndex/:commentIndex/ | PUT | Update comment in the requested album and redirect to original page|
+|7 |Destroy| /logout| DELETE    | Destroys session and redirect to /
+| | |/:albumName| DELETE | Destroy requested album and redirect to /main
+| | |/:albumName/image /:imageIndex | DELETE| Destroy requested image from requested album and redirect to its album's page
+| | |/comment/:location /:albumName/:imageIndex /:commentIndex | DELETE | Destroy requested comment from requested image  and redirect to its original page
 
 ## Additional Features were under Considerations
 * **Notifications** - application to send notifcation to user when there is another user commented on image, add new image to the album, followed album has new image, has new follower, etc. 
