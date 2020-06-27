@@ -2,8 +2,7 @@
     display: block;
     width: 90%;
     background-color: white;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     padding: 2vh;
     border-radius: 2vh;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
@@ -12,10 +11,7 @@
 .image-and-comments-container{
     display: block;
     width: 90%;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2vh;
+    margin: 2vh auto;
     padding: 2vh;
     border-radius: 2vh;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
@@ -32,15 +28,13 @@
     align-items: flex-start;
 }
 
-
 .image-show{
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 2vh auto;
+    height: 40vh;
+    width: 40vh;
+    object-fit: contain;
     border-radius: 2vh;
-    height: auto; 
-    width: auto;
-    max-width: 40vh;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 

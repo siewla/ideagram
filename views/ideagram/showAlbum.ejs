@@ -30,7 +30,7 @@
         <h4><strong>Description : </strong><%=album.description%></h4>
         <h4><strong>Total Images : </strong><%=album.images.length%></h4>
         <h4><strong>Total Followers: </strong> <%=album.followersCount%></h4>
-        <button type="button" class="btn" id="add-btn" data-toggle="modal" data-target="#add-image-modal">Add Image</button>
+        <button type="button" class="btn modal-confirm-btn" data-toggle="modal" data-target="#add-image-modal">Add New Image</button>
         <br>
         <br>
     </div>
@@ -47,7 +47,6 @@
                 <form action = '/image/create' method = 'POST' enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for = "albumName">Album Name</label>
                             <input type="hidden" class="form-control-plaintext" name='albumName' value="<%=album.name%>"/>
                         </div>
                         <div class="form-group">
@@ -60,8 +59,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add New Image</button>
+                        <button type="submit" class="btn modal-confirm-btn">Add New Image</button>
                     </div>
                 </form>
             </div>
@@ -71,5 +69,6 @@
     <div class="image-and-comments-wrapper">
         <%- include('../partials/imageandcomment.ejs')%>
     </div>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>

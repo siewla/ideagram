@@ -167,16 +167,6 @@
     flex-direction:column;
 }
 
-.action-button-comment{
-    align-self: flex-end;
-}
-
-#action-button-comment{
-    width: 3vh;
-    background-color: white;
-    border: none;
-}
-
 .activities-logs-wrapper{
     display:flex;
     flex-direction: column-reverse;

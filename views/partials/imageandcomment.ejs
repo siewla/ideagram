@@ -10,7 +10,7 @@
                 <% if (imageIndex !==0) { %>
                     <form action="/<%=album.name%>/image/<%=imageIndex%>?_method=DELETE" method="POST">
                         <div>
-                            <button class="btn btn-outline-danger btn-sm" type="submit">Delete Image</button>
+                            <button class="btn btn-sm" id="delete-btn" type="submit">Delete Image</button>
                         </div>
                     </form>
                 <% } %>
@@ -29,36 +29,40 @@
                     <div>
                         <input type ="hidden" name="imageID" value="<%=imageIndex%>"/>
                         <input type ="hidden" name="albumName" value="<%=album.name%>"/>
-                        <button type="submit" class="btn" id="comment-btn">
+                        <button type="submit" class="btn float-right-btn modal-confirm-btn">
                             Comment <i class="fa fa-comment-o" aria-hidden="true"></i>
                         </button>
                     </div>
                 </form>
             </div>
             <h3>Comments</h3>
-            <div class="scrollable-comments">
+            <div class="scrollable-comments">    
                 <% image.comments.forEach((comment,commentIndex) => { %>
                 <div class="comment">
-                    <h3><%=comment.comment%></h3>
+                    <% if(comment.commentedBy === currentUser.username){%>
+                        <div class="btn-group edit-float-right-btn">
+                            <button class="dropdown-toggle" id="action-button-comment" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">...</button>
+                            <div class="dropdown-menu">
+                                <button type="button" class="dropdown-item"
+                                    data-toggle="modal" data-target="#editComment-<%=album.name%>-<%=imageIndex%><%=commentIndex%>">Edit</button>
+                                <% if(commentIndex !==0){ %>
+                                    <form action="/comment/album/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
+                                        <div>
+                                            <button class="dropdown-item" type="submit">Delete</button>
+                                        </div>
+                                    </form>
+                                <% } %> 
+                            </div>
+                        </div>
+                        <h3 class="own-comment-text"><%=comment.comment%></h3>  
+                    <% } else{ %>
+                        <h3 class="other-comment-text"><%=comment.comment%></h3>
+                    <% } %>
                     <div class="comment-footer">
                         <% if(comment.commentedBy === currentUser.username){%>
                             <div class ="comment-footer-owner">
-                                <h4>commented by <strong id="own-comment">you</strong></h4>
-                                <div class="btn-group dropleft">
-                                    <button class="edit-group-button dropdown-toggle" type="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">...</button>
-                                    <div class="dropdown-menu">
-                                        <button type="button" class="dropdown-item"
-                                            data-toggle="modal" data-target="#editComment-<%=album.name%>-<%=imageIndex%><%=commentIndex%>">Edit</button>
-                                        <% if(commentIndex !==0){ %>
-                                            <form action="/comment/album/<%=album.name%>/<%=imageIndex%>/<%=comment.commentIndex%>?_method=DELETE" method="POST">
-                                                <div>
-                                                    <button class="dropdown-item" type="submit">Delete</button>
-                                                </div>
-                                            </form>
-                                        <% } %> 
-                                    </div>
-                                </div>    
+                                <h4 class='footer-text'>commented by <strong id="own-tag">you</strong></h4>
                             </div>
                             <div class="modal fade" id="editComment-<%=album.name%>-<%=imageIndex%><%=commentIndex%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
@@ -88,17 +92,20 @@
                                 </div>
                             </div>
                         <%} else {%> 
-                        <h4>commented by <a id="username-comment" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
+                        <h4 class='footer-text'>commented by <a id="owner-tag" href="/users/<%=comment.commentedBy%>"><%=comment.commentedBy%></a></h4>
                         <%} %>
                         <% const relativeTime=moment(comment.commentedAt).fromNow() %></h3>
-                        <h5><%=relativeTime%></h5>
+                        <h5 class='footer-text'><%=relativeTime%></h5>
                         <% if (comment.hasOwnProperty('updatedAt')){%>
                             <% const relativeTime=moment(comment.updatedAt).fromNow() %></h3>
-                        <h5>edited <%=relativeTime%></h5>
+                        <h5 class='footer-text'>edited <%=relativeTime%></h5>
                         <% } %>
                     </div> 
                 </div>
                 <%}) %>
+                <div>
+                    <h1></h1>
+                </div>
             </div>
         </div>
     </div> 

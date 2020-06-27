@@ -6,6 +6,11 @@
     float:right;
 }
 
+.edit-float-right-btn{
+    float:right;
+    margin-right: 2vh;
+}
+
 .btn-center{
     margin:auto;
 }
@@ -44,4 +49,18 @@
 .modal-confirm-btn{
     background-color: yellow;
     color:black;
+}
+
+#follow-btn{
+    border: 1px solid black;
+}
+
+#delete-btn{
+    border: 1px solid black;
+}
+
+#action-button-comment{
+    width: 3vh;
+    background-color: white;
+    border: none;
 }
