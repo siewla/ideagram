@@ -93,6 +93,27 @@
     font-weight: bolder;
 }
 
+.own-tag{
+    color: lightseagreen;
+    font-weight: bolder;
+}
+
+.owner-tag{
+    color: cornflowerblue;
+    font-weight: bolder;
+}
+
+.album-tag{
+    color: lightcoral;
+    font-weight: bolder;
+}
+
+#user-comment-heading {
+    font-size: 3vh;
+    color:lightseagreen;
+    font-weight: bolder;
+}
+
 .album-description-container{
     text-align: center;
 }
@@ -117,8 +138,8 @@
 /* Edit Album Modal  */
 .image-modal{
     display:block;
-    height: 30vh;
-    width: 30vh;
+    height: 20vh;
+    width: 20vh;
     object-fit: cover;
     margin: 2vh auto;
     border-radius: 2vh;
