@@ -6,7 +6,7 @@
             <img class="image-show" src="<%=image.url%>">
             <div class="image-details">
                 <% if(currentUser.username === image.uploadedBy){ %>
-                    <h2 id="uploadedBy">Uploaded by <strong>you</strong></h2>
+                    <h2 id="uploadedBy">Uploaded by <a href="/account" id="own-tag">you</a></h2>
                 <% if (imageIndex !==0) { %>
                     <form action="/<%=album.name%>/image/<%=imageIndex%>?_method=DELETE" method="POST">
                         <div>
@@ -15,7 +15,7 @@
                     </form>
                 <% } %>
                 <% } else { %>
-                    <h2 id="uploadedBy">Uploaded by <strong><%=image.uploadedBy%></strong></h2>
+                    <h2 id="uploadedBy">Uploaded by <a href="/users/<%=image.uploadedBy%>" id="owner-tag"><%=image.uploadedBy%></a></h2>
                 <% } %>
             </div>
         </div>
