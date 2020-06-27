@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <%- include('../partials/head.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/styles/registration.css">
-  </head>
-  <body>
+</head>
+<body>
+  <div class="main-content">
     <div class = 'center-the-form'>
       <div id="registration-card">
         <img id="registration-logo" src="/assets/images/ideagramlogo.png">
-        <%-include('../partials/errorMsg.ejs') %>
-        <%-include('../partials/signupForm.ejs')%>
-        <p>Already a member? <a class="link-text" href="/login">Login</a></p>
-      </div>   
-    </div>  
-    </body>
+          <%-include('../partials/errorMsg.ejs') %>
+          <%-include('../partials/signupForm.ejs')%>
+          <p>Already a member? <a class="link-text" href="/login">Login</a></p>
+      </div>
+    </div> 
+  </div>
+  <%- include('../partials/footer.ejs') %>       
+</body>
 </html>

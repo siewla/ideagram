@@ -15,7 +15,7 @@ const albumsControllers = {
             album.followersCount=count; 
         }
         
-        res.render('ideagram/dashboard.ejs', { data, currentUser : userData, moment: moment  });
+        res.render('ideagram/albums.ejs', { data, currentUser : userData, moment: moment  });
     },
 
     createNewAlbum: async (req, res)=>{

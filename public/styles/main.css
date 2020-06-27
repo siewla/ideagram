@@ -1,3 +1,40 @@
+.main-content{
+    background-color: rgb(36,44,49);
+}
+
+
+.center-the-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#registration-card {
+    background-color: white;
+    padding: 2vh;
+    text-align: center;
+    border-radius: 3vh;
+    width: 60vh;
+    margin:15vh auto;
+}
+
+#welcome-text{
+    font-size: 4vh;
+    margin-top: 2vh;
+}
+
+#tagline-text {
+    font-style:italic;
+    color:grey;
+    /* background-color: grey;
+    border-radius: 1vh; */
+}
+
+.link-text{
+    color: grey;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
 
 .albums{
     display:flex;
@@ -20,21 +57,10 @@
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
-#follow-btn{    
-    background-color: pink;
-    color:black;
-}
-
-#unfollow-btn{
-    background-color: goldenrod;
-    color:black;
-}
-
 .album-image-container{
-    height: auto; 
-    width: auto;
-    max-width: 25vh;
-    max-height: 25vh;
+    width: 30vh;
+    height: 30vh;
+    object-fit: cover;
     border-radius: 2vh;
 }
 
@@ -45,12 +71,26 @@
     align-items: center;
 }
 
-.owner-tag{
-    color:red;
+.small-footer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2vh;
 }
 
-.album-name-container {
+.footer-text{
+    margin: 0vh;
+    font-size: 1.5vh;
+}
 
+#own-tag{
+    color: lightseagreen;
+    font-weight: bolder;
+}
+
+#owner-tag{
+    color: cornflowerblue;
+    font-weight: bolder;
 }
 
 .album-description-container{
@@ -74,57 +114,24 @@
     margin-left: 10vh;
 }
 
+/* Edit Album Modal  */
+.image-modal{
+    display:block;
+    height: 30vh;
+    width: 30vh;
+    object-fit: cover;
+    margin: 2vh auto;
+    border-radius: 2vh;
+}
+
 .page-heading{
     text-align: center;
     font-size: 4vh;
     text-transform: uppercase;
 }
 
-.link-text{
-    color: yellow;
-    text-transform: uppercase;
-    text-decoration: underline;
-}
-
-#logout-btn{
-    background-color: black;
-    color:yellow;
-    font-size: 2vh;
-    border-radius: 1vh;
-}
-
-#cancel-btn{
-    background-color: white;
-    color: black;
-}
-
-.album-image-modal{
-    max-height: 30vh;
-    max-width: 30vh;
-}
-
-.flex-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .album-container-heading{
     margin-top: 1vh;
-}
-
-.album-name-btn{
-    background-color: black;
-    color:yellow;
-    font-size: 2vh;
-    border-radius: 1vh;
-}
-
-.album-name-edit-btn{
-    background-color: white;
-    color:black;
-    font-size: 2vh;
-    border-radius: 1vh;
 }
 
 .list-following-container{
@@ -155,9 +162,4 @@
 .users-following{
     font-size: 3vh;
     color: lightcoral;
-}
-
-#album-btn{
-    margin: auto;
-    border-radius:2vh;
 }

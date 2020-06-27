@@ -6,34 +6,39 @@
 </head>
 <body>
     <% if (currentUser) { %>
-        <div class = 'center-the-form'>
-            <div id="registration-card">
-            <img id="registration-logo" src="/assets/images/ideagramlogo.png">
-            <h3 id="welcome-text">Welcome to Ideagram</h3>
-            <h4 id="tagline-text"><%= currentUser.username %>!</h4>
-            <a class="btn" href="/main" id="dashboard-btn">Go to All Albums</a>
-            <a class="btn" href="/images" id="dashboard-btn">Go to All Images</a>
-            <a class="btn" href="/account" id="dashboard-btn">Go to My Account</a>
-            <form action="/logout?_method=DELETE" method="post">
-            <button class="btn" id="logout-btn">Logout
-                <i class="fa fa-sign-out"></i></button>
-            </form>
+        <div class="main-content">
+            <div class = 'center-the-form'>
+                <div id="registration-card">
+                <img id="registration-logo" src="/assets/images/ideagramlogo.png">
+                <h3 id="welcome-text">Welcome to Ideagram</h3>
+                <h4 id="tagline-text"><%= currentUser.username %>!</h4>
+                <a class="btn" href="/main" id="dashboard-btn">Go to All Albums</a>
+                <a class="btn" href="/images" id="dashboard-btn">Go to All Images</a>
+                <a class="btn" href="/account" id="dashboard-btn">Go to My Account</a>
+                <form action="/logout?_method=DELETE" method="post">
+                <button class="btn float-right-btn" id="logout-btn">Logout
+                    <i class="fa fa-sign-out"></i></button>
+                </form>
+            </div>
         </div>
     <% } else { %>
-    <div class = 'center-the-form'>
-        <div id="registration-card">
-        <img id="registration-logo" src="/assets/images/ideagramlogo.png">
-        <h3 id="welcome-text">Welcome to Ideagram</h3>
-        <h4 id="tagline-text">Find new ideas to try</h4>
-        <br>
-        <div class="buttons">
-            <a class="btn" href="/login" id="login-btn">LOGIN
-                <i class="fa fa-sign-in"></i></a>
-            <a class="btn" href="/signup" id="signup-btn">SIGNUP
-                <i class="fa fa-user-plus"></i></a>
+        <div class="main-content">
+            <div class = 'center-the-form'>
+                <div id="registration-card">
+                <img id="registration-logo" src="/assets/images/ideagramlogo.png">
+                <h3 id="welcome-text">Welcome to Ideagram</h3>
+                <h4 id="tagline-text">Find new ideas to try</h4>
+                <br>
+                <div class="buttons">
+                    <a class="btn" href="/login" id="login-btn">LOGIN
+                        <i class="fa fa-sign-in"></i></a>
+                    <a class="btn" href="/signup" id="signup-btn">SIGNUP
+                        <i class="fa fa-user-plus"></i></a>
+                </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
     <% } %>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>

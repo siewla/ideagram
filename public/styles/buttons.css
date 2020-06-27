@@ -1,0 +1,47 @@
+.btn{
+    border-radius: 1vh;
+}
+
+.float-right-btn{
+    float:right;
+}
+
+.btn-center{
+    margin:auto;
+}
+
+#signup-btn{
+    background-color: black;
+    color:yellow;
+    font-size: 2vh;
+}
+
+#login-btn, #logout-btn{
+    background-color: yellow;
+    color:black;
+    font-size: 2vh;
+}
+
+#dashboard-btn{
+    border: 1px solid black;
+}
+
+#add-btn{
+    border: 1px solid black;
+}
+
+.album-name-btn{
+    background-color: black;
+    color:yellow;
+    font-size: 2vh;
+}
+
+.album-name-edit-btn{
+    border: 2px solid black;
+    font-size: 2vh;
+}
+
+.modal-confirm-btn{
+    background-color: yellow;
+    color:black;
+}

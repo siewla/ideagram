@@ -12,11 +12,6 @@
     margin-bottom: 40vh;
 }
 
-#follow-user-btn{
-    border-radius: 1vh;
-    float: right;
-}
-
 .albums-owned-tag{
     font-size: 2vh;
     color: rgb(7, 115, 204);
@@ -147,10 +142,6 @@
     color: lightcoral;
 }
 
-#show-comment-btn{
-    float:right;
-    border-radius: 1vh;
-}
 
 #comment-form{
     height: 5vh;
@@ -193,10 +184,6 @@
     overflow: auto;
 }
 
-.follow-btn{
-    float:right;
-    border-radius: 2vh;
-}
 
 .header-container-show{
     display:block;

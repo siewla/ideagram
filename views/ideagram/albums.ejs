@@ -11,7 +11,7 @@
     <h1 class='page-heading'>All Albums</h1>
     <div class="albums">
         <div class="album-card">
-            <a href="/albums/new" id="album-btn" class="btn btn-outline-primary">Add New Album</a>
+            <a href="/albums/new" id="add-btn" class="btn btn-center">Add New Album</a>
         </div>
     <% data.forEach( (album, index) => { %>
         <div class="modal fade" id="editAlbum-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -25,9 +25,7 @@
                         </button>
                     </div>
                     <form action="/albums/<%= album.name%>?_method=PUT" method="POST">
-                        <div class="flex-center">
-                            <img class="album-image-modal" src="<%=album.images[0].url%>">
-                        </div>
+                        <img class="image-modal" src="<%=album.images[0].url%>">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for='name'>Album Name</label>
@@ -43,8 +41,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Update Album</button>
+                            <button type="submit" class="btn modal-confirm-btn">Update Album</button>
                         </div>
                     </form>
                 </div>
@@ -106,24 +103,25 @@
                     <h4>Total Images: <%=album.images.length%></h4>
                     <h4 class="album-description-container"><%=album.description%></h4>
                 </div>
-                <div>
+                <div class="small-footer">
                     <% if (album.hasOwnProperty('updatedAt')){%>
                     <% const relativeUpdatedTime=moment(album.updatedAt).fromNow() %>
                         <% if(album.updatedBy=== currentUser.username){%>
-                            <h6>Updated <%=relativeUpdatedTime%> by <strong>you</strong></h6>
+                            <h6 class="footer-text">Updated <%=relativeUpdatedTime%> by <a id="own-tag" href="/account">you</a></h6>
                         <% } else { %>
-                            <h6>Updated <%=relativeUpdatedTime%> by <a href="/users/<%= album.updatedBy%>"><%=album.updatedBy%></a></h6>
+                            <h6 class="footer-text">Updated <%=relativeUpdatedTime%> by <a id="owner-tag" href="/users/<%= album.updatedBy%>"><%=album.updatedBy%></a></h6>
                         <%} %>
                     <%} %>
                     <% const relativeTime=moment(album.createdAt).fromNow() %>
                     <% if(album.owner=== currentUser.username){%>
-                        <h6>Created <%=relativeTime%> by <strong>you</strong></h6>
+                        <h6 class="footer-text">Created <%=relativeTime%> by <a id="own-tag" href="/account">you</a></h6>
                     <% } else { %>
-                        <h6>Created <%=relativeTime%> by <a href="/users/<%= album.owner%>"><%=album.owner%></a></h6>
+                        <h6 class="footer-text">Created <%=relativeTime%> by <a id="owner-tag" href="/users/<%= album.owner%>"><%=album.owner%></a></h6>
                     <%} %>
                 </div>    
         </div>
         <% }) %>
     </div>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>

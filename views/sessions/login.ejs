@@ -2,16 +2,18 @@
 <html>
 <head>
     <%- include('../partials/head.ejs') %>
-    <link rel="stylesheet" type="text/css" href="/styles/registration.css">
 </head>
 <body>
-  <div class = 'center-the-form'>
-    <div id="registration-card">
-      <img id="registration-logo" src="/assets/images/ideagramlogo.png">
-      <%-include('../partials/errorMsg.ejs') %>
-      <%-include('../partials/loginForm.ejs')%>
-      <p>New to ideagram? <a class="link-text" href="/Signup">Signup</a></p>
-    </div>
-  </div>        
+  <div class="main-content">
+    <div class = 'center-the-form'>
+      <div id="registration-card">
+        <img id="registration-logo" src="/assets/images/ideagramlogo.png">
+        <%-include('../partials/errorMsg.ejs') %>
+        <%-include('../partials/loginForm.ejs')%>
+        <p>New to ideagram? <a class="link-text" href="/Signup">Signup</a></p>
+      </div>
+    </div> 
+  </div>
+  <%- include('../partials/footer.ejs') %>       
 </body>
 </html>

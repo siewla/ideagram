@@ -44,24 +44,6 @@
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
-.buttons{
-    display:flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-#download-btn{
-    background-color: black;
-    color:yellow;
-}
-
-#upload-btn{
-    background-color: yellow;
-    color: black;
-    border-radius: 1vh;
-    float: left;
-}
-
 .image-details{
     display:flex;
     justify-content: space-around;
@@ -76,10 +58,6 @@
     margin-bottom: 50vh;
 }
 
-#follow-btn{
-    border-radius: 1vh;
-    float: right;
-}
 
 @media screen and (max-width: 800px) {
     .individual-image{

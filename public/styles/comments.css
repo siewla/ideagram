@@ -32,12 +32,7 @@
     border-radius:1vh;
 }
 
-#comment-btn{
-    background-color:black;
-    color:yellow;
-    float: right;
-    border-radius: 1vh;
-}
+
 
 .comment-footer{
     text-align: right;
