@@ -82,7 +82,7 @@ The objective of the project is to build a working full **CRUD** (Create, Read, 
 | |        | /users/:userName  | GET     | Show requested user's profile |
 | |        | /albums/:albumName | GET     | Show requested album's details |
 | |        | /following | GET | Show all the following albums and users
-|5 |Edit   | -  | GET       | There is no edit route set up for edit album, image and comment set up as all  are routed to modals
+|5 |Edit   | -  | GET       | There is no edit route set up for edit album, image and comment as are routed to modals via buttons
 |6 |Update | /albums/:albumName | PUT       | Update requested album's details |
 |  || /comment/:location /:updatedUser/:albumName /:imageIndex/:commentIndex/ | PUT | Update comment in the requested album and redirect to original page|
 |7 |Destroy| /logout| DELETE    | Destroys session and redirect to /
