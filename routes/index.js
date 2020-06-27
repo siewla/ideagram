@@ -17,10 +17,7 @@ cloudinary.config({
 
 module.exports = (app) => {
     
-    app.get('/nav',(req, res)=>{
-        res.render('trynav');
-    });
-    
+ 
     app.get('/', appControllers.homepage); //homepage 
     app.get('/about', appControllers.aboutPage);
 
@@ -52,14 +49,14 @@ module.exports = (app) => {
     app.get('/albums/new', albumsControllers.createNewAlbum);
     app.get('/albums/:albumName', albumsControllers.showAlbumByName);
     app.put('/albums/:albumName', albumsControllers.updateAlbumByName);
-    app.get('/albums/:albumName/edit', albumsControllers.editAlbumByName);
+    // app.get('/albums/:albumName/edit', albumsControllers.editAlbumByName);
     app.post('/albums/create/file', upload.single('image'),albumsControllers.createAlbumByFile);
     app.post('/albums/create/url', albumsControllers.createAlbumByURL);
 
-    app.get('/:albumName/image/new', albumsControllers.createNewImage);
+    // app.get('/:albumName/image/new', albumsControllers.createNewImage);
     app.post('/image/create',upload.single('image'), albumsControllers.createImage);
     app.put('/comment/:location/:updatedUser/:albumName/:imageIndex/:commentIndex', albumsControllers.updateCommentByAlbumName);
-    app.get('/:albumName/:imageIndex/:commentIndex', albumsControllers.editComment);
+    // app.get('/:albumName/:imageIndex/:commentIndex', albumsControllers.editComment);
     app.post('/account/comment/:currentUser/:dataUser/create', albumsControllers.addCommentAtAccount);
     app.post('/comment/create', albumsControllers.addComment);
     app.post('/album/follow', usersControllers.followAlbum);
@@ -72,7 +69,7 @@ module.exports = (app) => {
 
     app.delete('/:albumName', albumsControllers.deleteAlbumByName);
     app.delete('/:albumName/image/:imageIndex', albumsControllers.deleteImageById);
-    app.delete('/comment/:location/:albumName/:imageId/:commentIndex', albumsControllers.deleteCommentById);
+    app.delete('/comment/:location/:albumName/:imageIndex/:commentIndex', albumsControllers.deleteCommentById);
     
     app.get('/session', (req, res) => {
         let visits = req.session.visits;

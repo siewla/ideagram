@@ -109,11 +109,11 @@ const albumsControllers = {
         res.render('ideagram/showAlbum.ejs', { album, currentUser : userData, moment: moment });
     },
 
-    createNewImage: async (req, res)=>{
-        res.render('ideagram/newImage.ejs', { albumName: req.params.albumName, 
-            error:false, 
-            currentUser : req.session.currentUser });
-    },
+    // createNewImage: async (req, res)=>{
+    //     res.render('ideagram/newImage.ejs', { albumName: req.params.albumName, 
+    //         error:false, 
+    //         currentUser : req.session.currentUser });
+    // },
 
     createImage : async (req, res)=>{
         try {await cloudinary.uploader.upload(req.file.path,
@@ -155,7 +155,7 @@ const albumsControllers = {
                     'commentedBy': req.session.currentUser.username,
                     'commentedAt' : new Date()
                 }]; 
-                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageID, commentData);
+                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageIndex, commentData);
                 const album = await albumsRepositories.getAlbumByName(req.body.albumName);
                 album.updatedAt= new Date();
                 album.updatedBy = req.session.currentUser.username;
@@ -178,7 +178,7 @@ const albumsControllers = {
                     'commentedBy': req.session.currentUser.username,
                     'commentedAt' : new Date()
                 }]; 
-                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageID, commentData);
+                await albumsRepositories.addCommentToExistingImage(req.body.albumName, req.body.imageIndex, commentData);
                 const album = await albumsRepositories.getAlbumByName(req.body.albumName);
                 album.updatedAt= new Date();
                 album.updatedBy = req.session.currentUser.username;
@@ -226,7 +226,7 @@ const albumsControllers = {
 
     deleteCommentById: async (req, res)=>{
         try{
-            const imageId = req.params.imageId;
+            const imageId = req.params.imageIndex;
             const commentId = req.params.commentIndex;
             await albumsRepositories.deleteCommentById(req.params.albumName, imageId, commentId);
             if (req.params.location ==='album'){
@@ -243,15 +243,15 @@ const albumsControllers = {
         }
     },
 
-    editAlbumByName: async (req, res)=>{
-        try{
-            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
-            res.render('ideagram/editAlbum.ejs',{ album, error:false, currentUser : req.session.currentUser });
-        }catch(err){
-            return res.send(err.message);
-        }
+    // editAlbumByName: async (req, res)=>{
+    //     try{
+    //         const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+    //         res.render('ideagram/editAlbum.ejs',{ album, error:false, currentUser : req.session.currentUser });
+    //     }catch(err){
+    //         return res.send(err.message);
+    //     }
         
-    },
+    // },
 
     updateAlbumByName: async (req, res)=>{
         try{
@@ -269,16 +269,16 @@ const albumsControllers = {
         }
     },
 
-    editComment: async (req, res) =>{
-        try{
-            const album = await albumsRepositories.getAlbumByName(req.params.albumName);
-            const imageIndex =req.params.imageIndex;
-            const commentIndex = req.params.commentIndex;
-            res.render('ideagram/editComment.ejs',{ album, imageIndex, commentIndex, error:false, currentUser : req.session.currentUser });
-        }catch(err){
-            return res.send(err.message);
-        }
-    },
+    // editComment: async (req, res) =>{
+    //     try{
+    //         const album = await albumsRepositories.getAlbumByName(req.params.albumName);
+    //         const imageIndex =req.params.imageIndex;
+    //         const commentIndex = req.params.commentIndex;
+    //         res.render('ideagram/editComment.ejs',{ album, imageIndex, commentIndex, error:false, currentUser : req.session.currentUser });
+    //     }catch(err){
+    //         return res.send(err.message);
+    //     }
+    // },
 
     updateCommentByAlbumName: async (req, res)=>{
         try{
