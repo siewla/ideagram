@@ -4,17 +4,17 @@
 This application acts as a visual discovery engine for finding ideas like countries, recipes, home and style inspiration, and many more. 
 
 ## Table of Content
-- [Application Link](##Application-link)
-- [Database/Storage](##Database/Storage)
-- [Technologies](##Technologies)
-- [Objective](##Objective)
-- [Approaches Taken](##Approaches-taken)
-- [Accomplishments](##Accomplishments)
-- [Difficulties faced](##Difficulties-faced)
-- [Wireframe Design and User Stories](##Wireframe-Design-and-User-Stories)
-- [RESTful Routes](##RESTful-Routes)
-- [Additional Features were under Considerations](##Additional-Features-were-under-Considerations)
-- [Credits](##Credits)
+- [Application Link](#Application-link)
+- [Database/Storage](#Database/Storage)
+- [Technologies](#Technologies)
+- [Objective](#Objective)
+- [Approaches Taken](#Approaches-taken)
+- [Accomplishments](#Accomplishments)
+- [Difficulties faced](#Difficulties-faced)
+- [Wireframe Design and User Stories](#Wireframe-Design-and-User-Stories)
+- [RESTful Routes](#RESTful-Routes)
+- [Additional Features were under Considerations](#Additional-Features-were-under-Considerations)
+- [Credits](#Credits)
 
 ## Application link
 [http://ideagram.herokuapp.com/](http://ideagram.herokuapp.com/)
