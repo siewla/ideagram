@@ -4,7 +4,7 @@
 This application acts as a visual discovery engine for finding ideas like countries, recipes, home and style inspiration, and many more. 
 
 ## Table of Content
-- [Application Link](#Application-link)
+- [Links](#Links)
 - [Database/Storage](#Database/Storage)
 - [Technologies](#Technologies)
 - [Objective](#Objective)
@@ -16,8 +16,10 @@ This application acts as a visual discovery engine for finding ideas like countr
 - [Additional Features were under Considerations](#Additional-Features-were-under-Considerations)
 - [Credits](#Credits)
 
-## Application link
-[http://ideagram.herokuapp.com/](http://ideagram.herokuapp.com/)
+## Links
+[http://ideagram.herokuapp.com/](Application Links)
+[https://docs.google.com/presentation/d/1EkwKwAuNaxIan346QejhiOebUyW3vf5M3EVJTXntULg/edit?usp=sharing] (Presentation - Google Slides)
+[https://docs.google.com/presentation/d/1aY6zlXZh0_l5jqY99PlqgJ-eKunx2X_Mko7oFtjAj0c/edit?usp=sharing](Initial Wireframe Design)
 
 ## Database/Storage
 * **MongoDB** is a document-oriented NoSQL database used for high volume data storage
@@ -28,7 +30,7 @@ This application acts as a visual discovery engine for finding ideas like countr
 * **Method-override** is used to to convert HTTP verbs such as PUT or DELETE in places where the client doesn't support it
 * **shortid** is used to create amazingly short non-sequential url-friendly unique ids
 * **Bcrypt** is used to hash and store passwords in database
-* **Express-session** is used to store the user state with each given being assiged a unique session. 
+* **Express-session** is used to store the user state with each given being assigned a unique session. 
 * **MomentJS** is used as a wrapper to handle Date object
 * **Multer** is used to handle multipart/form-data for images uploading 
 * **Bootstrap Material Design** is used for CSS framework for HTML and CSS design templates
@@ -47,7 +49,7 @@ The objective of the project is to build a working full **CRUD** (Create, Read, 
   > started with show route for albums, then images, comments and lastly users.
 
 ## Accomplishments
-* The application is meeting the mininum viable product (MVP)'s requirements.
+* The application is meeting the minimum viable product (MVP)'s requirements.
 * Every user is able to create album, add image to existing album, view other users, view all albums, view all images, add comment, delete comment/image/ablum, edit comment/album, follow/unfollow users/albums, etc.
 * the image file can be uploaded through local file. 
 
