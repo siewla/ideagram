@@ -55,7 +55,7 @@ The objective of the project is to build a working full **CRUD** (Create, Read, 
 * One form to handle two routes, upload image via file and upload via url. (unsolved)
     > The route for upload image via file has a middleware (Multer) and have a enctype="multipart/form-data" while the route for upload image via url didn't have the enctype type. 
 
-* Can't reformat the date object by moment(Node.js library) when doing DOM manupulation through jquery. 
+* Can't reformat the date object by moment(Node.js library) when doing DOM manipulation through jquery. 
     > Need to format the date to be same as the previous comment container
 
     
