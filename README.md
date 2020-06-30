@@ -17,9 +17,9 @@ This application acts as a visual discovery engine for finding ideas like countr
 - [Credits](#Credits)
 
 ## Links
-[http://ideagram.herokuapp.com/](Application Links)
-[https://docs.google.com/presentation/d/1EkwKwAuNaxIan346QejhiOebUyW3vf5M3EVJTXntULg/edit?usp=sharing] (Presentation - Google Slides)
-[https://docs.google.com/presentation/d/1aY6zlXZh0_l5jqY99PlqgJ-eKunx2X_Mko7oFtjAj0c/edit?usp=sharing](Initial Wireframe Design)
+- [Application Link](http://ideagram.herokuapp.com/)
+- [Presentation - Google Slides](https://docs.google.com/presentation/d/1EkwKwAuNaxIan346QejhiOebUyW3vf5M3EVJTXntULg/edit?usp=sharing)
+- [Initial Wireframe Design - Google Slides](https://docs.google.com/presentation/d/1aY6zlXZh0_l5jqY99PlqgJ-eKunx2X_Mko7oFtjAj0c/edit?usp=sharing)
 
 ## Database/Storage
 * **MongoDB** is a document-oriented NoSQL database used for high volume data storage
