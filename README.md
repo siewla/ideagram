@@ -61,13 +61,52 @@ The objective of the project is to build a working full **CRUD** (Create, Read, 
     
 ## Wireframe Design and User Stories
 * ### Landing Page (Not Signed in)
-* ### Login and Signup Page
+|Main Page | About Page|
+|--|--|
+|<img src="public/assets/images/app/1.PNG" width="500px"/>| <img src="public/assets/images/app/2.PNG" width="500px"/>|
+
+|Sign Up Page | Login Page|
+|--|--|
+|<img src="public/assets/images/app/3.PNG" width="500px"/>| <img src="public/assets/images/app/4.PNG" width="500px"/>|
+
 * ### Landing Page (Signed in)
+<table><tr><td>
+ <img src="public/assets/images/app/5.PNG" width="500px"/>
+</td></tr></table>
+
 * ### All Albums
+<table><tr><td>
+ <img src="public/assets/images/app/6.PNG" width="500px"/>
+</td></tr></table>
+
+|Owned Ablum |Not Owned Album (Following) | Not Owned Album (Not Following)|
+|--|--|--|
+|<img src="public/assets/images/app/album owned.PNG" width="200px"/>|<img src="public/assets/images/app/album following.PNG" width="200px"/>|<img src="public/assets/images/app/album not following.PNG" width="200px"/>|
+
 * ### All Images
+<table><tr><td>
+ <img src="public/assets/images/app/7.PNG" width="500px"/>
+</td></tr></table>
+
+* ### Following Page
+<table><tr><td>
+ <img src="public/assets/images/app/8.PNG" width="500px"/>
+</td></tr></table>
+
 * ### Album Page
+<table><tr><td>
+ <img src="public/assets/images/app/10.PNG" width="500px"/>
+</td></tr></table>
+
 * ### User Profile Page
+<table><tr><td>
+ <img src="public/assets/images/app/11.PNG" width="500px"/>
+</td></tr></table>
+
 * ### Comments Modal
+<table><tr><td>
+ <img src="public/assets/images/app/9.PNG" width="500px"/>
+</td></tr></table>
 
 ## RESTful Routes
 
